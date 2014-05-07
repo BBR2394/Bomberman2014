@@ -5,10 +5,11 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mer. mai  07 11:06:03 2014 sofian casier
+** Last update mer. mai  07 13:48:39 2014 sofian casier
 */
 
 #include "GameEngine.hpp"
+
 GameEngine::GameEngine()
 {
 }
@@ -35,7 +36,7 @@ bool			GameEngine::initialize()
 	glm::mat4 projection;
 	glm::mat4 transformation;
 	projection = glm::perspective(60.0f, 800.0f / 600.0f, 0.1f, 100.0f);
-	transformation = glm::lookAt(glm::vec3(0, 10, -30), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+	transformation = glm::lookAt(glm::vec3(0, 0, 20), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 	_shader.bind();
 	_shader.setUniform("view", transformation);
 	_shader.setUniform("projection", projection);
@@ -47,7 +48,7 @@ bool			GameEngine::initialize()
 	if (cube->initialize() == false)
 		return (false);
 	_objects.push_back(cube);
-	return true;
+	return (true);
 }
 
 bool			GameEngine::update()
@@ -60,7 +61,7 @@ bool			GameEngine::update()
 		_objects[i]->update(_clock, _input);
 	return true;
 }
-
+	
 void			GameEngine::draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

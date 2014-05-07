@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mer. mai  07 11:06:14 2014 sofian casier
+** Last update mer. mai  07 11:22:47 2014 sofian casier
 */
 
 #pragma once
@@ -21,10 +21,11 @@ class GameEngine : public gdl::Game
 public:
 
   GameEngine();
+  ~GameEngine();
   bool initialize();
   bool update();
   void draw();
-  ~GameEngine();
+  bool CreateMap();
 
 private:
 
