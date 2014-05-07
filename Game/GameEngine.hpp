@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Mon May  5 18:58:28 2014 sofian casier
+// Last update Tue May  6 17:46:21 2014 sofian casier
 //
 
 #pragma once
@@ -52,11 +52,14 @@ public:
     _shader.setUniform("projection", projection);
 
     AObject *cube = new Cube();
+    AObject *cube2 = new Cube(4, 8);
 
+    if (cube2->initialize() == false)
+      return (false);
+    _objects.push_back(cube2);
     if (cube->initialize() == false)
       return (false);
-
-    _objects.push_back(cube);
+      _objects.push_back(cube);
     return true;
   }
 
@@ -68,7 +71,7 @@ public:
     _context.updateClock(_clock);
     _context.updateInputs(_input);
     for (size_t i = 0; i < _objects.size(); ++i)
-      _objects[i]->update(_clock, _input);
+    _objects[i]->update(_clock, _input);
     return true;
   }
   void draw()
