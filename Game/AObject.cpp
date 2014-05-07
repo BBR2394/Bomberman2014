@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update mer. mai  07 13:35:40 2014 sofian casier
+// Last update Wed May  7 13:55:16 2014 Bertrand-Rapello Baptiste
 */
 
 #include "AObject.hpp"
@@ -73,7 +73,7 @@ Cube::~Cube()
 bool	Cube::initialize()
 {
   _speed = 10.0f;
-  if (_texture.load("./assets/marvin.fbm/Main_texture_diffuse2.tga") == false)
+  if (_texture.load("../assets/marvin.fbm/Main_texture_diffuse2.tga") == false)
     {
       std::cerr << "Cannot load the cube texture" << std::endl;
       return (false);
@@ -167,7 +167,7 @@ Rectangle::~Rectangle()
 
 bool    Rectangle::initialize()
 {
-if (_texture.load("./assets/marvin.fbm/Main_texture_diffuse2.tga") == false)
+if (_texture.load("../assets/marvin.fbm/Main_texture_diffuse2.tga") == false)
     {
       std::cerr << "Cannot load the rectangle texture" << std::endl;
       return (false);

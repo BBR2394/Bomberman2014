@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mer. mai  07 13:48:39 2014 sofian casier
+// Last update Wed May  7 13:54:39 2014 Bertrand-Rapello Baptiste
 */
 
 #include "GameEngine.hpp"
@@ -28,7 +28,7 @@ bool			GameEngine::initialize()
 		return false;
 	}
 	glEnable(GL_DEPTH_TEST);
-	if (!_shader.load("./shaders/basic.fp", GL_FRAGMENT_SHADER) || !_shader.load("./shaders/basic.vp", GL_VERTEX_SHADER) || !_shader.build())
+	if (!_shader.load("../shaders/basic.fp", GL_FRAGMENT_SHADER) || !_shader.load("../shaders/basic.vp", GL_VERTEX_SHADER) || !_shader.build())
 	{
 		std::cout << "shader failed" << std::endl;
 		return (false);
