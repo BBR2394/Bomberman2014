@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update mer. mai  07 10:41:47 2014 sofian casier
+** Last update mer. mai  07 10:51:05 2014 sofian casier
 */
 
 #ifndef _GAME_
@@ -25,7 +25,6 @@
 
 class AObject
 {
-
 public:
 
   AObject();
