@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update mer. mai  07 13:15:31 2014 sofian casier
+** Last update mer. mai  07 15:28:05 2014 sofian casier
 */
 
 #ifndef _GAME_
@@ -77,10 +77,12 @@ private:
 public:
 
   Rectangle();
+  Rectangle(int x, int y);
   virtual ~Rectangle();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
-};
+ };
+
 
 #endif

@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Wed May  7 13:54:39 2014 Bertrand-Rapello Baptiste
+** Last update mer. mai  07 15:42:26 2014 sofian casier
 */
 
 #include "GameEngine.hpp"
@@ -28,7 +28,7 @@ bool			GameEngine::initialize()
 		return false;
 	}
 	glEnable(GL_DEPTH_TEST);
-	if (!_shader.load("../shaders/basic.fp", GL_FRAGMENT_SHADER) || !_shader.load("../shaders/basic.vp", GL_VERTEX_SHADER) || !_shader.build())
+	if (!_shader.load("./shaders/basic.fp", GL_FRAGMENT_SHADER) || !_shader.load("./shaders/basic.vp", GL_VERTEX_SHADER) || !_shader.build())
 	{
 		std::cout << "shader failed" << std::endl;
 		return (false);
@@ -40,15 +40,21 @@ bool			GameEngine::initialize()
 	_shader.bind();
 	_shader.setUniform("view", transformation);
 	_shader.setUniform("projection", projection);
-	AObject *cube = new Cube();
+
+//	Menu			menu;
+	AObject *menu = new Rectangle(3, 10);
+	if (menu->initialize() == false)
+		return (false);
+	_objects.push_back(menu);
+/*	AObject *cube = new Cube();
 	AObject *cube2 = new Cube(4, 8);		
 	if (cube2->initialize() == false)
 		return (false);
 	_objects.push_back(cube2);
 	if (cube->initialize() == false)
 		return (false);
-	_objects.push_back(cube);
-	return (true);
+	_objects.push_back(cube); */
+	return (true); 
 }
 
 bool			GameEngine::update()
