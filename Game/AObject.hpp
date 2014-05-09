@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update ven. mai  09 14:47:45 2014 sofian casier
+** Last update ven. mai  09 17:18:30 2014 sofian casier
 */
 
 #ifndef _GAME_
@@ -29,8 +29,15 @@ class AObject
 {
 public:
 
+  typedef enum s_type
+  {
+    MENU = 0,
+    CURSOR = 1,
+    WALL = 2,
+    BOMB = 3
+  }       Type;
   AObject();
-  AObject(double x, double y, double z);
+  AObject(double x, double y, double z, Type type);
   virtual ~AObject();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
@@ -39,9 +46,11 @@ public:
   void rotate(glm::vec3 const& axis, float angle);
   void scale(glm::vec3 const& scale);
   glm::mat4 getTransformation();
+  Type  getType() const;
 
 protected:
 
+  Type      _type;
   glm::vec3 _position;
   glm::vec3 _rotation;
   glm::vec3 _scale;
@@ -60,7 +69,7 @@ private:
 public:
 
 //  Cube();
-  Cube(double x, double y, double z);
+  Cube(double x, double y, double z, Type type);
   virtual ~Cube();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
@@ -74,18 +83,20 @@ private:
 
   gdl::Texture _texture;
   gdl::Geometry _geometry;
-  gdl::Geometry _cursor;
+  gdl::Geometry           _cursor;
   float _speed;
 
 public:
 
+  int   _position_menu;
   Menu();
-  Menu(double x, double y, double z);
+  Menu(double x, double y, double z, Type type);
   virtual ~Menu();
   virtual bool initialize();
+  void  setPositionMenu(int);
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
+  int     getPosition() const;
  };
-
 
 #endif

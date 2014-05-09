@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update ven. mai  09 14:49:57 2014 sofian casier
+** Last update ven. mai  09 17:13:28 2014 sofian casier
 */
 
 #include "AObject.hpp"
@@ -18,8 +18,9 @@ AObject::AObject() : _position(5, 5, 0), _rotation(0, 0, 0), _scale(1, 1, 1)
 {
 }*/
 
-AObject::AObject(double x, double y, double z): _position(x, y, z), _rotation(0, 0, -90), _scale(1, 1, 1)
+AObject::AObject(double x, double y, double z, Type type): _position(x, y, z), _rotation(0, 0, -90), _scale(1, 1, 1)
 {
+  _type = type;
 }
 
 AObject::~AObject()
@@ -61,11 +62,15 @@ glm::mat4 AObject::getTransformation()
 
 }
 
+AObject::Type      AObject::getType() const
+{
+  return (this->_type);
+}
 /*Cube::Cube()
 {
 }*/
 
-Cube::Cube(double x, double y, double z) : AObject(x, y, z)
+Cube::Cube(double x, double y, double z, Type type) : AObject(x, y, z, type)
 {
 }
 
@@ -161,11 +166,12 @@ void Cube::draw(gdl::AShader &shader, gdl::Clock const &clock)
 
 Menu::Menu()
 {
+  _position_menu = 0;
 }
 
-Menu::Menu(double x, double y, double z) : AObject(x, y, z)
+Menu::Menu(double x, double y, double z, Type type) : AObject(x, y, z, type)
 {
-
+  _position_menu = 0;
 }
 
 Menu::~Menu()
@@ -193,10 +199,19 @@ if (_texture.load("./includes/images/accueil.tga") == false)
     return (true);
 }
 
+void  Menu::setPositionMenu(int pos)
+{
+  _position_menu = pos;
+}
+
 void  Menu::update(gdl::Clock const &clock, gdl::Input &input)
 {    
 }
 
+  int   Menu::getPosition() const
+  {
+    return (_position_menu);
+  }
 void    Menu::draw(gdl::AShader &shader, gdl::Clock const &clock)
 {
   (void)clock;

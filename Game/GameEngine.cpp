@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update ven. mai  09 15:02:16 2014 sofian casier
+** Last update ven. mai  09 17:36:16 2014 sofian casier
 */
 
 #include "GameEngine.hpp"
@@ -19,11 +19,6 @@ GameEngine::~GameEngine()
 	for (size_t i = 0; i < _objects.size(); i++)
 		delete _objects[i];
 }
-
-/*GameEngine		&getEngine() const
-{
-	return (*this);
-} */
 
 bool			GameEngine::initialize()
 {
@@ -46,11 +41,11 @@ bool			GameEngine::initialize()
 	_shader.setUniform("view", transformation);
 	_shader.setUniform("projection", projection);
 
-	AObject *menu = new Menu(0, 0, -5);
+	AObject *menu = new Menu(0, 0, -5, AObject::MENU);
 	if (menu->initialize() == false)
 		return (false);
-	_objects.push_back(menu); 
-	_cursor = new Cube(-3.3, -1, 0);
+	_objects.push_back(menu);
+	_cursor = new Cube(-3.3, -1, 0, AObject::CURSOR);
 	if (_cursor->initialize() == false)
 		return (false);
 	_objects.push_back(_cursor);
@@ -69,13 +64,30 @@ bool			GameEngine::update()
 {
 	if (_input.getKey(SDLK_ESCAPE) || _input.getInput(SDL_QUIT))
 		return false;
+	if (_input.getKey(SDLK_DOWN))
+	{
+		std::vector<AObject*>::iterator i;
+		i = _objects.begin();
+		while (i != _objects.end())
+		{
+			if ((*i)->getType() == AObject::CURSOR)
+			{
+				_objects.erase(i);
+				_cursor = new Cube(0, 0, 0, AObject::CURSOR);
+				if (_cursor->initialize() == false)
+					return (false);
+				_objects.push_back(_cursor);
+			}
+			i++;
+		}
+	}
 	_context.updateClock(_clock);
 	_context.updateInputs(_input);
 	for (size_t i = 0; i < _objects.size(); ++i)
 		_objects[i]->update(_clock, _input);
-	return true;
+	return (true);
 }
-	
+
 void			GameEngine::draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
