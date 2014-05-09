@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update ven. mai  09 17:18:30 2014 sofian casier
+** Last update ven. mai  09 18:03:49 2014 sofian casier
 */
 
 #ifndef _GAME_
@@ -47,14 +47,19 @@ public:
   void scale(glm::vec3 const& scale);
   glm::mat4 getTransformation();
   Type  getType() const;
+  void    setXcurs(double);
+  void    setYcurs(double);
+  void    setZcurs(double);
 
 protected:
 
   Type      _type;
   glm::vec3 _position;
   glm::vec3 _rotation;
-  glm::vec3 _scale;
-
+  glm::vec3 _scale;  
+  double                  _ycurs;
+  double                  _zcurs;
+  double                  _xcurs;
 };
 
 class Cube : public AObject
@@ -88,6 +93,12 @@ private:
 
 public:
 
+  double  getXcurs() const;
+  double  getYcurs() const;
+  double  getZcurs() const;
+  void    setXcurs(double);
+  void    setYcurs(double);
+  void    setZcurs(double);
   int   _position_menu;
   Menu();
   Menu(double x, double y, double z, Type type);

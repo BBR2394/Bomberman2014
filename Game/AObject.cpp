@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update ven. mai  09 17:13:28 2014 sofian casier
+** Last update ven. mai  09 18:08:32 2014 sofian casier
 */
 
 #include "AObject.hpp"
@@ -25,6 +25,21 @@ AObject::AObject(double x, double y, double z, Type type): _position(x, y, z), _
 
 AObject::~AObject()
 {
+}
+
+void      AObject::setXcurs(double x)
+{
+  _xcurs = x;
+}
+
+void      AObject::setYcurs(double y)
+{
+  _ycurs = y;
+}
+
+void      AObject::setZcurs(double z)
+{
+  _zcurs = z;
 }
 
 bool	AObject::initialize()
@@ -208,10 +223,26 @@ void  Menu::update(gdl::Clock const &clock, gdl::Input &input)
 {    
 }
 
-  int   Menu::getPosition() const
-  {
-    return (_position_menu);
-  }
+double    Menu::getXcurs() const
+{
+  return (_xcurs);
+}
+
+double    Menu::getYcurs() const
+{
+  return (_ycurs);
+}
+
+double    Menu::getZcurs() const
+{
+  return (_zcurs);
+}
+
+int   Menu::getPosition() const
+{
+  return (_position_menu);
+}
+
 void    Menu::draw(gdl::AShader &shader, gdl::Clock const &clock)
 {
   (void)clock;
