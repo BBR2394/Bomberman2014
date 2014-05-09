@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update mer. mai  07 15:28:05 2014 sofian casier
+** Last update ven. mai  09 14:47:45 2014 sofian casier
 */
 
 #ifndef _GAME_
@@ -23,12 +23,14 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 
+class GameEngine;
+
 class AObject
 {
 public:
 
   AObject();
-  AObject(int x, int y);
+  AObject(double x, double y, double z);
   virtual ~AObject();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
@@ -57,28 +59,29 @@ private:
 
 public:
 
-  Cube();
-  Cube(int x, int y);
+//  Cube();
+  Cube(double x, double y, double z);
   virtual ~Cube();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
 };
 
-class Rectangle : public AObject
+class Menu : public AObject
 {
 
 private:
 
   gdl::Texture _texture;
   gdl::Geometry _geometry;
+  gdl::Geometry _cursor;
   float _speed;
 
 public:
 
-  Rectangle();
-  Rectangle(int x, int y);
-  virtual ~Rectangle();
+  Menu();
+  Menu(double x, double y, double z);
+  virtual ~Menu();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);

@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mer. mai  07 15:42:26 2014 sofian casier
+** Last update ven. mai  09 15:02:16 2014 sofian casier
 */
 
 #include "GameEngine.hpp"
@@ -19,6 +19,11 @@ GameEngine::~GameEngine()
 	for (size_t i = 0; i < _objects.size(); i++)
 		delete _objects[i];
 }
+
+/*GameEngine		&getEngine() const
+{
+	return (*this);
+} */
 
 bool			GameEngine::initialize()
 {
@@ -41,11 +46,14 @@ bool			GameEngine::initialize()
 	_shader.setUniform("view", transformation);
 	_shader.setUniform("projection", projection);
 
-//	Menu			menu;
-	AObject *menu = new Rectangle(3, 10);
+	AObject *menu = new Menu(0, 0, -5);
 	if (menu->initialize() == false)
 		return (false);
-	_objects.push_back(menu);
+	_objects.push_back(menu); 
+	_cursor = new Cube(-3.3, -1, 0);
+	if (_cursor->initialize() == false)
+		return (false);
+	_objects.push_back(_cursor);
 /*	AObject *cube = new Cube();
 	AObject *cube2 = new Cube(4, 8);		
 	if (cube2->initialize() == false)
@@ -53,7 +61,7 @@ bool			GameEngine::initialize()
 	_objects.push_back(cube2);
 	if (cube->initialize() == false)
 		return (false);
-	_objects.push_back(cube); */
+	_objects.push_back(cube);*/
 	return (true); 
 }
 

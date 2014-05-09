@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update mer. mai  07 16:08:53 2014 sofian casier
+** Last update ven. mai  09 14:49:57 2014 sofian casier
 */
 
 #include "AObject.hpp"
@@ -18,7 +18,7 @@ AObject::AObject() : _position(5, 5, 0), _rotation(0, 0, 0), _scale(1, 1, 1)
 {
 }*/
 
-AObject::AObject(int x, int y): _position(0, 0, 0), _rotation(0, 0, -90), _scale(1, 1, 1)
+AObject::AObject(double x, double y, double z): _position(x, y, z), _rotation(0, 0, -90), _scale(1, 1, 1)
 {
 }
 
@@ -61,11 +61,11 @@ glm::mat4 AObject::getTransformation()
 
 }
 
-Cube::Cube()
+/*Cube::Cube()
 {
-}
+}*/
 
-Cube::Cube(int x, int y) : AObject(x, y)
+Cube::Cube(double x, double y, double z) : AObject(x, y, z)
 {
 }
 
@@ -82,7 +82,7 @@ bool	Cube::initialize()
       std::cerr << "Cannot load the cube texture" << std::endl;
       return (false);
     }
-    _geometry.setColor(glm::vec4(1, 0, 0, 1));
+    _geometry.setColor(glm::vec4(0, 0, 0, 1));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
     _geometry.pushVertex(glm::vec3(-0.5, 0.5, 0.5));
@@ -91,7 +91,7 @@ bool	Cube::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.setColor(glm::vec4(1, 1, 0, 1));
+   // _geometry.setColor(glm::vec4(1, 1, 0, 1));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, -0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, -0.5));
     _geometry.pushVertex(glm::vec3(-0.5, 0.5, -0.5));
@@ -100,7 +100,7 @@ bool	Cube::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.setColor(glm::vec4(0, 1, 1, 1));
+   // _geometry.setColor(glm::vec4(0, 1, 1, 1));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, -0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, -0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
@@ -109,7 +109,7 @@ bool	Cube::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.setColor(glm::vec4(1, 0, 1, 1));
+    //_geometry.setColor(glm::vec4(1, 0, 1, 1));
     _geometry.pushVertex(glm::vec3(-0.5, -0.5, 0.5));
     _geometry.pushVertex(glm::vec3(-0.5, 0.5, 0.5));
     _geometry.pushVertex(glm::vec3(-0.5, 0.5, -0.5));
@@ -118,7 +118,7 @@ bool	Cube::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.setColor(glm::vec4(0, 1, 0, 1));
+    //_geometry.setColor(glm::vec4(0, 1, 0, 1));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, -0.5));
     _geometry.pushVertex(glm::vec3(-0.5, 0.5, -0.5));
@@ -127,7 +127,7 @@ bool	Cube::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.setColor(glm::vec4(0, 0, 1, 1));
+    //_geometry.setColor(glm::vec4(0, 0, 1, 1));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, -0.5));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
     _geometry.pushVertex(glm::vec3(-0.5, -0.5, 0.5));
@@ -142,14 +142,14 @@ bool	Cube::initialize()
 
 void Cube::update(gdl::Clock const &clock, gdl::Input &input)
 {
-   if (input.getKey(SDLK_UP))
+/*   if (input.getKey(SDLK_UP))
     translate(glm::vec3(0, 0, -1) * static_cast<float>(clock.getElapsed()) * _speed);
   if (input.getKey(SDLK_DOWN))
     translate(glm::vec3(0, 0, 1) * static_cast<float>(clock.getElapsed()) * _speed);
   if (input.getKey(SDLK_LEFT))
     translate(glm::vec3(-1, 0, 0) * static_cast<float>(clock.getElapsed()) * _speed);
   if (input.getKey(SDLK_RIGHT))
-    translate(glm::vec3(1, 0, 0) * static_cast<float>(clock.getElapsed()) * _speed);
+    translate(glm::vec3(1, 0, 0) * static_cast<float>(clock.getElapsed()) * _speed); */
 }
 
 void Cube::draw(gdl::AShader &shader, gdl::Clock const &clock)
@@ -159,22 +159,21 @@ void Cube::draw(gdl::AShader &shader, gdl::Clock const &clock)
   _geometry.draw(shader, getTransformation(), GL_QUADS);
 }
 
-Rectangle::Rectangle()
+Menu::Menu()
+{
+}
+
+Menu::Menu(double x, double y, double z) : AObject(x, y, z)
 {
 
 }
 
-Rectangle::Rectangle(int x, int y) : AObject(x, y)
+Menu::~Menu()
 {
 
 }
 
-Rectangle::~Rectangle()
-{
-
-}
-
-bool    Rectangle::initialize()
+bool    Menu::initialize()
 {
       _speed = 10.0f;
 if (_texture.load("./includes/images/accueil.tga") == false)
@@ -194,15 +193,11 @@ if (_texture.load("./includes/images/accueil.tga") == false)
     return (true);
 }
 
-void    Rectangle::update(gdl::Clock const &clock, gdl::Input &input)
-{
-    while (input.getInput(SDL_QUIT, false))
-    {
-
-    }
+void  Menu::update(gdl::Clock const &clock, gdl::Input &input)
+{    
 }
 
-void    Rectangle::draw(gdl::AShader &shader, gdl::Clock const &clock)
+void    Menu::draw(gdl::AShader &shader, gdl::Clock const &clock)
 {
   (void)clock;
   _texture.bind();

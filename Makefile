@@ -5,7 +5,7 @@
 ## Login   <casier_s@epitech.net>
 ## 
 ## Started on  Tue May  6 15:15:22 2014 sofian casier
-## Last update Wed May  7 13:39:58 2014 sofian casier
+## Last update Wed May  7 19:40:31 2014 sofian casier
 ##
 
 NAME		=		Bomberman
@@ -19,7 +19,6 @@ INCS		=		-I includes/
 SRCS		=		Game/main.cpp		\
 				Game/AObject.cpp	\
 				Game/GameEngine.cpp	\
-				Game/Menu.cpp		\
 
 OBJS		=		$(SRCS:.cpp=.o)
 
