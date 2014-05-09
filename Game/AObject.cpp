@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update ven. mai  09 18:33:08 2014 sofian casier
+** Last update ven. mai  09 20:27:19 2014 sofian casier
 */
 
 #include "AObject.hpp"
@@ -69,7 +69,8 @@ void AObject::scale(glm::vec3 const& scale)
 glm::mat4 AObject::getTransformation()
 {
   glm::mat4 transform(1);
-  transform = glm::rotate(transform, _rotation.x, glm::vec3(1, 0, 0));transform = glm::rotate(transform, _rotation.y, glm::vec3(0, 1, 0));
+  transform = glm::rotate(transform, _rotation.x, glm::vec3(1, 0, 0));
+  transform = glm::rotate(transform, _rotation.y, glm::vec3(0, 1, 0));
   transform = glm::rotate(transform, _rotation.z, glm::vec3(0, 0, 1));
   transform = glm::translate(transform, _position);
   transform = glm::scale(transform, _scale);
@@ -97,12 +98,12 @@ Cube::~Cube()
 bool	Cube::initialize()
 {
   _speed = 10.0f;
-  if (_texture.load("./assets/marvin.fbm/Main_texture_diffuse2.tga") == false)
+  if (_texture.load("./includes/images/cursor.tga") == false)
     {
       std::cerr << "Cannot load the cube texture" << std::endl;
       return (false);
     }
-    _geometry.setColor(glm::vec4(0, 0, 0, 1));
+//    _geometry.setColor(glm::vec4(0, 0, 0, 1));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
     _geometry.pushVertex(glm::vec3(-0.5, 0.5, 0.5));

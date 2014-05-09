@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update ven. mai  09 19:19:13 2014 sofian casier
+** Last update ven. mai  09 20:39:55 2014 sofian casier
 */
 
 #include "GameEngine.hpp"
@@ -41,15 +41,14 @@ bool			GameEngine::initialize()
 	_shader.bind();
 	_shader.setUniform("view", transformation);
 	_shader.setUniform("projection", projection);
-
 	AObject *_menu = new Menu(0, 0, -5, AObject::MENU);
-	_menu->setXcurs(-3.3);
+/*	_menu->setXcurs(-3.3);
 	_menu->setYcurs(-1);
-	_menu->setZcurs(0);
+	_menu->setZcurs(0); */
 	if (_menu->initialize() == false)
 		return (false);
 	_objects.push_back(_menu);
-	_cursor = new Cube(-3.3, -1, 0, AObject::CURSOR);
+	_cursor = new Cube(-3.8, -1, 0, AObject::CURSOR);
 	if (_cursor->initialize() == false)
 		return (false);
 	_objects.push_back(_cursor);
@@ -70,13 +69,28 @@ bool			GameEngine::update()
 		return false;
 	if (_input.getInput(SDLK_DOWN, true))
 	{
-		_index_cursor++;
-		_cursor->translate(glm::vec3(1, 0, 0));
+		if (_index_cursor < 3)
+		{
+			_index_cursor++;
+			_cursor->translate(glm::vec3(2.2, 0, 0));
+		}
 	}
 	if (_input.getInput(SDLK_UP, true))
 	{
+		if (_index_cursor > 0)
+		{
 		_index_cursor--;
-		_cursor->translate(glm::vec3(-1, 0, 0));
+			_cursor->translate(glm::vec3(-2.2, 0, 0));
+		}
+	}
+	if (_input.getInput(SDLK_SPACE))
+	{
+		if (_index_cursor == 0)
+			std::cout << "C'est parti pour un jeu solo!" << std::endl;
+		if (_index_cursor == 1)
+			std::cout << "C'est parti pour continuer le jeu!" << std::endl;
+		if (_index_cursor == 2)
+			std::cout << "C'est parti pour un jeu multi!" << std::endl;
 	}
 	_context.updateClock(_clock);
 	_context.updateInputs(_input);
