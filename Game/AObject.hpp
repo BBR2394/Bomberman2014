@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update ven. mai  09 18:03:49 2014 sofian casier
+** Last update ven. mai  09 18:45:16 2014 sofian casier
 */
 
 #ifndef _GAME_
@@ -51,15 +51,16 @@ public:
   void    setYcurs(double);
   void    setZcurs(double);
 
-protected:
-
-  Type      _type;
-  glm::vec3 _position;
-  glm::vec3 _rotation;
-  glm::vec3 _scale;  
   double                  _ycurs;
   double                  _zcurs;
   double                  _xcurs;
+  glm::vec3 _position;
+protected:
+
+  Type      _type;
+  glm::vec3 _rotation;
+  glm::vec3 _scale;  
+
 };
 
 class Cube : public AObject

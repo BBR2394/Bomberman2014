@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update ven. mai  09 18:08:45 2014 sofian casier
+** Last update ven. mai  09 19:19:13 2014 sofian casier
 */
 
 #include "GameEngine.hpp"
@@ -33,6 +33,7 @@ bool			GameEngine::initialize()
 		std::cout << "shader failed" << std::endl;
 		return (false);
 	}
+	_index_cursor = 0;
 	glm::mat4 projection;
 	glm::mat4 transformation;
 	projection = glm::perspective(60.0f, 800.0f / 600.0f, 0.1f, 100.0f);
@@ -67,28 +68,20 @@ bool			GameEngine::update()
 {
 	if (_input.getKey(SDLK_ESCAPE) || _input.getInput(SDL_QUIT))
 		return false;
-	if (_input.getKey(SDLK_DOWN))
+	if (_input.getInput(SDLK_DOWN, true))
 	{
-		std::vector<AObject*>::iterator i;
-		i = _objects.begin();
-		while (i != _objects.end())
-		{
-			if ((*i)->getType() == AObject::CURSOR)
-			{
-				_objects.erase(i);
-				delete _cursor;
-				_cursor = new Cube(0, 0, 0, AObject::CURSOR);
-				if (_cursor->initialize() == false)
-					return (false);
-				_objects.push_back(_cursor);
-			}
-			i++;
-		}
+		_index_cursor++;
+		_cursor->translate(glm::vec3(1, 0, 0));
+	}
+	if (_input.getInput(SDLK_UP, true))
+	{
+		_index_cursor--;
+		_cursor->translate(glm::vec3(-1, 0, 0));
 	}
 	_context.updateClock(_clock);
 	_context.updateInputs(_input);
-	for (size_t i = 0; i < _objects.size(); ++i)
-		_objects[i]->update(_clock, _input);
+//	for (size_t i = 0; i < _objects.size(); ++i)
+//		_objects[i]->update(_clock, _input);
 	return (true);
 }
 

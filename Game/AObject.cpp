@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update ven. mai  09 18:08:32 2014 sofian casier
+** Last update ven. mai  09 18:33:08 2014 sofian casier
 */
 
 #include "AObject.hpp"
@@ -162,14 +162,14 @@ bool	Cube::initialize()
 
 void Cube::update(gdl::Clock const &clock, gdl::Input &input)
 {
-/*   if (input.getKey(SDLK_UP))
+  if (input.getKey(SDLK_UP))
     translate(glm::vec3(0, 0, -1) * static_cast<float>(clock.getElapsed()) * _speed);
   if (input.getKey(SDLK_DOWN))
-    translate(glm::vec3(0, 0, 1) * static_cast<float>(clock.getElapsed()) * _speed);
+    translate(glm::vec3(0, -1, 0) * static_cast<float>(clock.getElapsed()) * _speed);
   if (input.getKey(SDLK_LEFT))
     translate(glm::vec3(-1, 0, 0) * static_cast<float>(clock.getElapsed()) * _speed);
   if (input.getKey(SDLK_RIGHT))
-    translate(glm::vec3(1, 0, 0) * static_cast<float>(clock.getElapsed()) * _speed); */
+    translate(glm::vec3(1, 0, 0) * static_cast<float>(clock.getElapsed()) * _speed);
 }
 
 void Cube::draw(gdl::AShader &shader, gdl::Clock const &clock)
@@ -202,10 +202,10 @@ if (_texture.load("./includes/images/accueil.tga") == false)
       std::cerr << "Cannot load the rectangle texture" << std::endl;
       return (false);
     }
-    _geometry.pushVertex(glm::vec3(12, -15.5, 0.5));
-    _geometry.pushVertex(glm::vec3(12, 15.5, 0.5));
-    _geometry.pushVertex(glm::vec3(-12, 15.5, 0.5));
-    _geometry.pushVertex(glm::vec3(-12, -15.5, 0.5));
+    _geometry.pushVertex(glm::vec3(14, -17.5, 0.5));
+    _geometry.pushVertex(glm::vec3(14, 17.5, 0.5));
+    _geometry.pushVertex(glm::vec3(-14, 17.5, 0.5));
+    _geometry.pushVertex(glm::vec3(-14, -17.5, 0.5));
     _geometry.pushUv(glm::vec2(0.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));

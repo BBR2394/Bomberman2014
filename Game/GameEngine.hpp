@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update ven. mai  09 15:02:59 2014 sofian casier
+** Last update ven. mai  09 18:50:33 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -37,6 +37,7 @@ private:
   std::vector<AObject*> _objects;
   Menu                  *_menu;
   Cube                  *_cursor;
+  int                   _index_cursor;
 };
 
 #endif
