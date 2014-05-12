@@ -5,10 +5,14 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update lun. mai  12 16:10:29 2014 sofian casier
+** Last update lun. mai  12 16:15:52 2014 sofian casier
 */
 
 #include "GameEngine.hpp"
+
+Uint8  *sounddata;
+Uint32 soundlength;
+Uint32 soundpos;
 
 GameEngine::GameEngine()
 {
@@ -19,7 +23,6 @@ GameEngine::~GameEngine()
 	for (size_t i = 0; i < _objects.size(); i++)
 		delete _objects[i];
 }
-
 
 void			mixaudio(void * userdata, Uint8 * stream, int len)
  {
@@ -39,7 +42,6 @@ void			GameEngine::launch_title_music()
 	desired.samples = 512;
 	desired.callback = &mixaudio;
 	desired.userdata = NULL;
-
 	if ((SDL_Init(SDL_INIT_AUDIO)) == -1)
 	{
 		std::cout << "Error on SDL Audio Init" << std::endl;
