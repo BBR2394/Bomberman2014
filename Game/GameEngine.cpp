@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update ven. mai  09 20:39:55 2014 sofian casier
+** Last update lun. mai  12 14:09:32 2014 sofian casier
 */
 
 #include "GameEngine.hpp"
@@ -83,7 +83,7 @@ bool			GameEngine::update()
 			_cursor->translate(glm::vec3(-2.2, 0, 0));
 		}
 	}
-	if (_input.getInput(SDLK_SPACE))
+	if (_input.getInput(SDLK_SPACE, true))
 	{
 		if (_index_cursor == 0)
 			std::cout << "C'est parti pour un jeu solo!" << std::endl;
