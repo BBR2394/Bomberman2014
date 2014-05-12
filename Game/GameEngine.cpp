@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update lun. mai  12 14:09:32 2014 sofian casier
+** Last update lun. mai  12 14:25:27 2014 sofian casier
 */
 
 #include "GameEngine.hpp"
@@ -63,7 +63,7 @@ bool			GameEngine::initialize()
 	return (true); 
 }
 
-bool			GameEngine::update()
+bool			GameEngine::Menu_choice()
 {
 	if (_input.getKey(SDLK_ESCAPE) || _input.getInput(SDL_QUIT))
 		return false;
@@ -92,6 +92,13 @@ bool			GameEngine::update()
 		if (_index_cursor == 2)
 			std::cout << "C'est parti pour un jeu multi!" << std::endl;
 	}
+	return (true);
+}
+
+bool			GameEngine::update()
+{
+	if 	(this->Menu_choice() == false)
+		return (false);
 	_context.updateClock(_clock);
 	_context.updateInputs(_input);
 //	for (size_t i = 0; i < _objects.size(); ++i)
