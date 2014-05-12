@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update lun. mai  12 16:16:08 2014 sofian casier
+// Last update Mon May 12 17:50:11 2014 Bertrand-Rapello Baptiste
 */
 
 #ifndef   __GAMEENGINE__
@@ -29,6 +29,7 @@ public:
   void draw();
   bool  Menu_choice();
   GameEngine &getEngine() const;
+  bool createMap(int x, int y);
   void    launch_title_music();
   
 private:

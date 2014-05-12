@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update lun. mai  12 16:15:52 2014 sofian casier
+// Last update Mon May 12 17:51:01 2014 Bertrand-Rapello Baptiste
 */
 
 #include "GameEngine.hpp"
@@ -132,6 +132,55 @@ bool			GameEngine::initialize()
 	_objects.push_back(cube);*/
 	return (true); 
 }
+
+bool                    GameEngine::createMap(int x, int y)
+{
+  int   c, d, e;
+  AObject *temp;
+
+  for (size_t i = 0; i < _objects.size(); i++)
+    delete _objects[i];
+  c = (x/2) * -1;
+  d = ((y/2) * -1);
+  while (c < x/2)
+    {
+      temp = new Cube(c, ((y/2) * -1), 3, 0, 0, 0);
+      if (temp->initialize() == false)
+        return (false);
+      this->_objects.push_back(temp);
+      temp = new Cube(c, y/2, 3, 0, 0, 0);
+      if (temp->initialize() == false)
+        return (false);
+      this->_objects.push_back(temp);
+      c++;
+    }
+  while (d < (y/2))
+    {
+      temp = new Cube((x/2)-1, d, 3, 0, 0, 0);
+      if (temp->initialize() == false)
+        return (false);
+      this->_objects.push_back(temp);
+      temp = new Cube((x/2) * -1, d, 3, 0, 0, 0);
+      if (temp->initialize() == false)
+        return (false);
+      this->_objects.push_back(temp);
+      if (d%2 == 0)
+        {
+          e = ((x/2) * -1)+ 2;
+          while (e <= ((x/2) - 2))
+            {
+              temp = new Cube(e, d , 3, 0, 0, 0);
+              if (temp->initialize() == false)
+                return (false);
+              this->_objects.push_back(temp);
+              e = e + 2;
+            }
+        }
+      d++;
+    }
+  std::cout << this->_objects.size() << std::endl;
+}
+
 
 bool			GameEngine::Menu_choice()
 {

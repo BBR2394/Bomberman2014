@@ -5,7 +5,7 @@
 ## Login   <casier_s@epitech.net>
 ## 
 ## Started on  Tue May  6 15:15:22 2014 sofian casier
-## Last update Fri May  9 17:57:43 2014 sofian casier
+## Last update Mon May 12 17:17:04 2014 Bertrand-Rapello Baptiste
 ##
 
 NAME		=		Bomberman
@@ -18,11 +18,11 @@ INCS		=		-I includes/
 
 SRCS		=		Game/main.cpp		\
 				Game/AObject.cpp	\
-				Game/GameEngine.cpp	\
+				Game/GameEngine.cpp
 
 OBJS		=		$(SRCS:.cpp=.o)
 
-LIB_GDL		=		-Llibs -lgdl_gl -lGL -lGLEW -ldl -lrt -lfbxsdk -lSDL2 -lpthread -g
+LIB_GDL		=		-Llibs -lgdl_gl -lGL -lGLEW -ldl -lrt -lfbxsdk -lSDL2 -lpthread -g -ldl
 
 all		:		$(NAME)
 

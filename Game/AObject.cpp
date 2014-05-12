@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update ven. mai  09 20:27:19 2014 sofian casier
+// Last update Mon May 12 17:36:32 2014 Bertrand-Rapello Baptiste
 */
 
 #include "AObject.hpp"
@@ -22,6 +22,12 @@ AObject::AObject(double x, double y, double z, Type type): _position(x, y, z), _
 {
   _type = type;
 }
+
+AObject::AObject(int xp, int yp, int zp, int xr, int yr, int zr): _position(xp, yp, zp), _rotation(xr,yr,zr), _scale(1, 1, 1)
+{
+
+}
+
 
 AObject::~AObject()
 {
@@ -89,6 +95,12 @@ AObject::Type      AObject::getType() const
 Cube::Cube(double x, double y, double z, Type type) : AObject(x, y, z, type)
 {
 }
+
+Cube::Cube(int xp, int yp, int zp, int xr, int yr, int zr) : AObject(xp, yp, zp, xr, yr, zr)
+{
+
+}
+
 
 Cube::~Cube()
 {

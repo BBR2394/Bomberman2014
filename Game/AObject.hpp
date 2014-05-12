@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update ven. mai  09 18:45:16 2014 sofian casier
+// Last update Mon May 12 16:53:56 2014 Bertrand-Rapello Baptiste
 */
 
 #ifndef _GAME_
@@ -37,7 +37,9 @@ public:
     BOMB = 3
   }       Type;
   AObject();
+  AObject(int x, int y);
   AObject(double x, double y, double z, Type type);
+  AObject(int xp, int yp, int zp, int xr, int yr, int zr);
   virtual ~AObject();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
@@ -60,7 +62,8 @@ protected:
   Type      _type;
   glm::vec3 _rotation;
   glm::vec3 _scale;  
-
+  int   sizex;
+  int   sizey;
 };
 
 class Cube : public AObject
@@ -73,9 +76,10 @@ private:
   float _speed;
 
 public:
-
-//  Cube();
+  Cube();
+  Cube(int x, int y);
   Cube(double x, double y, double z, Type type);
+  Cube(int xp, int yp, int zp, int xr, int yr, int zr);
   virtual ~Cube();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
