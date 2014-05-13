@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Mon May 12 17:50:11 2014 Bertrand-Rapello Baptiste
+** Last update mar. mai  13 15:10:56 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -16,6 +16,7 @@
 #include <Game.hh>
 #include <SdlContext.hh>
 #include "AObject.hpp"
+#include "Sound.hpp"
 
 class GameEngine : public gdl::Game
 {
@@ -42,6 +43,7 @@ private:
   Menu                  *_menu;
   Cube                  *_cursor;
   int                   _index_cursor;
+  Sound                 *_Sound;
 };
 
 #endif

@@ -1,3 +1,13 @@
+//
+// Cube.hpp for cube in /home/casier_s/cpp_bomberman/Game
+// 
+// Made by sofian casier
+// Login   <casier_s@epitech.net>
+// 
+// Started on  Tue May 13 14:36:04 2014 sofian casier
+// Last update Tue May 13 14:36:06 2014 sofian casier
+//
+
 #pragma once
 
 #include "AObject.hpp"
