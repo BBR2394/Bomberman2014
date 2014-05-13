@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mar. mai  13 15:14:57 2014 sofian casier
+** Last update mar. mai  13 15:27:54 2014 sofian casier
 */
 
 #include "GameEngine.hpp"
@@ -101,17 +101,8 @@ bool			GameEngine::initialize()
   _shader.bind();
   _shader.setUniform("view", transformation);
   _shader.setUniform("projection", projection);
-  AObject *_menu = new Menu(0, 0, -5, AObject::MENU);
-  /*	_menu->setXcurs(-3.3);
-	_menu->setYcurs(-1);
-	_menu->setZcurs(0); */
-  if (_menu->initialize() == false)
+  if ((this->Create_Menu()) == false)
     return (false);
-  _objects.push_back(_menu);
-  _cursor = new Cube(-3.8, -1, 0, AObject::CURSOR);
-  if (_cursor->initialize() == false)
-    return (false);
-  _objects.push_back(_cursor);
   _Sound = new Sound("./includes/music/title_screen.wav", 22050);
   _Sound->launch_title_music();
   /*	AObject *cube = new Cube();
