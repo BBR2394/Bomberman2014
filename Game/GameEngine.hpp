@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mar. mai  13 15:24:50 2014 sofian casier
+// Last update Tue May 13 15:36:49 2014 Bertrand-Rapello Baptiste
 */
 
 #ifndef   __GAMEENGINE__
@@ -45,6 +45,7 @@ private:
   Cube                  *_cursor;
   int                   _index_cursor;
   Sound                 *_Sound;
+  int			_scene;
 };
 
 #endif

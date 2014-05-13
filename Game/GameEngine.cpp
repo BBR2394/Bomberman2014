@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mar. mai  13 15:27:54 2014 sofian casier
+// Last update Tue May 13 15:56:48 2014 Bertrand-Rapello Baptiste
 */
 
 #include "GameEngine.hpp"
@@ -93,6 +93,7 @@ bool			GameEngine::initialize()
       std::cout << "shader failed" << std::endl;
       return (false);
     }
+  _scene = 0;
   _index_cursor = 0;
   glm::mat4 projection;
   glm::mat4 transformation;
@@ -120,55 +121,6 @@ bool			GameEngine::initialize()
   return (true); 
 }
 
-bool                    GameEngine::createMap(int x, int y)
-{
-  int   c, d, e;
-  AObject *temp;
-
-  for (size_t i = 0; i < _objects.size(); i++)
-    delete _objects[i];
-  c = (x/2) * -1;
-  d = ((y/2) * -1);
-  while (c < x/2)
-    {
-      temp = new Cube(c, ((y/2) * -1), 3, 0, 0, 0);
-      if (temp->initialize() == false)
-        return (false);
-      this->_objects.push_back(temp);
-      temp = new Cube(c, y/2, 3, 0, 0, 0);
-      if (temp->initialize() == false)
-        return (false);
-      this->_objects.push_back(temp);
-      c++;
-    }
-  while (d < (y/2))
-    {
-      temp = new Cube((x/2)-1, d, 3, 0, 0, 0);
-      if (temp->initialize() == false)
-        return (false);
-      this->_objects.push_back(temp);
-      temp = new Cube((x/2) * -1, d, 3, 0, 0, 0);
-      if (temp->initialize() == false)
-        return (false);
-      this->_objects.push_back(temp);
-      if (d%2 == 0)
-        {
-          e = ((x/2) * -1)+ 2;
-          while (e <= ((x/2) - 2))
-            {
-              temp = new Cube(e, d , 3, 0, 0, 0);
-              if (temp->initialize() == false)
-                return (false);
-              this->_objects.push_back(temp);
-              e = e + 2;
-            }
-        }
-      d++;
-    }
-  std::cout << this->_objects.size() << std::endl;
-}
-
-
 bool			GameEngine::Menu_choice()
 {
   if (_input.getKey(SDLK_ESCAPE) || _input.getInput(SDL_QUIT))
@@ -192,7 +144,10 @@ bool			GameEngine::Menu_choice()
   if (_input.getInput(SDLK_SPACE, true))
     {
       if (_index_cursor == 0)
-	std::cout << "C'est parti pour un jeu solo!" << std::endl;
+	{
+	  std::cout << "C'est parti pour un jeu solo!" << std::endl;
+	  _scene = 1;
+	}
       if (_index_cursor == 1)
 	std::cout << "C'est parti pour continuer le jeu!" << std::endl;
       if (_index_cursor == 2)
@@ -203,20 +158,46 @@ bool			GameEngine::Menu_choice()
 
 bool			GameEngine::update()
 {
-  if 	(this->Menu_choice() == false)
-    return (false);
+  if (_scene == 0)
+    {
+      if (this->Menu_choice() == false)
+	return (false);
+    }
+  else if (_scene == 1) 
+    {
+      size_t	i;
+      i = 0;
+
+      while  (i < _objects.size())
+	delete _objects[i++];
+      _objects.erase (_objects.begin(), _objects.begin()+i);
+      std::cout << "size   " << _objects.size() << std::endl;
+      this->createMap(15, 13);
+      _scene = 2;
+      sleep(1);
+    }
+  else if (_scene == 2)
+    {
+      std::cout << "jattend" << std::endl;
+      sleep(1);
+    }
   _context.updateClock(_clock);
   _context.updateInputs(_input);
-  //	for (size_t i = 0; i < _objects.size(); ++i)
-  //		_objects[i]->update(_clock, _input);
+  /*  if (_scene != 0)
+    {
+      for (size_t i = 0; i < _objects.size(); ++i)
+        _objects[i]->update(_clock, _input);
+	}*/
   return (true);
 }
 
 void			GameEngine::draw()
 {
+  std::cout << "draw deb" << std::endl;
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   _shader.bind();
   for (size_t i = 0; i < _objects.size(); ++i)
     _objects[i]->draw(_shader, _clock);
   _context.flush();
+  std::cout << "draw_fin" << std::endl;
 }
