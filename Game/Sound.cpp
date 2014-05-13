@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update mar. mai  13 15:16:39 2014 sofian casier
+** Last update mar. mai  13 16:18:36 2014 sofian casier
 */
 
 #include "Sound.hpp"
@@ -70,7 +70,7 @@ void			Sound::launch_title_music()
       exit(-1);
     }
   void *tmp;
-  tmp = malloc(soundlength * cvt.len_mult);
+  tmp = new int[soundlength * cvt.len_mult];
   cvt.buf = (Uint8*)tmp;
   cvt.len = soundlength;
   memcpy(cvt.buf, sounddata, soundlength);
@@ -82,7 +82,7 @@ void			Sound::launch_title_music()
     }
   SDL_FreeWAV(sounddata);
   void *tmp2;
-  tmp2 = malloc(cvt.len_cvt);
+  tmp2 = new int[cvt.len_cvt];
   sounddata = (Uint8*)tmp2;
   memcpy(sounddata, cvt.buf, cvt.len_cvt);
   free(cvt.buf);
