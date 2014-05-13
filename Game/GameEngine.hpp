@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Tue May 13 15:36:49 2014 Bertrand-Rapello Baptiste
+** Last update mar. mai  13 16:23:42 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -33,7 +33,8 @@ public:
   bool createMap(int x, int y);
   void    launch_title_music();
   bool    Create_Menu();
-
+  bool    Playing();
+  
 private:
 
   gdl::SdlContext       _context;

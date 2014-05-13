@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Tue May 13 15:56:48 2014 Bertrand-Rapello Baptiste
+** Last update mar. mai  13 16:27:23 2014 sofian casier
 */
 
 #include "GameEngine.hpp"
@@ -121,41 +121,6 @@ bool			GameEngine::initialize()
   return (true); 
 }
 
-bool			GameEngine::Menu_choice()
-{
-  if (_input.getKey(SDLK_ESCAPE) || _input.getInput(SDL_QUIT))
-    return false;
-  if (_input.getInput(SDLK_DOWN, true))
-    {
-      if (_index_cursor < 3)
-	{
-	  _index_cursor++;
-	  _cursor->translate(glm::vec3(2.2, 0, 0));
-	}
-    }
-  if (_input.getInput(SDLK_UP, true))
-    {
-      if (_index_cursor > 0)
-	{
-	  _index_cursor--;
-	  _cursor->translate(glm::vec3(-2.2, 0, 0));
-	}
-    }
-  if (_input.getInput(SDLK_SPACE, true))
-    {
-      if (_index_cursor == 0)
-	{
-	  std::cout << "C'est parti pour un jeu solo!" << std::endl;
-	  _scene = 1;
-	}
-      if (_index_cursor == 1)
-	std::cout << "C'est parti pour continuer le jeu!" << std::endl;
-      if (_index_cursor == 2)
-	std::cout << "C'est parti pour un jeu multi!" << std::endl;
-    }
-  return (true);
-}
-
 bool			GameEngine::update()
 {
   if (_scene == 0)
@@ -167,19 +132,17 @@ bool			GameEngine::update()
     {
       size_t	i;
       i = 0;
-
       while  (i < _objects.size())
-	delete _objects[i++];
-      _objects.erase (_objects.begin(), _objects.begin()+i);
-      std::cout << "size   " << _objects.size() << std::endl;
+       delete _objects[i++];
+     _objects.erase (_objects.begin(), _objects.begin()+i);
       this->createMap(15, 13);
       _scene = 2;
       sleep(1);
     }
   else if (_scene == 2)
     {
-      std::cout << "jattend" << std::endl;
-      sleep(1);
+      if ((this->Playing()) == false)
+        return false;
     }
   _context.updateClock(_clock);
   _context.updateInputs(_input);
@@ -193,11 +156,9 @@ bool			GameEngine::update()
 
 void			GameEngine::draw()
 {
-  std::cout << "draw deb" << std::endl;
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   _shader.bind();
   for (size_t i = 0; i < _objects.size(); ++i)
     _objects[i]->draw(_shader, _clock);
   _context.flush();
-  std::cout << "draw_fin" << std::endl;
 }

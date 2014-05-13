@@ -1,3 +1,4 @@
+/*
 //
 // GE_map.cpp for  in /home/bbr/rendu/cpp_bomberman/modif_a_voir
 // 
@@ -5,9 +6,9 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Tue May 13 15:27:16 2014 Bertrand-Rapello Baptiste
+** Last update mar. mai  13 16:27:51 2014 sofian casier
 //
-
+*/
 #include "GameEngine.hpp"
 
 bool                    GameEngine::createMap(int x, int y)
@@ -55,5 +56,5 @@ bool                    GameEngine::createMap(int x, int y)
         }
       d++;
     }
-  std::cout << this->_objects.size() << std::endl;
+//  std::cout << this->_objects.size() << std::endl;
 }
