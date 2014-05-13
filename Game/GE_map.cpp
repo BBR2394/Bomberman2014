@@ -6,55 +6,71 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update mar. mai  13 16:27:51 2014 sofian casier
+// Last update Tue May 13 17:11:46 2014 Bertrand-Rapello Baptiste
 //
 */
+
 #include "GameEngine.hpp"
 
 bool                    GameEngine::createMap(int x, int y)
 {
-  int   c, d, e;
+  int   c, d, e, lmtx, lmty, i;
   AObject *temp;
 
-  for (size_t i = 0; i < _objects.size(); i++)
-    delete _objects[i];
-  c = (x/2) * -1;
-  d = ((y/2) * -1);
-  while (c < x/2)
+  i = 0;
+  lmtx = x/2;
+  c = lmtx * -1;
+  lmty = y/2;
+  d = lmty * -1;
+  if (y%2 != 0)
+    lmty++;
+  while (i < x)
     {
-      temp = new Cube(c, ((y/2) * -1), 3, 0, 0, 0);
+      temp = new Cube(c, d, 3, 0, 0, 0);
       if (temp->initialize() == false)
         return (false);
       this->_objects.push_back(temp);
-      temp = new Cube(c, y/2, 3, 0, 0, 0);
+      temp = new Cube(c, lmty, 3, 0, 0, 0);
       if (temp->initialize() == false)
         return (false);
       this->_objects.push_back(temp);
       c++;
+      i++;
     }
-  while (d < (y/2))
+  i = 1;
+  d++;
+  c--;
+  while (i < y)
     {
-      temp = new Cube((x/2)-1, d, 3, 0, 0, 0);
+      temp = new Cube(c, d, 3, 0, 0, 0);
       if (temp->initialize() == false)
         return (false);
       this->_objects.push_back(temp);
-      temp = new Cube((x/2) * -1, d, 3, 0, 0, 0);
+      temp = new Cube(lmtx * -1, d, 3, 0, 0, 0);
       if (temp->initialize() == false)
         return (false);
       this->_objects.push_back(temp);
-      if (d%2 == 0)
+      if ((i%2 == 0))
         {
-          e = ((x/2) * -1)+ 2;
-          while (e <= ((x/2) - 2))
+          e = (lmtx * -1)+2;
+          while (e <= (lmtx - 2))
             {
-              temp = new Cube(e, d , 3, 0, 0, 0);
+              temp = new Cube(e, d, 3, 0, 0, 0);
               if (temp->initialize() == false)
                 return (false);
               this->_objects.push_back(temp);
               e = e + 2;
             }
         }
+      i++;
       d++;
     }
-//  std::cout << this->_objects.size() << std::endl;
+  temp = new Player(4, 4, 4, 0, 0, 0);
+  if (temp->initialize() == false)
+    return (false);
+  this->_objects.push_back(temp);
+  //  std::cout << this->_objects.size() << std::endl; 
+  return (true);
 }
+
+

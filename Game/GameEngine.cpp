@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mar. mai  13 16:27:23 2014 sofian casier
+// Last update Tue May 13 17:10:22 2014 Bertrand-Rapello Baptiste
 */
 
 #include "GameEngine.hpp"
@@ -135,7 +135,7 @@ bool			GameEngine::update()
       while  (i < _objects.size())
        delete _objects[i++];
      _objects.erase (_objects.begin(), _objects.begin()+i);
-      this->createMap(15, 13);
+      this->createMap(15, 14);
       _scene = 2;
       sleep(1);
     }

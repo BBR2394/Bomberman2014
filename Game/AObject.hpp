@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-// Last update Mon May 12 16:53:56 2014 Bertrand-Rapello Baptiste
+// Last update Tue May 13 16:47:02 2014 Bertrand-Rapello Baptiste
 */
 
 #ifndef _GAME_
@@ -81,6 +81,26 @@ public:
   Cube(double x, double y, double z, Type type);
   Cube(int xp, int yp, int zp, int xr, int yr, int zr);
   virtual ~Cube();
+  virtual bool initialize();
+  virtual void update(gdl::Clock const &clock, gdl::Input &input);
+  virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
+};
+
+class Player : public AObject
+{
+
+private:
+
+  gdl::Texture _texture;
+  gdl::Geometry _geometry;
+  float _speed;
+
+public:
+  Player();
+  Player(int x, int y);
+  Player(double x, double y, double z, Type type);
+  Player(int xp, int yp, int zp, int xr, int yr, int zr);
+  virtual ~Player();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);

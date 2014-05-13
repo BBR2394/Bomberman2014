@@ -5,7 +5,7 @@
 ## Login   <casier_s@epitech.net>
 ## 
 ## Started on  Tue May  6 15:15:22 2014 sofian casier
-## Last update Tue May 13 16:25:26 2014 sofian casier
+## Last update Tue May 13 16:57:38 2014 Bertrand-Rapello Baptiste
 ##
 
 NAME		=		Bomberman
@@ -20,11 +20,12 @@ SRCS		=		Game/main.cpp		\
 				Game/AObject.cpp	\
 				Game/GameEngine.cpp	\
 				Game/GE_menu.cpp	\
-				Game/GE_map.cpp         \
 				Game/GE_play.cpp	\
+				Game/GE_map.cpp		\
 				Game/Menu.cpp		\
 				Game/Cube.cpp		\
 				Game/Sound.cpp		\
+				Game/Player.cpp
 
 OBJS		=		$(SRCS:.cpp=.o)
 
