@@ -5,9 +5,10 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mer. mai  14 14:21:06 2014 sofian casier
+// Last update Wed May 14 14:31:55 2014 Koszyczek Laurent
 */
 
+#include <unistd.h>
 #include "GameEngine.hpp"
 
 GameEngine::GameEngine()
