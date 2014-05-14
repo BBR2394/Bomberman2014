@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Tue May 13 17:10:22 2014 Bertrand-Rapello Baptiste
+** Last update mer. mai  14 14:21:06 2014 sofian casier
 */
 
 #include "GameEngine.hpp"
@@ -77,22 +77,28 @@ void			GameEngine::launch_title_music()
   soundlength = cvt.len_cvt;
   soundpos = 0;
   SDL_PauseAudio(0);
-}
+l}
 */
 
 bool			GameEngine::initialize()
 {
   if (!_context.start(800, 600, "My bomberman!"))
-    {
-      std::cout << "error on start context" << std::endl; 
-      return false;
-    }
+  {
+    std::cout << "error on start context" << std::endl; 
+    return false;
+  }
   glEnable(GL_DEPTH_TEST);
   if (!_shader.load("./shaders/basic.fp", GL_FRAGMENT_SHADER) || !_shader.load("./shaders/basic.vp", GL_VERTEX_SHADER) || !_shader.build())
-    {
-      std::cout << "shader failed" << std::endl;
-      return (false);
-    }
+  {
+    std::cout << "shader failed" << std::endl;
+    return (false);
+  }
+  if ((SDL_Init(SDL_INIT_AUDIO)) == -1)
+  {
+    std::cout << "Error on SDL Audio Init" << std::endl;
+    exit(-1);
+  }
+  _music_fight = false;
   _scene = 0;
   _index_cursor = 0;
   glm::mat4 projection;
@@ -105,7 +111,7 @@ bool			GameEngine::initialize()
   if ((this->Create_Menu()) == false)
     return (false);
   _Sound = new Sound("./includes/music/title_screen.wav", 22050);
-  _Sound->launch_title_music();
+  _Sound->launch_music();
   /*	AObject *cube = new Cube();
 	void *tmp2;
 	AOtmp2be2 = new Cube(4, 8);		

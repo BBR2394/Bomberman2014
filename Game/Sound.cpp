@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update mar. mai  13 16:18:36 2014 sofian casier
+** Last update mer. mai  14 14:15:20 2014 sofian casier
 */
 
 #include "Sound.hpp"
@@ -30,6 +30,11 @@ Sound::Sound(std::string filename, int freq)
 	_filename = filename;
 }
 
+void      Sound::StopMusic()
+{
+  SDL_CloseAudio();
+}
+
 void			mixaudio(void * userdata, Uint8 * stream, int len)
 {
   Uint32 tocopy = soundlength - soundpos > len ? len : soundlength - soundpos; 
@@ -37,7 +42,7 @@ void			mixaudio(void * userdata, Uint8 * stream, int len)
   soundpos += tocopy;
 }
 
-void			Sound::launch_title_music()
+void			Sound::launch_music()
 {
   SDL_AudioSpec desired, obtained, soundfile;
   SDL_AudioCVT cvt;
@@ -48,11 +53,6 @@ void			Sound::launch_title_music()
   desired.samples = 512;
   desired.callback = &mixaudio;
   desired.userdata = NULL;
-  if ((SDL_Init(SDL_INIT_AUDIO)) == -1)
-    {
-      std::cout << "Error on SDL Audio Init" << std::endl;
-      exit(-1);
-    }
   if (SDL_OpenAudio(&desired, &obtained) != 0)
     {
       std::cout << "Error on SDL Open Audio" << std::endl;
