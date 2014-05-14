@@ -13,6 +13,8 @@
 
 bool		GameEngine::Playing()
 {
+	AObject *temp;
+
 	if (_input.getKey(SDLK_ESCAPE) || _input.getInput(SDL_QUIT))
 		return false;
 	if (_music_fight == false)
@@ -22,5 +24,19 @@ bool		GameEngine::Playing()
 		_Fight = new Sound("./includes/music/fight_1.wav", 22050);
 		_Fight->launch_music();
 	}
+	temp = _objects.back();
+	if (_input.getInput(SDLK_DOWN, true))
+    	temp->translate(glm::vec3(0, -1, 0));
+  	if (_input.getInput(SDLK_UP, true))
+    	temp->translate(glm::vec3(0, 1, 0));
+	if (_input.getInput(SDLK_LEFT, true))
+		temp->translate(glm::vec3(-1, 0, 0));
+	if (_input.getInput(SDLK_RIGHT, true))
+		temp->translate(glm::vec3(1, 0, 0));
+	if (_input.getInput(SDLK_a, true))
+		temp->translate(glm::vec3(0, 0, -1));
+	if (_input.getInput(SDLK_z, true))
+		temp->translate(glm::vec3(0, 0, 1));
+	
 	return true;
 }
