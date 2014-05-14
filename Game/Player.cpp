@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Tue May 13 17:05:24 2014 Bertrand-Rapello Baptiste
+** Last update mer. mai  14 14:52:23 2014 sofian casier
 */
 
 #include "AObject.hpp"
@@ -14,11 +14,12 @@
 {
 }*/
 
-Player::Player(double x, double y, double z, Type type) : AObject(x, y, z, type)
+Player::Player(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
 {
+    _texture_name = texture;
 }
 
-Player::Player(int xp, int yp, int zp, int xr, int yr, int zr) : AObject(xp, yp, zp, xr, yr, zr)
+Player::Player(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
 {
 
 }

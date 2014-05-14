@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-// Last update Tue May 13 16:47:02 2014 Bertrand-Rapello Baptiste
+** Last update mer. mai  14 14:52:40 2014 sofian casier
 */
 
 #ifndef _GAME_
@@ -38,8 +38,8 @@ public:
   }       Type;
   AObject();
   AObject(int x, int y);
-  AObject(double x, double y, double z, Type type);
-  AObject(int xp, int yp, int zp, int xr, int yr, int zr);
+  AObject(double x, double y, double z, Type type, std::string texture);
+  AObject(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture);
   virtual ~AObject();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
@@ -64,6 +64,7 @@ protected:
   glm::vec3 _scale;  
   int   sizex;
   int   sizey;
+  std::string _texture_name;
 };
 
 class Cube : public AObject
@@ -78,8 +79,8 @@ private:
 public:
   Cube();
   Cube(int x, int y);
-  Cube(double x, double y, double z, Type type);
-  Cube(int xp, int yp, int zp, int xr, int yr, int zr);
+  Cube(double x, double y, double z, Type type, std::string texture);
+  Cube(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture);
   virtual ~Cube();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
@@ -98,8 +99,8 @@ private:
 public:
   Player();
   Player(int x, int y);
-  Player(double x, double y, double z, Type type);
-  Player(int xp, int yp, int zp, int xr, int yr, int zr);
+  Player(double x, double y, double z, Type type, std::string texture);
+  Player(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture);
   virtual ~Player();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
@@ -126,7 +127,7 @@ public:
   void    setZcurs(double);
   int   _position_menu;
   Menu();
-  Menu(double x, double y, double z, Type type);
+  Menu(double x, double y, double z, Type type, std::string texture);
   virtual ~Menu();
   virtual bool initialize();
   void  setPositionMenu(int);

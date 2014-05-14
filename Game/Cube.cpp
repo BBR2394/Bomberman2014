@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Tue May 13 17:09:18 2014 Bertrand-Rapello Baptiste
+** Last update mer. mai  14 14:48:43 2014 sofian casier
 */
 
 #include "AObject.hpp"
@@ -14,11 +14,12 @@
 {
 }*/
 
-Cube::Cube(double x, double y, double z, Type type) : AObject(x, y, z, type)
+Cube::Cube(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
 {
+
 }
 
-Cube::Cube(int xp, int yp, int zp, int xr, int yr, int zr) : AObject(xp, yp, zp, xr, yr, zr)
+Cube::Cube(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
 {
 
 }
@@ -31,7 +32,7 @@ Cube::~Cube()
 bool	Cube::initialize()
 {
   _speed = 10.0f;
-  if (_texture.load("./includes/images/cube.tga") == false)
+  if (_texture.load(_texture_name.c_str()) == false)
     {
       std::cerr << "Cannot load the cube texture" << std::endl;
       return (false);

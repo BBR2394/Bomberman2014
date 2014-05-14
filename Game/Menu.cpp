@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Tue May 13 14:38:35 2014 sofian casier
+** Last update mer. mai  14 14:44:35 2014 sofian casier
 */
 
 #include "AObject.hpp"
@@ -15,9 +15,10 @@ Menu::Menu()
   _position_menu = 0;
 }
 
-Menu::Menu(double x, double y, double z, Type type) : AObject(x, y, z, type)
+Menu::Menu(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
 {
   _position_menu = 0;
+  _texture_name = texture;
 }
 
 Menu::~Menu()

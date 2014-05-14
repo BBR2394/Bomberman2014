@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Tue May 13 14:44:35 2014 sofian casier
+** Last update mer. mai  14 14:49:20 2014 sofian casier
 */
 
 #include "AObject.hpp"
@@ -18,14 +18,15 @@ AObject::AObject() : _position(5, 5, 0), _rotation(0, 0, 0), _scale(1, 1, 1)
 {
 }*/
 
-AObject::AObject(double x, double y, double z, Type type): _position(x, y, z), _rotation(0, 0, -90), _scale(1, 1, 1)
+AObject::AObject(double x, double y, double z, Type type, std::string texture): _position(x, y, z), _rotation(0, 0, -90), _scale(1, 1, 1)
 {
   _type = type;
+  _texture_name = texture;
 }
 
-AObject::AObject(int xp, int yp, int zp, int xr, int yr, int zr): _position(xp, yp, zp), _rotation(xr,yr,zr), _scale(1, 1, 1)
+AObject::AObject(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture): _position(xp, yp, zp), _rotation(xr,yr,zr), _scale(1, 1, 1)
 {
-
+  _texture_name = texture;
 }
 
 
