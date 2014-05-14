@@ -5,7 +5,7 @@
 ## Login   <casier_s@epitech.net>
 ## 
 ## Started on  Tue May  6 15:15:22 2014 sofian casier
-## Last update Wed May 14 15:11:44 2014 sofian casier
+## Last update Wed May 14 16:22:48 2014 sofian casier
 ##
 
 NAME		=		Bomberman
@@ -27,6 +27,7 @@ SRCS		=		Game/main.cpp		\
 				Game/Sound.cpp		\
 				Game/Player.cpp		\
 				Game/Cursor.cpp		\
+				Game/Background.cpp	\
 
 OBJS		=		$(SRCS:.cpp=.o)
 
