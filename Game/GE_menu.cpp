@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Tue May 13 15:26:17 2014 sofian casier
-** Last update mer. mai  14 14:47:28 2014 sofian casier
+** Last update mer. mai  14 15:13:48 2014 sofian casier
 //
 */
 
@@ -55,7 +55,7 @@ bool		GameEngine::Create_Menu()
   if (_menu->initialize() == false)
     return (false);
   _objects.push_back(_menu);
-  _cursor = new Cube(-3.8, -1, 0, AObject::CURSOR, "./includes/images/cursor.tga");
+  _cursor = new Cursor(-3.8, -1, 0, AObject::CURSOR, "./includes/images/cursor_head.tga");
   if (_cursor->initialize() == false)
     return (false);
   _objects.push_back(_cursor);

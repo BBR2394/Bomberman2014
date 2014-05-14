@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update mer. mai  14 14:52:40 2014 sofian casier
+** Last update mer. mai  14 15:09:56 2014 sofian casier
 */
 
 #ifndef _GAME_
@@ -102,6 +102,25 @@ public:
   Player(double x, double y, double z, Type type, std::string texture);
   Player(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture);
   virtual ~Player();
+  virtual bool initialize();
+  virtual void update(gdl::Clock const &clock, gdl::Input &input);
+  virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
+};
+
+class Cursor : public AObject
+{
+private:
+
+  gdl::Texture _texture;
+  gdl::Geometry _geometry;
+  float _speed;
+
+public:
+  Cursor();
+  Cursor(int x, int y);
+  Cursor(double x, double y, double z, Type type, std::string texture);
+  Cursor(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture);
+  virtual ~Cursor();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);

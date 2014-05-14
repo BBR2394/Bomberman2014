@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mer. mai  14 14:17:27 2014 sofian casier
+** Last update mer. mai  14 15:16:17 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -43,7 +43,7 @@ private:
   gdl::BasicShader      _shader;
   std::vector<AObject*> _objects;
   Menu                  *_menu;
-  Cube                  *_cursor;
+  Cursor                  *_cursor;
   int                   _index_cursor;
   Sound                 *_Sound;
   Sound                 *_Fight;

@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update mer. mai  14 15:13:12 2014 sofian casier
+** Last update mer. mai  14 15:14:25 2014 sofian casier
 */
 
 #include "AObject.hpp"
@@ -14,22 +14,22 @@
 {
 }*/
 
-Cube::Cube(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
+Cursor::Cursor(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
 {
 
 }
 
-Cube::Cube(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
+Cursor::Cursor(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
 {
 
 }
 
-Cube::~Cube()
+Cursor::~Cursor()
 {
 
 }
 
-bool	Cube::initialize()
+bool	Cursor::initialize()
 {
   _speed = 10.0f;
   if (_texture.load(_texture_name.c_str()) == false)
@@ -47,7 +47,7 @@ bool	Cube::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
    // _geometry.setColor(glm::vec4(1, 1, 0, 1));
-    _geometry.pushVertex(glm::vec3(0.5, -0.5, -0.5));
+/*    _geometry.pushVertex(glm::vec3(0.5, -0.5, -0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, -0.5));
     _geometry.pushVertex(glm::vec3(-0.5, 0.5, -0.5));
     _geometry.pushVertex(glm::vec3(-0.5, -0.5, -0.5));
@@ -90,12 +90,12 @@ bool	Cube::initialize()
     _geometry.pushUv(glm::vec2(0.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
-    _geometry.pushUv(glm::vec2(0.0f, 1.0f));
+    _geometry.pushUv(glm::vec2(0.0f, 1.0f)); */
     _geometry.build(); 
     return (true);
 }
 
-void Cube::update(gdl::Clock const &clock, gdl::Input &input)
+void Cursor::update(gdl::Clock const &clock, gdl::Input &input)
 {
   if (input.getKey(SDLK_UP))
     translate(glm::vec3(0, 0, -1) * static_cast<float>(clock.getElapsed()) * _speed);
@@ -107,7 +107,7 @@ void Cube::update(gdl::Clock const &clock, gdl::Input &input)
     translate(glm::vec3(1, 0, 0) * static_cast<float>(clock.getElapsed()) * _speed);
 }
 
-void Cube::draw(gdl::AShader &shader, gdl::Clock const &clock)
+void Cursor::draw(gdl::AShader &shader, gdl::Clock const &clock)
 {
   (void)clock;
   _texture.bind();
