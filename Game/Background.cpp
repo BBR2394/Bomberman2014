@@ -32,11 +32,16 @@ bool	Background::initialize()
     {
       std::cerr << "Cannot load the cube texture" << std::endl;
       return (false);
-}
-    _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
-    _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
-    _geometry.pushVertex(glm::vec3(-0.5, 0.5, 0.5));
-    _geometry.pushVertex(glm::vec3(-0.5, -0.5, 0.5));
+    }
+/*
+    _geometry.pushVertex(glm::vec3((this->x/2 * 0.5), (this->y/2) * -0.5, this->z));
+    _geometry.pushVertex(glm::vec3((this->x/2 * 0.5), (this->y/2) * 0.5, this->z));
+    _geometry.pushVertex(glm::vec3((this->x/2 * 0.5) * -1, (this->y/2) * 0.5, this->z));
+    _geometry.pushVertex(glm::vec3((this->x/2 * 0.5) * -1, (this->y/2) * -0.5, this->z));*/
+    _geometry.pushVertex(glm::vec3(7.5, -7.5, 0));
+    _geometry.pushVertex(glm::vec3(7.5, 7.5, 0));
+    _geometry.pushVertex(glm::vec3(-7.5, 7.5, 0));
+    _geometry.pushVertex(glm::vec3(-7.5, -7.5, 0));
     _geometry.pushUv(glm::vec2(0.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));

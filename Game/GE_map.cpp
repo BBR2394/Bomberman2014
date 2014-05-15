@@ -6,7 +6,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update mer. mai  14 14:52:06 2014 sofian casier
+// Last update Thu May 15 13:10:53 2014 Bertrand-Rapello Baptiste
 //
 */
 
@@ -26,11 +26,11 @@ bool                    GameEngine::createMap(int x, int y)
     lmty++;
   while (i < x)
     {
-      temp = new Cube(c, d, 3, 0, 0, 0, "./includes/images/cube.tga");
+      temp = new Cube(c, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
       if (temp->initialize() == false)
         return (false);
       this->_objects.push_back(temp);
-      temp = new Cube(c, lmty, 3, 0, 0, 0, "./includes/images/cube.tga");
+      temp = new Cube(c, lmty, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
       if (temp->initialize() == false)
         return (false);
       this->_objects.push_back(temp);
@@ -42,11 +42,11 @@ bool                    GameEngine::createMap(int x, int y)
   c--;
   while (i < y)
     {
-      temp = new Cube(c, d, 3, 0, 0, 0, "./includes/images/cube.tga");
+      temp = new Cube(c, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
       if (temp->initialize() == false)
         return (false);
       this->_objects.push_back(temp);
-      temp = new Cube(lmtx * -1, d, 3, 0, 0, 0, "./includes/images/cube.tga");
+      temp = new Cube(lmtx * -1, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
       if (temp->initialize() == false)
         return (false);
       this->_objects.push_back(temp);
@@ -55,7 +55,7 @@ bool                    GameEngine::createMap(int x, int y)
           e = (lmtx * -1)+2;
           while (e <= (lmtx - 2))
             {
-              temp = new Cube(e, d, 3, 0, 0, 0, "./includes/images/cube.tga");
+              temp = new Cube(e, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
               if (temp->initialize() == false)
                 return (false);
               this->_objects.push_back(temp);
@@ -65,6 +65,12 @@ bool                    GameEngine::createMap(int x, int y)
       i++;
       d++;
     }
+
+    temp = new Background(0, 0, 3, 0, 0, 0, "./includes/images/ground.tga");
+    if (temp->initialize() == false)
+      return (false);
+    this->_objects.push_back(temp);  
+
   temp = new Player(4, 4, 4, 0, 0, 0, "./includes/images/player.tga");
   if (temp->initialize() == false)
     return (false);

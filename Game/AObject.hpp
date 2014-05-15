@@ -133,6 +133,9 @@ private:
   gdl::Texture _texture;
   gdl::Geometry _geometry;
   float _speed;
+  int x;
+  int y;
+  int z;
 
 public:
   Background();

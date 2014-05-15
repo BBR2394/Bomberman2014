@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Wed May 14 14:31:55 2014 Koszyczek Laurent
+// Last update Thu May 15 15:40:55 2014 Bertrand-Rapello Baptiste
 */
 
 #include <unistd.h>
@@ -83,7 +83,7 @@ l}
 
 bool			GameEngine::initialize()
 {
-  if (!_context.start(800, 600, "My bomberman!"))
+  if (!_context.start(1000, 800, "My bomberman!"))
   {
     std::cout << "error on start context" << std::endl; 
     return false;
@@ -142,7 +142,7 @@ bool			GameEngine::update()
       while  (i < _objects.size())
        delete _objects[i++];
      _objects.erase (_objects.begin(), _objects.begin()+i);
-      this->createMap(15, 14);
+      this->createMap(19, 18);
       _scene = 2;
       sleep(1);
     }
