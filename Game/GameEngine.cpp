@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Thu May 15 15:40:55 2014 Bertrand-Rapello Baptiste
+// Last update Thu May 15 17:26:15 2014 Bertrand-Rapello Baptiste
 */
 
 #include <unistd.h>
@@ -148,7 +148,7 @@ bool			GameEngine::update()
     }
   else if (_scene == 2)
     {
-      if ((this->Playing()) == false)
+      if ((this->Playing(_clock)) == false)
         return false;
     }
   _context.updateClock(_clock);

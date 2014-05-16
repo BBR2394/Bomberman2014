@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update mer. mai  14 14:52:23 2014 sofian casier
+// Last update Thu May 15 17:26:52 2014 Bertrand-Rapello Baptiste
 */
 
 #include "AObject.hpp"
@@ -97,14 +97,20 @@ bool	Player::initialize()
 
 void Player::update(gdl::Clock const &clock, gdl::Input &input)
 {
-  if (input.getKey(SDLK_UP))
-    translate(glm::vec3(0, 0, -1) * static_cast<float>(clock.getElapsed()) * _speed);
-  if (input.getKey(SDLK_DOWN))
-    translate(glm::vec3(0, -1, 0) * static_cast<float>(clock.getElapsed()) * _speed);
-  if (input.getKey(SDLK_LEFT))
-    translate(glm::vec3(-1, 0, 0) * static_cast<float>(clock.getElapsed()) * _speed);
-  if (input.getKey(SDLK_RIGHT))
-    translate(glm::vec3(1, 0, 0) * static_cast<float>(clock.getElapsed()) * _speed);
+  if (input.getInput(SDLK_DOWN, true))
+    translate(glm::vec3(0, -1, 0));
+  if (input.getInput(SDLK_UP, true))
+    translate(glm::vec3(0, 1, 0));
+  if (input.getInput(SDLK_LEFT, true))
+    translate(glm::vec3(-1, 0, 0));
+  if (input.getInput(SDLK_RIGHT, true))
+    translate(glm::vec3(1, 0, 0));
+  if (input.getInput(SDLK_a, true))
+    translate(glm::vec3(0, 0, -1));
+  if (input.getInput(SDLK_z, true))
+    translate(glm::vec3(0, 0, 1));
+  if (input.getInput(SDLK_SPACE, true))
+    std::cout << "une BOMBE" << std::endl;
 }
 
 void Player::draw(gdl::AShader &shader, gdl::Clock const &clock)

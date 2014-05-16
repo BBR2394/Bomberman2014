@@ -5,13 +5,13 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update mer. mai  14 14:19:39 2014 sofian casier
+// Last update Thu May 15 17:29:56 2014 Bertrand-Rapello Baptiste
 //
 */
 
 #include "GameEngine.hpp"
 
-bool		GameEngine::Playing()
+bool		GameEngine::Playing(gdl::Clock const &clock)
 {
 	AObject *temp;
 
@@ -25,18 +25,6 @@ bool		GameEngine::Playing()
 		_Fight->launch_music();
 	}
 	temp = _objects.back();
-	if (_input.getInput(SDLK_DOWN, true))
-    	temp->translate(glm::vec3(0, -1, 0));
-  	if (_input.getInput(SDLK_UP, true))
-    	temp->translate(glm::vec3(0, 1, 0));
-	if (_input.getInput(SDLK_LEFT, true))
-		temp->translate(glm::vec3(-1, 0, 0));
-	if (_input.getInput(SDLK_RIGHT, true))
-		temp->translate(glm::vec3(1, 0, 0));
-	if (_input.getInput(SDLK_a, true))
-		temp->translate(glm::vec3(0, 0, -1));
-	if (_input.getInput(SDLK_z, true))
-		temp->translate(glm::vec3(0, 0, 1));
-	
+	temp->update(clock, _input);
 	return true;
 }
