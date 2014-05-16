@@ -1,12 +1,13 @@
-//
+/*
 // main.cpp for ma in /home/casier_s/libbomber
 // 
 // Made by sofian casier
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 15:55:25 2014 sofian casier
-// Last update Tue May  6 17:19:31 2014 sofian casier
+** Last update ven. mai  16 11:08:33 2014 sofian casier
 //
+*/
 
 #include <iostream>
 #include <cstdlib>
@@ -20,8 +21,7 @@ int main(int argc, char **argv, char **envp)
       return (-1);
     }
 
-  GameEngine engine;
-
+    GameEngine engine;
   if (engine.initialize() == false)
     {
       std::cout << "failure on init" << std::endl;

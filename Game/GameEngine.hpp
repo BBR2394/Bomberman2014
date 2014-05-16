@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Thu May 15 17:25:49 2014 Bertrand-Rapello Baptiste
+** Last update ven. mai  16 12:12:22 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -47,6 +47,7 @@ private:
   int                   _index_cursor;
   Sound                 *_Sound;
   Sound                 *_Fight;
+  Sound                 *_Ready;
   int			              _scene;
   bool                  _music_fight;
 };
