@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Thu May 15 17:26:15 2014 Bertrand-Rapello Baptiste
+** Last update ven. mai  16 12:55:44 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -94,11 +94,20 @@ bool			GameEngine::initialize()
     std::cout << "shader failed" << std::endl;
     return (false);
   }
-  if ((SDL_Init(SDL_INIT_AUDIO)) == -1)
+  SDL_Init(SDL_INIT_AUDIO);
+  int flags=MIX_INIT_OGG | MIX_INIT_MOD | MIX_INIT_MP3;
+  if ((Mix_Init(flags)) == -1)
   {
     std::cout << "Error on SDL Audio Init" << std::endl;
     exit(-1);
   }
+if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1) //Initialisation de l'API Mixer                                      
+  {
+    printf("%s", Mix_GetError());
+  }
+  Mix_Music *musique; //Création du pointeur de type Mix_Music                                                                                        
+  musique = Mix_LoadMUS("/home/casier_s/essai.mp3");
+  Mix_PlayMusic(musique, -1);
   _music_fight = false;
   _scene = 0;
   _index_cursor = 0;
@@ -111,8 +120,8 @@ bool			GameEngine::initialize()
   _shader.setUniform("projection", projection);
   if ((this->Create_Menu()) == false)
     return (false);
-  _Sound = new Sound("./includes/music/title_screen.wav", 22050);
-  _Sound->launch_music();
+//  _Sound = new Sound("./includes/music/title_screen.wav", 22050);
+  //_Sound->launch_music();
   /*	AObject *cube = new Cube();
 	void *tmp2;
 	AOtmp2be2 = new Cube(4, 8);		
