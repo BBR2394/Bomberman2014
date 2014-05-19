@@ -5,7 +5,7 @@
 // Login   <koszyc_l@epitech.net>
 // 
 // Started on  Mon May 19 17:40:20 2014 Koszyczek Laurent
-// Last update Mon May 19 17:40:57 2014 Koszyczek Laurent
+// Last update Mon May 19 18:16:23 2014 Koszyczek Laurent
 //
 
 #ifndef _PLAYER_HH_
@@ -16,9 +16,10 @@
 class Player : public AObject
 {
 private:
-  gdl::Texture _texture;
-  gdl::Geometry _geometry;
-  float _speed;
+  gdl::Model	_model;
+  gdl::Texture	_texture;
+  gdl::Geometry	_geometry;
+  float		_speed;
 
 public:
   Player();
