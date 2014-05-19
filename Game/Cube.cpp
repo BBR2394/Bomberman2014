@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Mon May 19 17:59:02 2014 Koszyczek Laurent
+// Last update Mon May 19 18:04:16 2014 sofian casier
 */
 
 #include "Cube.hh"

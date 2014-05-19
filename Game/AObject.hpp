@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-// Last update Mon May 19 17:55:44 2014 Koszyczek Laurent
+// Last update Mon May 19 18:05:31 2014 sofian casier
 */
 
 #ifndef _AOBJECT_HH__
@@ -22,7 +22,7 @@
 # include <glm/glm.hpp>
 # include <glm/gtc/matrix_transform.hpp>
 # include <iostream>
-# include "Cube.hh"
+//# include "Cube.hh"
 
 class GameEngine;
 
@@ -37,6 +37,7 @@ public:
     WALL = 2,
     BOMB = 3
   }       Type;
+
   AObject();
   AObject(int x, int y);
   AObject(double x, double y, double z, Type type, std::string texture);

@@ -5,10 +5,10 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update lun. mai  19 15:51:32 2014 sofian casier
+// Last update Mon May 19 18:13:08 2014 sofian casier
 */
 
-#include "AObject.hpp"
+#include "Cursor.hh"
 
 Cursor::Cursor(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
 {
