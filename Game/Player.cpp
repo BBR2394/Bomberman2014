@@ -5,10 +5,10 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update lun. mai  19 15:50:54 2014 sofian casier
+// Last update Mon May 19 17:41:19 2014 Koszyczek Laurent
 */
 
-#include "AObject.hpp"
+#include "Player.hh"
 
 Player::Player(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
 {

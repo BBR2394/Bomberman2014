@@ -5,11 +5,11 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update mer. mai  14 14:43:49 2014 sofian casier
+// Last update Mon May 19 17:50:47 2014 Koszyczek Laurent
 */
 
-#ifndef _GAME_
-# define _GAME_
+#ifndef _MENU_HH_
+# define _MENU_HH_
 
 #include <Game.hh>
 #include <Clock.hh>
@@ -26,7 +26,6 @@
 
 class Menu : public AObject
 {
-
 private:
 
   gdl::Texture _texture;
@@ -43,6 +42,7 @@ public:
   void    setYcurs(double);
   void    setZcurs(double);
   int   _position_menu;
+
   Menu();
   Menu(double x, double y, double z, Type type, std::string texture);
   virtual ~Menu();
@@ -51,6 +51,6 @@ public:
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
   int     getPosition() const;
- };
+};
 
 #endif

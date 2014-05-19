@@ -5,10 +5,10 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update lun. mai  19 15:52:22 2014 sofian casier
+// Last update Mon May 19 17:59:02 2014 Koszyczek Laurent
 */
 
-#include "AObject.hpp"
+#include "Cube.hh"
 
 Cube::Cube(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
 {

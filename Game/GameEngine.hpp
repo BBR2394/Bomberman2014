@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update ven. mai  16 13:06:57 2014 sofian casier
+// Last update Mon May 19 17:43:21 2014 Koszyczek Laurent
 */
 
 #ifndef   __GAMEENGINE__
@@ -16,6 +16,8 @@
 #include <Game.hh>
 #include <SdlContext.hh>
 #include <SDL2/SDL_mixer.h>
+#include "Menu.hh"
+#include "Cursor.hh"
 #include "AObject.hpp"
 #include "Sound.hpp"
 
