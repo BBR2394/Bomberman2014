@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update ven. mai  16 12:55:44 2014 sofian casier
+// Last update Sat May 17 12:45:53 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -21,15 +21,15 @@ GameEngine::~GameEngine()
 		delete _objects[i];
 }
 /*
-void			mixaudio(void * userdata, Uint8 * stream, int len)
-{
+  void			mixaudio(void * userdata, Uint8 * stream, int len)
+  {
   Uint32 tocopy = soundlength - soundpos > len ? len : soundlength - soundpos; 
   memcpy(stream, sounddata + soundpos, tocopy); 
   soundpos += tocopy;
-}
+  }
 
-void			GameEngine::launch_title_music()
-{
+  void			GameEngine::launch_title_music()
+  {
   SDL_AudioSpec desired, obtained, soundfile;
   SDL_AudioCVT cvt;
   desired.format = AUDIO_U16SYS;
@@ -38,37 +38,37 @@ void			GameEngine::launch_title_music()
   desired.callback = &mixaudio;
   desired.userdata = NULL;
   if ((SDL_Init(SDL_INIT_AUDIO)) == -1)
-    {
-      std::cout << "Error on SDL Audio Init" << std::endl;
-      exit(-1);
-    }
+  {
+  std::cout << "Error on SDL Audio Init" << std::endl;
+  exit(-1);
+  }
   if (SDL_OpenAudio(&desired, &obtained) != 0)
-    {
-      std::cout << "Error on SDL Open Audio" << std::endl;
-      exit(-1);
-    }
+  {
+  std::cout << "Error on SDL Open Audio" << std::endl;
+  exit(-1);
+  }
   if (SDL_LoadWAV("./includes/music/title_screen.wav", &soundfile, &sounddata, &soundlength) == NULL)
-    {
-      std::cout << "Error on loading music file" << std::endl;
-      exit(-1);
-    }
+  {
+  std::cout << "Error on loading music file" << std::endl;
+  exit(-1);
+  }
   if (SDL_BuildAudioCVT(&cvt, soundfile.format, soundfile.channels, soundfile.freq, 
-			obtained.format, obtained.channels, obtained.freq) < 0)
-    {
-      std::cout << "Error on Build Audio" << std::endl;
-      exit(-1);
-    }
+  obtained.format, obtained.channels, obtained.freq) < 0)
+  {
+  std::cout << "Error on Build Audio" << std::endl;
+  exit(-1);
+  }
   void *tmp;
   tmp = malloc(soundlength * cvt.len_mult);
   cvt.buf = (Uint8*)tmp;
   cvt.len = soundlength;
   memcpy(cvt.buf, sounddata, soundlength);
   if (SDL_ConvertAudio(&cvt) != 0)
-    {
-      std::cout << "Error on conver Audio" << std::endl;
-      exit(-1);
+  {
+  std::cout << "Error on conver Audio" << std::endl;
+  exit(-1);
 
-    }
+  }
   SDL_FreeWAV(sounddata);
   void *tmp2;
   tmp2 = malloc(cvt.len_cvt);
@@ -78,36 +78,41 @@ void			GameEngine::launch_title_music()
   soundlength = cvt.len_cvt;
   soundpos = 0;
   SDL_PauseAudio(0);
-l}
+  l}
 */
 
 bool			GameEngine::initialize()
 {
   if (!_context.start(1000, 800, "My bomberman!"))
-  {
-    std::cout << "error on start context" << std::endl; 
-    return false;
-  }
+    {
+      std::cout << "error on start context" << std::endl; 
+      return false;
+    }
   glEnable(GL_DEPTH_TEST);
   if (!_shader.load("./shaders/basic.fp", GL_FRAGMENT_SHADER) || !_shader.load("./shaders/basic.vp", GL_VERTEX_SHADER) || !_shader.build())
-  {
-    std::cout << "shader failed" << std::endl;
-    return (false);
-  }
-  SDL_Init(SDL_INIT_AUDIO);
-  int flags=MIX_INIT_OGG | MIX_INIT_MOD | MIX_INIT_MP3;
-  if ((Mix_Init(flags)) == -1)
-  {
-    std::cout << "Error on SDL Audio Init" << std::endl;
-    exit(-1);
-  }
-if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1) //Initialisation de l'API Mixer                                      
-  {
-    printf("%s", Mix_GetError());
-  }
-  Mix_Music *musique; //Création du pointeur de type Mix_Music                                                                                        
-  musique = Mix_LoadMUS("/home/casier_s/essai.mp3");
-  Mix_PlayMusic(musique, -1);
+    {
+      std::cout << "shader failed" << std::endl;
+      return (false);
+    }
+  SDL_Init(0);
+  int flags= MIX_INIT_MP3 | MIX_INIT_OGG;
+  if ((Mix_Init(MIX_INIT_OGG | MIX_INIT_MOD | MIX_INIT_MP3)) == -1)
+    {
+      std::cout << "Error on SDL Audio Init" << std::endl;
+      exit(-1);
+    }
+  if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1) //Initialisation de l'API Mixer                                   
+    {
+      printf("%s", Mix_GetError());
+    }
+  Mix_Chunk *musique; //Création du pointeur de type Mix_Music                                                                                        
+  musique = Mix_LoadWAV("includes/music/test_chuck.wav");
+  if (!musique)
+    {
+      std::cout << "Error on loading music" << std::endl;
+      printf("%s", Mix_GetError());
+    }
+  Mix_PlayChannel(1, musique, 0);
   _music_fight = false;
   _scene = 0;
   _index_cursor = 0;
@@ -120,7 +125,7 @@ if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1) /
   _shader.setUniform("projection", projection);
   if ((this->Create_Menu()) == false)
     return (false);
-//  _Sound = new Sound("./includes/music/title_screen.wav", 22050);
+  //  _Sound = new Sound("./includes/music/title_screen.wav", 22050);
   //_Sound->launch_music();
   /*	AObject *cube = new Cube();
 	void *tmp2;

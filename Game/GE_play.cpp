@@ -5,10 +5,11 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update ven. mai  16 12:25:57 2014 sofian casier
+// Last update Mon May 19 15:37:29 2014 sofian casier
 //
 */
 
+#include <unistd.h>
 #include "GameEngine.hpp"
 
 bool		GameEngine::Playing(gdl::Clock const &clock)
@@ -19,18 +20,18 @@ bool		GameEngine::Playing(gdl::Clock const &clock)
 		return false;
 	if (_music_fight == false)
 	{
-		_Sound->StopMusic();
-		_music_fight = true;
-		_Fight = new Sound("./includes/music/fight_1.wav", 22050);
-		_Ready = new Sound("./includes/music/ready.wav", 11025);
-		_Ready->launch_music();
-		usleep(600000);
-		_Ready->StopMusic();
-		_Ready = new Sound("./includes/music/go.wav", 11025);
-		_Ready->launch_music();
-		usleep(200000);
-		_Ready->StopMusic();
-		_Fight->launch_music();
+	  Mix_Chunk *music;
+	  Mix_Chunk *fight_music;
+	  Mix_Music *fight;
+
+	  fight = Mix_LoadMUS("includes/music/fight_1.wav");
+	  Mix_PlayMusic(fight, -1);
+	  music = Mix_LoadWAV("includes/music/ready.wav");
+	  Mix_PlayChannel(1, music, 0);
+	  sleep(2);
+	  music = Mix_LoadWAV("includes/music/go.wav");
+	  Mix_PlayChannel(1, music, 0);
+	  _music_fight = true;
 	}
 	temp = _objects.back();
 	temp->update(clock, _input);
