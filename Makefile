@@ -5,7 +5,7 @@
 ## Login   <casier_s@epitech.net>
 ## 
 ## Started on  Tue May  6 15:15:22 2014 sofian casier
-## Last update Mon May 19 15:26:30 2014 sofian casier
+## Last update Mon May 19 15:45:39 2014 sofian casier
 ##
 
 NAME		=		Bomberman
@@ -31,7 +31,7 @@ SRCS		=		Game/main.cpp		\
 
 OBJS		=		$(SRCS:.cpp=.o)
 
-LIB_GDL		=		-Llibs -lgdl_gl -lGL -lGLEW -ldl -lrt -lfbxsdk -lSDL2 -lpthread -g -ldl -L libs/ -lSDL2_mixer
+LIB_GDL		=		-Llibs -lgdl_gl -lGL -lGLEW -ldl -lrt -lfbxsdk -lSDL2 -lpthread -g -ldl -L libs/ -lSDL2_mixer -lrt
 
 all		:		$(NAME)
 

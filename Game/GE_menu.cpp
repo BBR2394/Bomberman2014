@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Tue May 13 15:26:17 2014 sofian casier
-** Last update mer. mai  14 15:13:48 2014 sofian casier
+** Last update lun. mai  19 15:50:35 2014 sofian casier
 //
 */
 
@@ -49,9 +49,6 @@ bool      GameEngine::Menu_choice()
 bool		GameEngine::Create_Menu()
 {
   AObject *_menu = new Menu(0, 0, -5, AObject::MENU, "./includes/images/accueil.tga");
-  /*  _menu->setXcurs(-3.3);
-  _menu->setYcurs(-1);
-  _menu->setZcurs(0); */
   if (_menu->initialize() == false)
     return (false);
   _objects.push_back(_menu);

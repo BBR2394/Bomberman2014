@@ -5,14 +5,10 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Thu May 15 17:26:52 2014 Bertrand-Rapello Baptiste
+** Last update lun. mai  19 15:50:54 2014 sofian casier
 */
 
 #include "AObject.hpp"
-
-/*Cube::Cube()
-{
-}*/
 
 Player::Player(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
 {

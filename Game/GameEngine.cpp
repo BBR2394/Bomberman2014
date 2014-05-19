@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Sat May 17 12:45:53 2014 sofian casier
+** Last update lun. mai  19 15:50:15 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -20,66 +20,6 @@ GameEngine::~GameEngine()
 	for (size_t i = 0; i < _objects.size(); i++)
 		delete _objects[i];
 }
-/*
-  void			mixaudio(void * userdata, Uint8 * stream, int len)
-  {
-  Uint32 tocopy = soundlength - soundpos > len ? len : soundlength - soundpos; 
-  memcpy(stream, sounddata + soundpos, tocopy); 
-  soundpos += tocopy;
-  }
-
-  void			GameEngine::launch_title_music()
-  {
-  SDL_AudioSpec desired, obtained, soundfile;
-  SDL_AudioCVT cvt;
-  desired.format = AUDIO_U16SYS;
-  desired.channels = 2;
-  desired.samples = 512;
-  desired.callback = &mixaudio;
-  desired.userdata = NULL;
-  if ((SDL_Init(SDL_INIT_AUDIO)) == -1)
-  {
-  std::cout << "Error on SDL Audio Init" << std::endl;
-  exit(-1);
-  }
-  if (SDL_OpenAudio(&desired, &obtained) != 0)
-  {
-  std::cout << "Error on SDL Open Audio" << std::endl;
-  exit(-1);
-  }
-  if (SDL_LoadWAV("./includes/music/title_screen.wav", &soundfile, &sounddata, &soundlength) == NULL)
-  {
-  std::cout << "Error on loading music file" << std::endl;
-  exit(-1);
-  }
-  if (SDL_BuildAudioCVT(&cvt, soundfile.format, soundfile.channels, soundfile.freq, 
-  obtained.format, obtained.channels, obtained.freq) < 0)
-  {
-  std::cout << "Error on Build Audio" << std::endl;
-  exit(-1);
-  }
-  void *tmp;
-  tmp = malloc(soundlength * cvt.len_mult);
-  cvt.buf = (Uint8*)tmp;
-  cvt.len = soundlength;
-  memcpy(cvt.buf, sounddata, soundlength);
-  if (SDL_ConvertAudio(&cvt) != 0)
-  {
-  std::cout << "Error on conver Audio" << std::endl;
-  exit(-1);
-
-  }
-  SDL_FreeWAV(sounddata);
-  void *tmp2;
-  tmp2 = malloc(cvt.len_cvt);
-  sounddata = (Uint8*)tmp2;
-  memcpy(sounddata, cvt.buf, cvt.len_cvt);
-  free(cvt.buf);
-  soundlength = cvt.len_cvt;
-  soundpos = 0;
-  SDL_PauseAudio(0);
-  l}
-*/
 
 bool			GameEngine::initialize()
 {
@@ -125,20 +65,6 @@ bool			GameEngine::initialize()
   _shader.setUniform("projection", projection);
   if ((this->Create_Menu()) == false)
     return (false);
-  //  _Sound = new Sound("./includes/music/title_screen.wav", 22050);
-  //_Sound->launch_music();
-  /*	AObject *cube = new Cube();
-	void *tmp2;
-	AOtmp2be2 = new Cube(4, 8);		
-	sounddata = (Uint8*)tmp2;
-	if (cube2->initialize() == false)
-	return (false);
-	soundlength = cvt.len_cvt;
-	SDL_PauseAudio(0);
-	_objects.push_back(cube2);
-	if (cube->initialize() == false)
-	return (false);
-	_objects.push_back(cube);*/
   return (true); 
 }
 

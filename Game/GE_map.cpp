@@ -6,7 +6,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Thu May 15 13:10:53 2014 Bertrand-Rapello Baptiste
+** Last update lun. mai  19 15:53:53 2014 sofian casier
 //
 */
 
@@ -75,7 +75,6 @@ bool                    GameEngine::createMap(int x, int y)
   if (temp->initialize() == false)
     return (false);
   this->_objects.push_back(temp);
-  //  std::cout << this->_objects.size() << std::endl; 
   return (true);
 }
 
