@@ -5,7 +5,7 @@
 ## Login   <casier_s@epitech.net>
 ## 
 ## Started on  Tue May  6 15:15:22 2014 sofian casier
-## Last update Mon May 19 15:45:39 2014 sofian casier
+## Last update Thu May 22 16:51:57 2014 sofian casier
 ##
 
 NAME		=		Bomberman
@@ -24,7 +24,6 @@ SRCS		=		Game/main.cpp		\
 				Game/GE_map.cpp		\
 				Game/Menu.cpp		\
 				Game/Cube.cpp		\
-				Game/Sound.cpp		\
 				Game/Player.cpp		\
 				Game/Cursor.cpp		\
 				Game/Background.cpp	\

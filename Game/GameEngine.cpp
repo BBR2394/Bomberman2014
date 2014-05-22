@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Mon May 19 18:37:06 2014 Koszyczek Laurent
+** Last update jeu. mai  22 16:51:36 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -34,23 +34,22 @@ bool			GameEngine::initialize()
       std::cout << "shader failed" << std::endl;
       return (false);
     }
-  SDL_Init(0);
-  int flags= MIX_INIT_MP3 | MIX_INIT_OGG;
   if ((Mix_Init(MIX_INIT_OGG | MIX_INIT_MOD | MIX_INIT_MP3)) == -1)
     {
       std::cout << "Error on SDL Audio Init" << std::endl;
-      exit(-1);
+      return false;
     }
-  if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1) //Initialisation de l'API Mixer                                   
+  if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1)
     {
-      printf("%s", Mix_GetError());
+      std::cout << "Error on Open Audio" << std::endl;
+      return (false);
     }
-  Mix_Chunk *musique; //Création du pointeur de type Mix_Music                                                                                        
+  Mix_Chunk *musique;
   musique = Mix_LoadWAV("includes/music/test_chuck.wav");
   if (!musique)
     {
-      std::cout << "Error on loading music" << std::endl;
-      printf("%s", Mix_GetError());
+      std::cout << "Error on Loading Audio" << std::endl;
+      return (false);
     }
   Mix_PlayChannel(1, musique, 0);
   _music_fight = false;

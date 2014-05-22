@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-// Last update Mon May 19 18:05:31 2014 sofian casier
+** Last update jeu. mai  22 16:36:03 2014 sofian casier
 */
 
 #ifndef _AOBJECT_HH__
@@ -58,9 +58,9 @@ public:
   double                  _ycurs;
   double                  _zcurs;
   double                  _xcurs;
-  glm::vec3 _position;
 protected:
 
+  glm::vec3 _position;
   Type      _type;
   glm::vec3 _rotation;
   glm::vec3 _scale;
