@@ -6,7 +6,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Thu May 22 17:30:36 2014 Bertrand-Rapello Baptiste
+// Last update Thu May 22 17:39:29 2014 Bertrand-Rapello Baptiste
 //
 */
 
@@ -76,8 +76,8 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
       return (false);
     this->_objects.push_back(temp);
   */
-  _play1 = new Player(4, 4, 4, 0, 0, 0, "./includes/images/player.tga");
-  if (temp->initialize() == false)
+  _play1 = new Player((lmtx*-1)+1, lmty - 1, 4, 0, 0, 0, "./includes/images/player.tga");
+  if (_play1->initialize() == false)
     return (false);
 
   if (nb_player == 2)
@@ -88,5 +88,3 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
     }
   return (true);
 }
-
-

@@ -5,27 +5,32 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Thu May 22 17:43:29 2014 Bertrand-Rapello Baptiste
+// Last update Thu May 15 17:26:52 2014 Bertrand-Rapello Baptiste
 */
 
-#include "Player.hh"
+#include "AObject.hpp"
+#include "Player2.hpp"
 
-Player::Player(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
+/*Cube::Cube()
+{
+}*/
+
+Player2::Player2(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
 {
     _texture_name = texture;
 }
 
-Player::Player(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
+Player2::Player2(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
 {
 
 }
 
-Player::~Player()
+Player2::~Player2()
 {
 
 }
 
-bool	Player::initialize()
+bool	Player2::initialize()
 {
   _speed = 10.0f;
   if (_texture.load("./includes/images/player.tga") == false)
@@ -33,17 +38,10 @@ bool	Player::initialize()
       std::cerr << "Cannot load the cube texture" << std::endl;
       return (false);
     }
-
-  /*if (_texture.load("./assets/marvin.fbm/Main_texture_diffuse2.tga") == false)
-    {
-      std::cerr << "Cannot load the cube texture" << std::endl;
-      return (false);
-    }
-    _model.load("./assets/marvin.fbx");*/
-  _geometry.setColor(glm::vec4(0, 1, 1, 1));
-  _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
-  _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
-  _geometry.pushVertex(glm::vec3(-0.5, 0.5, 0.5));
+  _geometry.setColor(glm::vec4(1, 0, 1, 1));
+    _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
+    _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
+    _geometry.pushVertex(glm::vec3(-0.5, 0.5, 0.5));
     _geometry.pushVertex(glm::vec3(-0.5, -0.5, 0.5));
     _geometry.pushUv(glm::vec2(0.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
@@ -95,31 +93,30 @@ bool	Player::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
     _geometry.build();
-  
     return (true);
 }
 
-void Player::update(gdl::Clock const &clock, gdl::Input &input)
+void Player2::update(gdl::Clock const &clock, gdl::Input &input)
 {
-  if (input.getInput(SDLK_DOWN, true))
+  if (input.getInput(SDLK_s, true))
     translate(glm::vec3(0, -1, 0));
-  if (input.getInput(SDLK_UP, true))
+  if (input.getInput(SDLK_z, true))
     translate(glm::vec3(0, 1, 0));
-  if (input.getInput(SDLK_LEFT, true))
+  if (input.getInput(SDLK_q, true))
     translate(glm::vec3(-1, 0, 0));
-  if (input.getInput(SDLK_RIGHT, true))
+  if (input.getInput(SDLK_d, true))
     translate(glm::vec3(1, 0, 0));
-  if (input.getInput(SDLK_i, true))
+  if (input.getInput(SDLK_w, true))
     translate(glm::vec3(0, 0, -1));
-  if (input.getInput(SDLK_o, true))
+  if (input.getInput(SDLK_x, true))
     translate(glm::vec3(0, 0, 1));
-  if (input.getInput(SDLK_SPACE, true))
+  if (input.getInput(SDLK_c, true))
     std::cout << "une BOMBE" << std::endl;
 }
 
-void Player::draw(gdl::AShader &shader, gdl::Clock const &clock)
+void Player2::draw(gdl::AShader &shader, gdl::Clock const &clock)
 {
   (void)clock;
   _texture.bind();
-  _model.draw(shader, getTransformation(), GL_QUADS);
+  _geometry.draw(shader, getTransformation(), GL_QUADS);
 }
