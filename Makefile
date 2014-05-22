@@ -25,8 +25,10 @@ SRCS		=		Game/main.cpp		\
 				Game/Menu.cpp		\
 				Game/Cube.cpp		\
 				Game/Player.cpp		\
+				Game/Player2.cpp	\
 				Game/Cursor.cpp		\
 				Game/Background.cpp	\
+				Game/Save.cpp
 
 OBJS		=		$(SRCS:.cpp=.o)
 

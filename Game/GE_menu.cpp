@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Tue May 13 15:26:17 2014 sofian casier
-** Last update lun. mai  19 15:50:35 2014 sofian casier
+// Last update Thu May 22 17:32:13 2014 Bertrand-Rapello Baptiste
 //
 */
 
@@ -41,7 +41,10 @@ bool      GameEngine::Menu_choice()
       if (_index_cursor == 1)
   std::cout << "C'est parti pour continuer le jeu!" << std::endl;
       if (_index_cursor == 2)
-  std::cout << "C'est parti pour un jeu multi!" << std::endl;
+	{
+	  std::cout << "C'est parti pour un jeu multi!" << std::endl;
+	  _scene = 3;
+	}
     }
   return (true);
 }

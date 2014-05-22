@@ -5,14 +5,14 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Mon May 19 15:37:29 2014 sofian casier
+// Last update Thu May 22 17:28:02 2014 Bertrand-Rapello Baptiste
 //
 */
 
 #include <unistd.h>
 #include "GameEngine.hpp"
 
-bool		GameEngine::Playing(gdl::Clock const &clock)
+bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
 {
 	AObject *temp;
 
@@ -33,7 +33,16 @@ bool		GameEngine::Playing(gdl::Clock const &clock)
 	  Mix_PlayChannel(1, music, 0);
 	  _music_fight = true;
 	}
-	temp = _objects.back();
-	temp->update(clock, _input);
+	//temp = _objects.back();
+	//temp->update(clock, _input);
+
+        if (_input.getInput(SDLK_t, true))
+	  _save->writeInFile();
+
+        _play1->update(clock, _input);
+        if (nb_player == 2)
+	  _play2->update(clock, _input);
+
+
 	return true;
 }

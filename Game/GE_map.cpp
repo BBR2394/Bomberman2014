@@ -6,25 +6,29 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update jeu. mai  22 17:06:37 2014 sofian casier
+// Last update Thu May 22 17:30:36 2014 Bertrand-Rapello Baptiste
 //
 */
 
 #include "GameEngine.hpp"
 
-bool                    GameEngine::createMap(int x, int y)
+bool                    GameEngine::createMap(int x, int y, int nb_player)
 {
   double   c, d, e, lmtx, lmty;
   int i;
   AObject *temp;
 
+  if (x%2 == 0)
+    x++;
+  if (y%2 == 0)
+    y++;
   i = 0;
   lmtx = x/2;
   c = lmtx * -1;
   lmty = y/2;
   d = lmty * -1;
-  if (y%2 != 0)
-    lmty++;
+  //if (y%2 != 0)
+  //lmty++;
   while (i < x)
     {
       temp = new Cube(c, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
@@ -51,7 +55,7 @@ bool                    GameEngine::createMap(int x, int y)
       if (temp->initialize() == false)
         return (false);
       this->_objects.push_back(temp);
-      if ((i%2 == 0))
+      if ((i%2 == 0) && _floor->getType() == 1)
         {
           e = (lmtx * -1)+2;
           while (e <= (lmtx - 2))
@@ -66,15 +70,22 @@ bool                    GameEngine::createMap(int x, int y)
       i++;
       d++;
     }
-
+  /*
     temp = new Background(0, 0, 3, 0, 0, 0, "./includes/images/ground.tga");
     if (temp->initialize() == false)
       return (false);
     this->_objects.push_back(temp);
-  temp = new Player(4, 4, 4, 0, 0, 0, "./includes/images/player.tga");
+  */
+  _play1 = new Player(4, 4, 4, 0, 0, 0, "./includes/images/player.tga");
   if (temp->initialize() == false)
     return (false);
-  this->_objects.push_back(temp);
+
+  if (nb_player == 2)
+    {
+      _play2 = new Player2(lmtx-1, lmty-1, 4, 0, 0, 0, "./includes/images/player.tga");
+      if (_play2->initialize() == false)
+	return (false);
+    }
   return (true);
 }
 

@@ -5,7 +5,7 @@
 // Login   <koszyc_l@epitech.net>
 // 
 // Started on  Mon May 19 17:37:15 2014 Koszyczek Laurent
-** Last update jeu. mai  22 16:59:40 2014 sofian casier
+// Last update Thu May 22 17:14:51 2014 Bertrand-Rapello Baptiste
 */
 
 #ifndef _BACKGROUND_HH_
@@ -20,9 +20,10 @@ private:
   gdl::Texture _texture;
   gdl::Geometry _geometry;
   float _speed;
-  int x;
-  int y;
-  int z;
+  int _x;
+  int _y;
+  int _z;
+  int _type;
 
 public:
   Background();
@@ -33,6 +34,12 @@ public:
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
+  void setSize(int x, int y, int z);
+  void setType(int typ);
+  int getX();
+  int getY();
+  int getZ();
+  int getType();
 };
 
 #endif

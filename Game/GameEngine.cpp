@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update jeu. mai  22 16:51:36 2014 sofian casier
+// Last update Thu May 22 17:31:29 2014 Bertrand-Rapello Baptiste
 */
 
 #include <unistd.h>
@@ -52,9 +52,16 @@ bool			GameEngine::initialize()
       return (false);
     }
   Mix_PlayChannel(1, musique, 0);
+  _play1 = NULL;
+  _play2 = NULL;
   _music_fight = false;
   _scene = 0;
   _index_cursor = 0;
+  _save = new Save("./file");
+  _floor = new Background(0, 0, 1, 0, 0, 0, "./includes/images/ground.tga");
+  _floor->setSize(10, 11, 3);
+  if (_floor->initialize() == false)
+    return (false);
   glm::mat4 projection;
   glm::mat4 transformation;
   projection = glm::perspective(60.0f, 800.0f / 600.0f, 0.1f, 100.0f);
@@ -69,6 +76,8 @@ bool			GameEngine::initialize()
 
 bool			GameEngine::update()
 {
+  static int nb_player = 0;
+
   if (_scene == 0)
     {
       if (this->Menu_choice() == false)
@@ -80,14 +89,35 @@ bool			GameEngine::update()
       i = 0;
       while  (i < _objects.size())
        delete _objects[i++];
-     _objects.erase (_objects.begin(), _objects.begin()+i);
-      this->createMap(19, 18);
+      _objects.erase (_objects.begin(), _objects.begin()+i);
+      _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
+      _save->setNbPlayer(1);
+      _floor->setType(2);
+      this->createMap(_floor->getX(), _floor->getY(), 1);
       _scene = 2;
-      sleep(1);
+      for (size_t i = 0; i < _map.size(); ++i)
+	_map[i]->draw(_shader, _clock);
+      nb_player = 1;
+    }
+  else if (_scene == 3)
+    {
+      size_t i;
+      i = 0;
+      while  (i < _objects.size())
+	delete _objects[i++];
+      _objects.erase (_objects.begin(), _objects.begin()+i);
+      _floor->setType(1);
+      this->createMap(_floor->getX(), _floor->getY(), 2);
+      _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
+      _save->setNbPlayer(2);
+      _scene = 2;
+      for (size_t i = 0; i < _map.size(); ++i)
+	_map[i]->draw(_shader, _clock);
+      nb_player = 2;
     }
   else if (_scene == 2)
     {
-      if ((this->Playing(_clock)) == false)
+      if ((this->Playing(_clock, nb_player) == false))
         return false;
     }
   _context.updateClock(_clock);
@@ -106,5 +136,19 @@ void			GameEngine::draw()
   _shader.bind();
   for (size_t i = 0; i < _objects.size(); ++i)
     _objects[i]->draw(_shader, _clock);
+  if (_scene == 2)
+    {
+      for (size_t i = 0; i < _map.size(); ++i)
+	_map[i]->draw(_shader, _clock);
+      //for (size_t i = 0; i < _players.size(); ++i)                                               
+      //_players[i]->draw(_shader, _clock);                                                      
+      if (_play1 != NULL)
+	_play1->draw(_shader, _clock);
+      if (_play2 != NULL)
+	_play2->draw(_shader, _clock);
+      _floor->draw(_shader, _clock);
+      for (size_t i = 0; i < _bombes.size(); ++i)
+	_bombes[i]->draw(_shader, _clock);
+    }
   _context.flush();
 }

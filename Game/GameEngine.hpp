@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update jeu. mai  22 16:58:06 2014 sofian casier
+// Last update Thu May 22 17:25:45 2014 Bertrand-Rapello Baptiste
 */
 
 #ifndef   __GAMEENGINE__
@@ -18,11 +18,13 @@
 #include <SDL2/SDL_mixer.h>
 #include "Menu.hh"
 #include "Player.hh"
+#include "Player2.hpp"
 #include "Background.hh"
 #include "Menu.hh"
 #include "Cube.hh"
 #include "Cursor.hh"
 #include "AObject.hpp"
+#include "Save.hpp"
 
 class GameEngine : public gdl::Game
 {
@@ -36,10 +38,10 @@ public:
   void draw();
   bool  Menu_choice();
   GameEngine &getEngine() const;
-  bool createMap(int x, int y);
+  bool createMap(int x, int y, int nb_player);
   void    launch_title_music();
   bool    Create_Menu();
-  bool    Playing(gdl::Clock const &clock);
+  bool    Playing(gdl::Clock const &clock, int nb_player);
   
 private:
 
@@ -48,11 +50,18 @@ private:
   gdl::Input            _input;
   gdl::BasicShader      _shader;
   std::vector<AObject*> _objects;
+  std::vector<AObject*> _map;
+  Background            *_floor;
+  Player                *_play1;
+  Player2               *_play2;
+  std::vector<AObject*> _bombes;
   Menu                  *_menu;
   Cursor                  *_cursor;
   int                   _index_cursor;
-  int			              _scene;
+  int		        _scene;
+
   bool                  _music_fight;
+  Save                  *_save;
 };
 
 #endif
