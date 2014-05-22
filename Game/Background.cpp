@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Mon May 19 17:41:35 2014 Koszyczek Laurent
+** Last update jeu. mai  22 17:00:04 2014 sofian casier
 */
 
 #include "Background.hh"
@@ -15,7 +15,7 @@ Background::Background(double x, double y, double z, Type type, std::string text
 
 }
 
-Background::Background(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
+Background::Background(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
 {
 
 }

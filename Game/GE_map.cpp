@@ -6,7 +6,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Mon May 19 18:18:44 2014 Koszyczek Laurent
+** Last update jeu. mai  22 17:06:37 2014 sofian casier
 //
 */
 
@@ -14,7 +14,8 @@
 
 bool                    GameEngine::createMap(int x, int y)
 {
-  int   c, d, e, lmtx, lmty, i;
+  double   c, d, e, lmtx, lmty;
+  int i;
   AObject *temp;
 
   i = 0;

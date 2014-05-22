@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update jeu. mai  22 16:36:03 2014 sofian casier
+** Last update jeu. mai  22 16:58:27 2014 sofian casier
 */
 
 #ifndef _AOBJECT_HH__
@@ -41,7 +41,7 @@ public:
   AObject();
   AObject(int x, int y);
   AObject(double x, double y, double z, Type type, std::string texture);
-  AObject(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture);
+  AObject(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture);
   virtual ~AObject();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);

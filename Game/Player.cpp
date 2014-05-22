@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Mon May 19 18:37:53 2014 Koszyczek Laurent
+** Last update jeu. mai  22 17:01:38 2014 sofian casier
 */
 
 #include "Player.hh"
@@ -15,7 +15,7 @@ Player::Player(double x, double y, double z, Type type, std::string texture) : A
     _texture_name = texture;
 }
 
-Player::Player(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
+Player::Player(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
 {
 
 }

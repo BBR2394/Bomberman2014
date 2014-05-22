@@ -1,12 +1,12 @@
-//
+/*
 // Background.hh for bomberman in /home/koszyc_l/Documents/blih/cpp_bomberman/Game
 // 
 // Made by Koszyczek Laurent
 // Login   <koszyc_l@epitech.net>
 // 
 // Started on  Mon May 19 17:37:15 2014 Koszyczek Laurent
-// Last update Mon May 19 18:07:54 2014 sofian casier
-//
+** Last update jeu. mai  22 16:59:40 2014 sofian casier
+*/
 
 #ifndef _BACKGROUND_HH_
 # define _BACKGROUND_HH_
@@ -28,7 +28,7 @@ public:
   Background();
   Background(int x, int y);
   Background(double x, double y, double z, Type type, std::string texture);
-  Background(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture);
+  Background(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture);
   virtual ~Background();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);

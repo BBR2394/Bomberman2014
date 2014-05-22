@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Mon May 19 18:04:16 2014 sofian casier
+** Last update jeu. mai  22 17:00:16 2014 sofian casier
 */
 
 #include "Cube.hh"
@@ -15,7 +15,7 @@ Cube::Cube(double x, double y, double z, Type type, std::string texture) : AObje
 
 }
 
-Cube::Cube(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
+Cube::Cube(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
 {
 
 }

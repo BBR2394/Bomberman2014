@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Mon May 19 18:13:08 2014 sofian casier
+** Last update jeu. mai  22 17:00:54 2014 sofian casier
 */
 
 #include "Cursor.hh"
@@ -15,7 +15,7 @@ Cursor::Cursor(double x, double y, double z, Type type, std::string texture) : A
 
 }
 
-Cursor::Cursor(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
+Cursor::Cursor(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
 {
 
 }
