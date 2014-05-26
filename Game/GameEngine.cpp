@@ -122,7 +122,7 @@ bool			GameEngine::update()
       this->createMap(_floor->getX(), _floor->getY(), 2);
       _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
       _save->setNbPlayer(2);
-      _scene = 2;
+      _scene = 3;
       for (size_t i = 0; i < _map.size(); ++i)
 	_map[i]->draw(_shader, _clock);
       nb_player = 2;
