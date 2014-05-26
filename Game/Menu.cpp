@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Mon May 19 18:11:18 2014 sofian casier
+** Last update lun. mai  26 14:43:08 2014 sofian casier
 */
 
 #include "Menu.hh"
@@ -29,7 +29,7 @@ Menu::~Menu()
 bool    Menu::initialize()
 {
       _speed = 10.0f;
-if (_texture.load("./includes/images/accueil.tga") == false)
+if (_texture.load("./includes/images/title_new_screen.tga") == false)
     {
       std::cerr << "Cannot load the rectangle texture" << std::endl;
       return (false);
