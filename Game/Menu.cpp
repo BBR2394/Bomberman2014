@@ -5,13 +5,14 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update lun. mai  26 14:43:08 2014 sofian casier
+** Last update lun. mai  26 18:07:22 2014 sofian casier
 */
 
 #include "Menu.hh"
 
-Menu::Menu()
+Menu::Menu(std::string texture)
 {
+  _texture_name = texture;
   _position_menu = 0;
 }
 
@@ -29,7 +30,7 @@ Menu::~Menu()
 bool    Menu::initialize()
 {
       _speed = 10.0f;
-if (_texture.load("./includes/images/title_new_screen.tga") == false)
+if (_texture.load(_texture_name.c_str()) == false)
     {
       std::cerr << "Cannot load the rectangle texture" << std::endl;
       return (false);

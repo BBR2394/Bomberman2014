@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update lun. mai  26 15:53:11 2014 sofian casier
+** Last update lun. mai  26 17:51:28 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -41,6 +41,7 @@ public:
   bool createMap(int x, int y, int nb_player);
   void    launch_title_music();
   bool    Create_Menu();
+  bool    Create_loading();
   bool    Playing(gdl::Clock const &clock, int nb_player);
   int    Go_To_Menu();
   bool    Update_Menu();

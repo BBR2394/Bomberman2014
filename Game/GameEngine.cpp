@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update lun. mai  26 16:17:33 2014 sofian casier
+** Last update lun. mai  26 18:48:32 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -44,14 +44,16 @@ bool			GameEngine::initialize()
     std::cout << "Error on Open Audio" << std::endl;
     return (false);
   }
+  _menu = NULL;
   Mix_Music *musique;
-  musique = Mix_LoadMUS("includes/music/test_chuck.wav");
+  musique = Mix_LoadMUS("includes/music/title.wav");
   if (!musique)
   {
     std::cout << "Error on Loading Audio" << std::endl;
     return (false);
   }
   Mix_PlayMusic(musique, -1);
+  Mix_VolumeMusic(MIX_MAX_VOLUME / 2.5);
   _play1 = NULL;
   _play2 = NULL;
   _music_fight = false;
@@ -59,7 +61,7 @@ bool			GameEngine::initialize()
   _index_cursor = 0;
   _save = new Save("./file");
   _floor = new Background(0, 0, 1, 0, 0, 0, "./includes/images/ground.tga");
-  _floor->setSize(10, 11, 3);
+  _floor->setSize(15, 15, 3);
   if (_floor->initialize() == false)
     return (false);
   glm::mat4 projection;
@@ -69,8 +71,9 @@ bool			GameEngine::initialize()
   _shader.bind();
   _shader.setUniform("view", transformation);
   _shader.setUniform("projection", projection);
-  if ((this->Create_Menu()) == false)
-    return (false);
+ if ((this->Create_Menu()) == false)
+  return (false);
+
   return (true);
 }
 
@@ -87,24 +90,28 @@ bool			GameEngine::update()
     }
   else if (_scene == 1)
     {
+      size_t  i;
+      i = 0;
       if (this->Menu_choice() == false)
        return (false);
     }
   else if (_scene == 2) 
     {
-      size_t	i;
+      /*size_t  i;
       i = 0;
       while  (i < _objects.size())
        delete _objects[i++];
-      _objects.erase (_objects.begin(), _objects.begin()+i);
+      _objects.erase (_objects.begin(), _objects.begin()+i); */
       _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
       _save->setNbPlayer(1);
       _floor->setType(1);
       this->createMap(_floor->getX(), _floor->getY(), 1);
       _scene = 3;
-      for (size_t i = 0; i < _map.size(); ++i)
-       _map[i]->draw(_shader, _clock);
+//      for (size_t i = 0; i < _map.size(); ++i)
+  //     _map[i]->draw(_shader, _clock);
       nb_player = 1;
+      delete _menu;
+      _menu = NULL;
     }
     else if (_scene == 3)
     {
@@ -116,7 +123,7 @@ bool			GameEngine::update()
       size_t i;
       i = 0;
       while  (i < _objects.size())
-	delete _objects[i++];
+       delete _objects[i++];
       _objects.erase (_objects.begin(), _objects.begin()+i);
       _floor->setType(1);
       this->createMap(_floor->getX(), _floor->getY(), 2);
@@ -141,6 +148,8 @@ void			GameEngine::draw()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   _shader.bind();
+  if (_menu != NULL)
+    _menu->draw(_shader, _clock);
   for (size_t i = 0; i < _objects.size(); ++i)
     _objects[i]->draw(_shader, _clock);
   if (_scene == 3)

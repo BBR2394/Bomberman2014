@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-// Last update Mon May 19 18:03:14 2014 sofian casier
+** Last update lun. mai  26 18:07:38 2014 sofian casier
 */
 
 #ifndef _MENU_HH_
@@ -43,7 +43,7 @@ public:
   void    setZcurs(double);
   int   _position_menu;
 
-  Menu();
+  Menu(std::string texture);
   Menu(double x, double y, double z, Type type, std::string texture);
   virtual ~Menu();
   virtual bool initialize();
