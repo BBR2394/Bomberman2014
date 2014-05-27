@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update lun. mai  26 18:48:32 2014 sofian casier
+** Last update mar. mai  27 15:56:01 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -45,6 +45,7 @@ bool			GameEngine::initialize()
     return (false);
   }
   _menu = NULL;
+  _cursor = NULL;
   Mix_Music *musique;
   musique = Mix_LoadMUS("includes/music/title.wav");
   if (!musique)
@@ -97,21 +98,15 @@ bool			GameEngine::update()
     }
   else if (_scene == 2) 
     {
-      /*size_t  i;
-      i = 0;
-      while  (i < _objects.size())
-       delete _objects[i++];
-      _objects.erase (_objects.begin(), _objects.begin()+i); */
       _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
       _save->setNbPlayer(1);
       _floor->setType(1);
       this->createMap(_floor->getX(), _floor->getY(), 1);
       _scene = 3;
-//      for (size_t i = 0; i < _map.size(); ++i)
-  //     _map[i]->draw(_shader, _clock);
       nb_player = 1;
       delete _menu;
       _menu = NULL;
+      _cursor = NULL;
     }
     else if (_scene == 3)
     {
@@ -130,8 +125,7 @@ bool			GameEngine::update()
       _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
       _save->setNbPlayer(2);
       _scene = 3;
-      for (size_t i = 0; i < _map.size(); ++i)
-	_map[i]->draw(_shader, _clock);
+      _menu = NULL;
       nb_player = 2;
     }
   _context.updateClock(_clock);
@@ -150,6 +144,8 @@ void			GameEngine::draw()
   _shader.bind();
   if (_menu != NULL)
     _menu->draw(_shader, _clock);
+  if (_cursor != NULL)
+    _cursor->draw(_shader, _clock);
   for (size_t i = 0; i < _objects.size(); ++i)
     _objects[i]->draw(_shader, _clock);
   if (_scene == 3)

@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Tue May 13 15:26:17 2014 sofian casier
-** Last update lun. mai  26 18:32:14 2014 sofian casier
+** Last update mar. mai  27 15:54:48 2014 sofian casier
 //
 */
 
@@ -39,32 +39,35 @@ bool      GameEngine::Menu_choice()
       _scene = 2;
       size_t  i;
       i = 0;
-      while  (i < _objects.size())
-       delete _objects[i++];
-      _objects.erase (_objects.begin(), _objects.begin()+i);
-      if ((this->Create_loading()) == false)
-        return (false);
-    }
-    if (_index_cursor == 1)
-      std::cout << "C'est parti pour continuer le jeu!" << std::endl;
-    if (_index_cursor == 2)
-    {
-     std::cout << "C'est parti pour un jeu multi!" << std::endl;
-     _scene = 4;
-   }
- Mix_Chunk *music;
- music = Mix_LoadWAV("includes/music/choice_menu.wav");
- Mix_PlayChannel(1, music, 0);
- }
- return (true);
+     if ((this->Create_loading()) == false)
+      return (false);
+    _cursor = NULL;
   }
+  if (_index_cursor == 1)
+  {
+   std::cout << "C'est parti pour un jeu multi!" << std::endl;
+   _scene = 4;
+   if ((this->Create_loading()) == false)
+    return (false);
+  _cursor = NULL;
+}
+if (_index_cursor == 2)
+  std::cout << "C'est parti pour continuer le jeu!" << std::endl;
+if (_index_cursor == 3)
+  return false;
+Mix_Chunk *music;
+music = Mix_LoadWAV("includes/music/choice_menu.wav");
+Mix_PlayChannel(1, music, 0);
+}
+return (true);
+}
 
 bool    GameEngine::Update_Menu()
 {
-  _cursor = new Cursor(-3.8, -1, 0, AObject::CURSOR, "./includes/images/cursor_head.tga");
+  _cursor = new Cursor(-3.8, -1, 0, AObject::CURSOR, "./includes/images/cursor_head_2.tga");
   if (_cursor->initialize() == false)
     return (false);
-  _objects.push_back(_cursor);
+  _menu->Change_texture("./includes/images/title_menu_screen.tga");
   return (true);
 }
 
@@ -88,7 +91,6 @@ bool		GameEngine::Create_Menu()
   _menu = new Menu(0, 0, -5, AObject::MENU, "./includes/images/title_new_screen.tga");
   if (_menu->initialize() == false)
     return (false);
- // _objects.push_back(_menu);
   return (true);
 }
 
@@ -97,6 +99,5 @@ bool    GameEngine::Create_loading()
   _menu = new Menu(0, 0, -5, AObject::MENU, "./includes/images/loading.tga");
   if (_menu->initialize() == false)
     return (false);
- // _objects.push_back(_menu);
   return (true);
 }

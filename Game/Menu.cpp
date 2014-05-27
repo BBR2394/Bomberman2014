@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update lun. mai  26 18:07:22 2014 sofian casier
+** Last update mar. mai  27 15:18:51 2014 sofian casier
 */
 
 #include "Menu.hh"
@@ -44,6 +44,17 @@ if (_texture.load(_texture_name.c_str()) == false)
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
     _geometry.build();
+    return (true);
+}
+
+bool  Menu::Change_texture(std::string texture)
+{
+  _texture_name = texture;
+if (_texture.load(_texture_name.c_str()) == false)
+    {
+      std::cerr << "Cannot load the rectangle texture" << std::endl;
+      return (false);
+    }
     return (true);
 }
 

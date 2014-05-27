@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update lun. mai  26 18:07:38 2014 sofian casier
+** Last update mar. mai  27 15:19:11 2014 sofian casier
 */
 
 #ifndef _MENU_HH_
@@ -51,6 +51,7 @@ public:
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
   int     getPosition() const;
+  bool    Change_texture(std::string texture);
 };
 
 #endif
