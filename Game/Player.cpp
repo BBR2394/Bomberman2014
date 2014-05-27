@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Tue May 27 14:48:52 2014 Koszyczek Laurent
+// Last update Tue May 27 23:56:36 2014 Koszyczek Laurent
 */
 
 #include "AObject.hpp"
@@ -95,10 +95,49 @@ bool	Player::initialize()
     return (true);
 }
 
+int	Player::getLen(char *map)
+{
+  int	i;
+
+  i = 0;
+  while (map[i] != '\0')
+    i++;
+  return (i);
+}
+
 int	Player::checkCollision(char **map, int dir)
 {
-  printf("pos x %f pos y %f \n", getX(), getY());
-  return (1);
+  // std::cout << "pos x " << getX() << "pos y \n" << getY());
+  int		size;
+
+  size = (getLen(map[0]) / 2);
+  if (dir == SDLK_DOWN)
+    {
+      if (map[((int)((getY() - size) * -1) + 1)] == 0)
+	return 0;
+      if (map[(int)((getY() - size) * -1) + 1][(int)getX() + size] == '0')
+	return (1);
+    }
+  else if (dir == SDLK_UP)
+    {
+      if (((int)((getY() - size) * -1)) - 1 < 0)
+	return 0;
+      if (map[(int)((getY() - size) * -1) - 1][(int)getX() + size] == '0')
+	return (1);
+    }
+  else if (dir == SDLK_LEFT)
+    {
+      if ((getX() + size - 1) < 0)
+	return 0;
+      if (map[(int)((getY() - size) * -1)][(int)getX() + size - 1] == '0')
+	return (1);
+    }
+  else if (dir == SDLK_RIGHT)
+    {
+      if (map[(int)((getY() - size) * -1)][(int)getX() + size + 1] == '0')
+	return (1);
+    }
+  return (0);
 }
 
 void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
@@ -113,7 +152,7 @@ void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
     translate(glm::vec3(0, -1 * translate_player, 0));
 }
   if (input.getInput(SDLK_UP, true) && checkCollision(map, SDLK_UP))
-  {    
+  {
     translate(glm::vec3(0, translate_player, 0));
     repet++;
     }
@@ -127,12 +166,12 @@ void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
     translate(glm::vec3(translate_player, 0, 0));
     repet++;
     }
-  if (input.getInput(SDLK_i, true) && checkCollision(map, SDLK_i))
+  if (input.getInput(SDLK_i, true))
   {
     translate(glm::vec3(0, 0, -1 * translate_player));
     repet++;
     }
-  if (input.getInput(SDLK_o, true) && checkCollision(map, SDLK_o))
+  if (input.getInput(SDLK_o, true))
   {
     translate(glm::vec3(0, 0, translate_player));
     repet++;

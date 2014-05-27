@@ -5,7 +5,7 @@
 // Login   <koszyc_l@epitech.net>
 // 
 // Started on  Mon May 19 17:40:20 2014 Koszyczek Laurent
-// Last update Tue May 27 12:43:26 2014 Koszyczek Laurent
+// Last update Tue May 27 15:11:35 2014 Koszyczek Laurent
 */
 
 #ifndef _PLAYER_HH_
@@ -22,6 +22,7 @@ private:
   float		_speed;
 
   int		checkCollision(char **map, int dir);
+  int		getLen(char *map);
 
 public:
   Player();
