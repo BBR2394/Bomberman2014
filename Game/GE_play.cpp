@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update lun. mai  26 18:38:10 2014 sofian casier
+// Last update Tue May 27 12:42:22 2014 Koszyczek Laurent
 //
 */
 
@@ -39,7 +39,7 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
         if (_input.getInput(SDLK_t, true))
 	  _save->writeInFile();
 
-        _play1->update(clock, _input);
+        _play1->update(clock, _input, _mapcols);
         if (nb_player == 2)
 	  _play2->update(clock, _input);
 

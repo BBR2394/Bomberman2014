@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Thu May 22 18:43:53 2014 Bertrand-Rapello Baptiste
+// Last update Tue May 27 12:46:46 2014 Koszyczek Laurent
 */
 
 #include "AObject.hpp"
@@ -95,14 +95,19 @@ bool	Player::initialize()
     return (true);
 }
 
-void Player::update(gdl::Clock const &clock, gdl::Input &input)
+int	Player::checkCollision(char **map, int dir)
+{
+  return (1);
+}
+
+void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
 {
     static int repet = 0;
     int translate_player;
 
     translate_player = 1;
 
-  if (input.getInput(SDLK_DOWN, true))
+    if (input.getInput(SDLK_DOWN, true) && checkCollision(map, SDLK_DOWN))
   {
     translate(glm::vec3(0, -1 * translate_player, 0));
 }

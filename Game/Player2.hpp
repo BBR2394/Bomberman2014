@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Mon May 19 18:05:39 2014 Bertrand-Rapello Baptiste
-// Last update Mon May 19 18:15:56 2014 Bertrand-Rapello Baptiste
+// Last update Tue May 27 12:42:11 2014 Koszyczek Laurent
 //
 
 #ifndef PLAYER2_HPP_
