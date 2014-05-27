@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update jeu. mai  22 16:55:00 2014 sofian casier
+// Last update Tue May 27 14:36:53 2014 Koszyczek Laurent
 */
 
 #include "AObject.hpp"
@@ -88,4 +88,19 @@ glm::mat4 AObject::getTransformation()
 AObject::Type      AObject::getType() const
 {
   return (this->_type);
+}
+
+double		AObject::getX() const
+{
+  return _position.x;
+}
+
+double		AObject::getY() const
+{
+  return _position.y;
+}
+
+double		AObject::getZ() const
+{
+  return _position.z;
 }

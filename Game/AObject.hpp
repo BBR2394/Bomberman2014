@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update jeu. mai  22 16:58:27 2014 sofian casier
+// Last update Tue May 27 14:36:38 2014 Koszyczek Laurent
 */
 
 #ifndef _AOBJECT_HH__
@@ -54,6 +54,9 @@ public:
   void    setXcurs(double);
   void    setYcurs(double);
   void    setZcurs(double);
+  double	getX() const;
+  double	getY() const;
+  double	getZ() const;
 
   double                  _ycurs;
   double                  _zcurs;

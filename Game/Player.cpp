@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Tue May 27 12:46:46 2014 Koszyczek Laurent
+// Last update Tue May 27 14:48:52 2014 Koszyczek Laurent
 */
 
 #include "AObject.hpp"
@@ -97,6 +97,7 @@ bool	Player::initialize()
 
 int	Player::checkCollision(char **map, int dir)
 {
+  printf("pos x %f pos y %f \n", getX(), getY());
   return (1);
 }
 
@@ -111,37 +112,36 @@ void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
   {
     translate(glm::vec3(0, -1 * translate_player, 0));
 }
-  if (input.getInput(SDLK_UP, true))
+  if (input.getInput(SDLK_UP, true) && checkCollision(map, SDLK_UP))
   {    
     translate(glm::vec3(0, translate_player, 0));
     repet++;
     }
-  if (input.getInput(SDLK_LEFT, true))
+  if (input.getInput(SDLK_LEFT, true) && checkCollision(map, SDLK_LEFT))
   {
     translate(glm::vec3(-1 * translate_player, 0, 0));
     repet++;
     }
-  if (input.getInput(SDLK_RIGHT, true))
+  if (input.getInput(SDLK_RIGHT, true) && checkCollision(map, SDLK_RIGHT))
   {
     translate(glm::vec3(translate_player, 0, 0));
     repet++;
     }
-  if (input.getInput(SDLK_i, true))
+  if (input.getInput(SDLK_i, true) && checkCollision(map, SDLK_i))
   {
     translate(glm::vec3(0, 0, -1 * translate_player));
     repet++;
     }
-  if (input.getInput(SDLK_o, true))
+  if (input.getInput(SDLK_o, true) && checkCollision(map, SDLK_o))
   {
     translate(glm::vec3(0, 0, translate_player));
     repet++;
     }
-  if (input.getInput(SDLK_SPACE, true))
+  if (input.getInput(SDLK_SPACE, true) && checkCollision(map, SDLK_SPACE))
   {
     std::cout << "une BOMBE" << std::endl;
     repet++;
     }
-    
     if (repet > 0)
         repet--;
 }
