@@ -6,7 +6,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update lun. mai  26 17:21:49 2014 sofian casier
+// Last update Tue May 27 12:15:31 2014 Koszyczek Laurent
 //
 */
 
@@ -29,8 +29,17 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
   d = lmty * -1;
   //if (y%2 != 0)
   //lmty++;
+  printf("y : %d, x %d\n", x, y);
+  _mapcols = new char*[y + 2];
+  for (int i = 0; i <= y ; ++i)
+    _mapcols[i] = new char[x + 2];
   while (i < x)
   {
+    _mapcols[0][i] = '1';
+    _mapcols[y - 1][i] = '1';
+    int k = 1;
+    while (k < y - 1)
+      _mapcols[k++][i] = '0';
     temp = new Cube(c, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
     if (temp->initialize() == false)
       return (false);
@@ -42,11 +51,15 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
     c++;
     i++;
   }
+  _mapcols[0][x] = '\0';
   i = 1;
   d++;
   c--;
-  while (i < y)
+  while (i < y - 1)
   {
+    _mapcols[i][0] = '1';
+    _mapcols[i][x - 1] = '1';
+    _mapcols[i][x] = '\0';
     temp = new Cube(c, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
     if (temp->initialize() == false)
       return (false);
@@ -60,7 +73,8 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
       e = (lmtx * -1)+2;
       while (e <= (lmtx - 2))
       {
-        temp = new Cube(e, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
+        _mapcols[i][(int)(e + lmtx)] = '1';
+	temp = new Cube(e, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
         if (temp->initialize() == false)
           return (false);
         this->_objects.push_back(temp);
@@ -70,6 +84,9 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
     i++;
     d++;
   }
+  _mapcols[i++][x] = '\0';
+  _mapcols[i] = 0;
+  printMap();
   /*
     temp = new Background(0, 0, 3, 0, 0, 0, "./includes/images/ground.tga");
     if (temp->initialize() == false)
@@ -88,3 +105,22 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
    }
    return (true);
  }
+
+void                    GameEngine::printMap()
+{
+  int                   i;
+  int                   j;
+
+
+  j = 0;
+  while (_mapcols[j])
+    {
+      i = 0;
+      while (_mapcols[j][i])
+        {
+          printf("%c", _mapcols[j][i++]);
+        }
+      printf("\n");
+      j++;
+    }
+}

@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update lun. mai  26 17:51:28 2014 sofian casier
+// Last update Tue May 27 11:19:04 2014 Koszyczek Laurent
 */
 
 #ifndef   __GAMEENGINE__
@@ -45,6 +45,7 @@ public:
   bool    Playing(gdl::Clock const &clock, int nb_player);
   int    Go_To_Menu();
   bool    Update_Menu();
+  void	printMap();
 
 private:
 
@@ -62,9 +63,9 @@ private:
   Cursor                  *_cursor;
   int                   _index_cursor;
   int		        _scene;
-
   bool                  _music_fight;
   Save                  *_save;
+  char			**_mapcols;
 };
 
 #endif
