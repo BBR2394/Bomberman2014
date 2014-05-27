@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update mar. mai  27 15:18:51 2014 sofian casier
+** Last update mar. mai  27 17:50:18 2014 sofian casier
 */
 
 #include "Menu.hh"
@@ -13,12 +13,10 @@
 Menu::Menu(std::string texture)
 {
   _texture_name = texture;
-  _position_menu = 0;
 }
 
 Menu::Menu(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
 {
-  _position_menu = 0;
   _texture_name = texture;
 }
 
@@ -58,33 +56,8 @@ if (_texture.load(_texture_name.c_str()) == false)
     return (true);
 }
 
-void  Menu::setPositionMenu(int pos)
-{
-  _position_menu = pos;
-}
-
 void  Menu::update(gdl::Clock const &clock, gdl::Input &input)
 {    
-}
-
-double    Menu::getXcurs() const
-{
-  return (_xcurs);
-}
-
-double    Menu::getYcurs() const
-{
-  return (_ycurs);
-}
-
-double    Menu::getZcurs() const
-{
-  return (_zcurs);
-}
-
-int   Menu::getPosition() const
-{
-  return (_position_menu);
 }
 
 void    Menu::draw(gdl::AShader &shader, gdl::Clock const &clock)

@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mar. mai  27 15:56:01 2014 sofian casier
+** Last update mar. mai  27 17:46:46 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -13,6 +13,13 @@
 
 GameEngine::GameEngine()
 {
+  _menu = NULL;
+  _cursor = NULL;
+  _play1 = NULL;
+  _play2 = NULL;
+  _scene = 0;
+  _index_cursor = 0;
+  _save = new Save("./file");
 }
 
 GameEngine::~GameEngine()
@@ -21,19 +28,8 @@ GameEngine::~GameEngine()
 		delete _objects[i];
 }
 
-bool			GameEngine::initialize()
+bool      GameEngine::Launch_mus()
 {
-  if (!_context.start(1000, 800, "My bomberman!"))
-  {
-    std::cout << "error on start context" << std::endl; 
-    return false;
-  }
-  glEnable(GL_DEPTH_TEST);
-  if (!_shader.load("./shaders/basic.fp", GL_FRAGMENT_SHADER) || !_shader.load("./shaders/basic.vp", GL_VERTEX_SHADER) || !_shader.build())
-  {
-    std::cout << "shader failed" << std::endl;
-    return (false);
-  }
   if ((Mix_Init(MIX_INIT_OGG | MIX_INIT_MOD | MIX_INIT_MP3)) == -1)
   {
     std::cout << "Error on SDL Audio Init" << std::endl;
@@ -44,8 +40,6 @@ bool			GameEngine::initialize()
     std::cout << "Error on Open Audio" << std::endl;
     return (false);
   }
-  _menu = NULL;
-  _cursor = NULL;
   Mix_Music *musique;
   musique = Mix_LoadMUS("includes/music/title.wav");
   if (!musique)
@@ -55,12 +49,24 @@ bool			GameEngine::initialize()
   }
   Mix_PlayMusic(musique, -1);
   Mix_VolumeMusic(MIX_MAX_VOLUME / 2.5);
-  _play1 = NULL;
-  _play2 = NULL;
   _music_fight = false;
-  _scene = 0;
-  _index_cursor = 0;
-  _save = new Save("./file");
+  return (true);
+}
+
+bool			GameEngine::initialize()
+{
+  if (!_context.start(1000, 800, "Bomberman Epi"))
+  {
+    std::cout << "error on start context" << std::endl; 
+    return false;
+  }
+  Launch_mus();
+  glEnable(GL_DEPTH_TEST);
+  if (!_shader.load("./shaders/basic.fp", GL_FRAGMENT_SHADER) || !_shader.load("./shaders/basic.vp", GL_VERTEX_SHADER) || !_shader.build())
+  {
+    std::cout << "shader failed" << std::endl;
+    return (false);
+  }
   _floor = new Background(0, 0, 1, 0, 0, 0, "./includes/images/ground.tga");
   _floor->setSize(15, 15, 3);
   if (_floor->initialize() == false)
@@ -74,8 +80,28 @@ bool			GameEngine::initialize()
   _shader.setUniform("projection", projection);
  if ((this->Create_Menu()) == false)
   return (false);
-
   return (true);
+}
+
+void      GameEngine::Set_One_Player()
+{
+  _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
+  _save->setNbPlayer(1);
+  _floor->setType(1);
+  this->createMap(_floor->getX(), _floor->getY(), 1);
+  _scene = 3;
+  _menu = NULL;
+  _cursor = NULL;
+}
+
+void      GameEngine::Set_Two_Players()
+{
+  _floor->setType(1);
+  this->createMap(_floor->getX(), _floor->getY(), 2);
+  _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
+  _save->setNbPlayer(2);
+  _scene = 3;
+  _menu = NULL;
 }
 
 bool			GameEngine::update()
@@ -91,50 +117,26 @@ bool			GameEngine::update()
     }
   else if (_scene == 1)
     {
-      size_t  i;
-      i = 0;
       if (this->Menu_choice() == false)
        return (false);
     }
   else if (_scene == 2) 
-    {
-      _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
-      _save->setNbPlayer(1);
-      _floor->setType(1);
-      this->createMap(_floor->getX(), _floor->getY(), 1);
-      _scene = 3;
-      nb_player = 1;
-      delete _menu;
-      _menu = NULL;
-      _cursor = NULL;
-    }
-    else if (_scene == 3)
-    {
-      if ((this->Playing(_clock, nb_player) == false))
-        return false;
-    }
+  {
+    Set_One_Player();
+    nb_player = 1;
+  }
+  else if (_scene == 3)
+  {
+    if ((this->Playing(_clock, nb_player) == false))
+      return false;
+  }
   else if (_scene == 4)
-    {
-      size_t i;
-      i = 0;
-      while  (i < _objects.size())
-       delete _objects[i++];
-      _objects.erase (_objects.begin(), _objects.begin()+i);
-      _floor->setType(1);
-      this->createMap(_floor->getX(), _floor->getY(), 2);
-      _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
-      _save->setNbPlayer(2);
-      _scene = 3;
-      _menu = NULL;
-      nb_player = 2;
-    }
+  {
+    Set_Two_Players();
+    nb_player = 2;
+  }
   _context.updateClock(_clock);
   _context.updateInputs(_input);
-  /*  if (_scene != 0)
-    {
-      for (size_t i = 0; i < _objects.size(); ++i)
-        _objects[i]->update(_clock, _input);
-	}*/
   return (true);
 }
 
@@ -161,6 +163,6 @@ void			GameEngine::draw()
  _floor->draw(_shader, _clock);
  for (size_t i = 0; i < _bombes.size(); ++i)
    _bombes[i]->draw(_shader, _clock);
-   }
+ }
     _context.flush();
 }

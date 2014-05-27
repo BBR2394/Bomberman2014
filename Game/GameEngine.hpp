@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Tue May 27 11:19:04 2014 Koszyczek Laurent
+** Last update mar. mai  27 17:48:11 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -46,7 +46,11 @@ public:
   int    Go_To_Menu();
   bool    Update_Menu();
   void	printMap();
-
+  bool  Launch_mus();
+  void  Set_Two_Players();
+  void  Set_One_Player();
+  void  Fight_mus();
+  
 private:
 
   gdl::SdlContext       _context;

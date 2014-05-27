@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update mar. mai  27 15:19:11 2014 sofian casier
+** Last update mar. mai  27 17:51:54 2014 sofian casier
 */
 
 #ifndef _MENU_HH_
@@ -30,27 +30,16 @@ class Menu : public AObject
 
   gdl::Texture _texture;
   gdl::Geometry _geometry;
-  gdl::Geometry           _cursor;
   float _speed;
 
 public:
-
-  double  getXcurs() const;
-  double  getYcurs() const;
-  double  getZcurs() const;
-  void    setXcurs(double);
-  void    setYcurs(double);
-  void    setZcurs(double);
-  int   _position_menu;
 
   Menu(std::string texture);
   Menu(double x, double y, double z, Type type, std::string texture);
   virtual ~Menu();
   virtual bool initialize();
-  void  setPositionMenu(int);
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
-  int     getPosition() const;
   bool    Change_texture(std::string texture);
 };
 
