@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Tue May 13 15:26:17 2014 sofian casier
-** Last update mar. mai  27 17:27:56 2014 sofian casier
+** Last update mar. mai  27 19:36:22 2014 sofian casier
 //
 */
 
@@ -52,7 +52,10 @@ bool      GameEngine::Menu_choice()
       return (false);
   }
   if (_index_cursor == 2)
+  {
     std::cout << "C'est parti pour continuer le jeu!" << std::endl;
+    return (true);
+  }
   if (_index_cursor == 3)
     return false;
   Mix_Chunk *music;
