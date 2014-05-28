@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-** Last update mar. mai  27 17:51:54 2014 sofian casier
+// Last update Wed May 28 14:35:18 2014 Koszyczek Laurent
 */
 
 #ifndef _MENU_HH_
@@ -35,7 +35,7 @@ class Menu : public AObject
 public:
 
   Menu(std::string texture);
-  Menu(double x, double y, double z, Type type, std::string texture);
+  Menu(glm::vec3 pos, Type type, std::string texture);
   virtual ~Menu();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);

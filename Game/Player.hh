@@ -5,7 +5,7 @@
 // Login   <koszyc_l@epitech.net>
 // 
 // Started on  Mon May 19 17:40:20 2014 Koszyczek Laurent
-// Last update Tue May 27 15:11:35 2014 Koszyczek Laurent
+// Last update Wed May 28 15:12:05 2014 Koszyczek Laurent
 */
 
 #ifndef _PLAYER_HH_
@@ -27,8 +27,8 @@ private:
 public:
   Player();
   Player(int x, int y);
-  Player(double x, double y, double z, Type type, std::string texture);
-  Player(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture);
+  Player(glm::vec3 pos, Type type, std::string texture);
+  Player(glm::vec3 pos, glm::vec3 r, std::string texture);
   virtual ~Player();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input, char **map);

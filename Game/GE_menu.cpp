@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Tue May 13 15:26:17 2014 sofian casier
-** Last update mar. mai  27 19:36:22 2014 sofian casier
+// Last update Wed May 28 15:15:52 2014 Koszyczek Laurent
 //
 */
 
@@ -68,7 +68,7 @@ bool      GameEngine::Menu_choice()
 
 bool    GameEngine::Update_Menu()
 {
-  _cursor = new Cursor(-3.8, -1, 0, AObject::CURSOR, "./includes/images/cursor_head_2.tga");
+  _cursor = new Cursor(glm::vec3(-3.8, -1, 0), AObject::CURSOR, "./includes/images/cursor_head_2.tga");
   if (_cursor->initialize() == false)
     return (false);
   _menu->Change_texture("./includes/images/title_menu_screen.tga");
@@ -92,7 +92,7 @@ int    GameEngine::Go_To_Menu()
 
 bool		GameEngine::Create_Menu()
 {
-  _menu = new Menu(0, 0, -5, AObject::MENU, "./includes/images/title_new_screen.tga");
+  _menu = new Menu(glm::vec3(0, 0, -5), AObject::MENU, "./includes/images/title_new_screen.tga");
   if (_menu->initialize() == false)
     return (false);
   return (true);
@@ -100,7 +100,7 @@ bool		GameEngine::Create_Menu()
 
 bool    GameEngine::Create_loading()
 {
-  _menu = new Menu(0, 0, -5, AObject::MENU, "./includes/images/loading.tga");
+  _menu = new Menu(glm::vec3(0, 0, -5), AObject::MENU, "./includes/images/loading.tga");
   if (_menu->initialize() == false)
     return (false);
   return (true);

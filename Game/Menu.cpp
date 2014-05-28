@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update mar. mai  27 19:32:43 2014 sofian casier
+// Last update Wed May 28 14:37:34 2014 Koszyczek Laurent
 */
 
 #include "Menu.hh"
@@ -15,7 +15,7 @@ Menu::Menu(std::string texture)
   _texture_name = texture;
 }
 
-Menu::Menu(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
+Menu::Menu(glm::vec3 pos, Type type, std::string texture) : AObject(pos, type, texture)
 {
   _texture_name = texture;
 }

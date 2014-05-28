@@ -5,17 +5,17 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Thu May 22 17:16:12 2014 Bertrand-Rapello Baptiste
+// Last update Wed May 28 15:17:15 2014 Koszyczek Laurent
 */
 
 #include "Background.hh"
 
-Background::Background(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
+Background::Background(glm::vec3 pos, Type type, std::string texture) : AObject(pos, type, texture)
 {
 
 }
 
-Background::Background(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
+Background::Background(glm::vec3 pos, glm::vec3 r, std::string texture) : AObject(pos, r, texture)
 {
 
 }

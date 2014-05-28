@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Tue May 27 12:42:03 2014 Koszyczek Laurent
+// Last update Wed May 28 15:13:32 2014 Koszyczek Laurent
 */
 
 #include "AObject.hpp"
@@ -15,12 +15,12 @@
 {
 }*/
 
-Player2::Player2(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
+Player2::Player2(glm::vec3 pos, Type type, std::string texture) : AObject(pos, type, texture)
 {
     _texture_name = texture;
 }
 
-Player2::Player2(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
+Player2::Player2(glm::vec3 pos, glm::vec3 r, std::string texture) : AObject(pos, r, texture)
 {
 
 }

@@ -5,7 +5,7 @@
 // Login   <koszyc_l@epitech.net>
 // 
 // Started on  Mon May 19 17:38:53 2014 Koszyczek Laurent
-** Last update mar. mai  27 17:51:21 2014 sofian casier
+// Last update Wed May 28 15:15:20 2014 Koszyczek Laurent
 */
 
 #ifndef _CURSOR_HH_
@@ -22,8 +22,8 @@ private:
   float _speed;
 
 public:
-  Cursor(double x, double y, double z, Type type, std::string texture);
-  Cursor(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture);
+  Cursor(glm::vec3 pos, Type type, std::string texture);
+  Cursor(glm::vec3 pos, glm::vec3 r, std::string texture);
   virtual ~Cursor();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);

@@ -6,7 +6,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Tue May 27 12:15:31 2014 Koszyczek Laurent
+// Last update Wed May 28 15:12:49 2014 Koszyczek Laurent
 //
 */
 
@@ -40,11 +40,11 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
     int k = 1;
     while (k < y - 1)
       _mapcols[k++][i] = '0';
-    temp = new Cube(c, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
+    temp = new Cube(glm::vec3(c, d, 3), glm::vec3(0, 0, 0), "./includes/images/cube_bis.tga");
     if (temp->initialize() == false)
       return (false);
     this->_objects.push_back(temp);
-    temp = new Cube(c, lmty, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
+    temp = new Cube(glm::vec3(c, lmty, 3), glm::vec3(0, 0, 0), "./includes/images/cube_bis.tga");
     if (temp->initialize() == false)
       return (false);
     this->_objects.push_back(temp);
@@ -60,11 +60,11 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
     _mapcols[i][0] = '1';
     _mapcols[i][x - 1] = '1';
     _mapcols[i][x] = '\0';
-    temp = new Cube(c, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
+    temp = new Cube(glm::vec3(c, d, 3), glm::vec3(0, 0, 0), "./includes/images/cube_bis.tga");
     if (temp->initialize() == false)
       return (false);
     this->_objects.push_back(temp);
-    temp = new Cube(lmtx * -1, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
+    temp = new Cube(glm::vec3((lmtx * -1), d, 3), glm::vec3(0, 0, 0), "./includes/images/cube_bis.tga");
     if (temp->initialize() == false)
       return (false);
     this->_objects.push_back(temp);
@@ -74,7 +74,7 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
       while (e <= (lmtx - 2))
       {
         _mapcols[i][(int)(e + lmtx)] = '1';
-	temp = new Cube(e, d, 3, 0, 0, 0, "./includes/images/cube_bis.tga");
+	temp = new Cube(glm::vec3(e, d, 3), glm::vec3(0, 0, 0), "./includes/images/cube_bis.tga");
         if (temp->initialize() == false)
           return (false);
         this->_objects.push_back(temp);
@@ -93,13 +93,13 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
       return (false);
     this->_objects.push_back(temp);
   */
-    _play1 = new Player((lmtx*-1)+1, lmty - 1, 4, 0, 0, 0, "./includes/images/player.tga");
+  _play1 = new Player(glm::vec3((lmtx*-1)+1, lmty - 1, 4), glm::vec3(0, 0, 0), "./includes/images/player.tga");
     if (_play1->initialize() == false)
       return (false);
 
     if (nb_player == 2)
     {
-      _play2 = new Player2(lmtx-1, lmty-1, 4, 0, 0, 0, "./includes/images/player.tga");
+      _play2 = new Player2(glm::vec3(lmtx-1, lmty-1, 4), glm::vec3(0, 0, 0), "./includes/images/player.tga");
       if (_play2->initialize() == false)
        return (false);
    }

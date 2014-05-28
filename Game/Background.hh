@@ -5,7 +5,7 @@
 // Login   <koszyc_l@epitech.net>
 // 
 // Started on  Mon May 19 17:37:15 2014 Koszyczek Laurent
-// Last update Thu May 22 17:14:51 2014 Bertrand-Rapello Baptiste
+// Last update Wed May 28 15:17:48 2014 Koszyczek Laurent
 */
 
 #ifndef _BACKGROUND_HH_
@@ -28,8 +28,8 @@ private:
 public:
   Background();
   Background(int x, int y);
-  Background(double x, double y, double z, Type type, std::string texture);
-  Background(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture);
+  Background(glm::vec3 pos, Type type, std::string texture);
+  Background(glm::vec3 pos, glm::vec3 r, std::string texture);
   virtual ~Background();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);

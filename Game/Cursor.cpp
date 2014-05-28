@@ -5,17 +5,17 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update jeu. mai  22 17:00:54 2014 sofian casier
+// Last update Wed May 28 15:14:54 2014 Koszyczek Laurent
 */
 
 #include "Cursor.hh"
 
-Cursor::Cursor(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
+Cursor::Cursor(glm::vec3 pos, Type type, std::string texture) : AObject(pos, type, texture)
 {
 
 }
 
-Cursor::Cursor(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
+Cursor::Cursor(glm::vec3 pos, glm::vec3 r, std::string texture) : AObject(pos, r, texture)
 {
 
 }

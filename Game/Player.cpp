@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Tue May 27 23:56:36 2014 Koszyczek Laurent
+// Last update Wed May 28 15:20:58 2014 Koszyczek Laurent
 */
 
 #include "AObject.hpp"
@@ -14,12 +14,12 @@
 {
 }*/
 
-Player::Player(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
+Player::Player(glm::vec3 pos, Type type, std::string texture) : AObject(pos, type, texture)
 {
     _texture_name = texture;
 }
 
-Player::Player(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
+Player::Player(glm::vec3 pos, glm::vec3 r, std::string texture) : AObject(pos, r, texture)
 {
 
 }
@@ -37,6 +37,7 @@ bool	Player::initialize()
       std::cerr << "Cannot load the cube texture" << std::endl;
       return (false);
     }
+  _model.load("./assets/marvin.fbx");
   _geometry.setColor(glm::vec4(0, 1, 1, 1));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
@@ -189,5 +190,9 @@ void Player::draw(gdl::AShader &shader, gdl::Clock const &clock)
 {
   (void)clock;
   _texture.bind();
-  _geometry.draw(shader, getTransformation(), GL_QUADS);
+   _geometry.draw(shader, getTransformation(), GL_QUADS);
+   //glm::mat4 test = getTransformation();
+   //test = glm::vec4( 1.0, 1.0, 0.0, 0.2);
+  // printf("test x %d y %d z %d w %d\n", test.x, test.y, test.z, test.w);
+    _model.draw(shader, getTransformation(), GL_QUADS);
 }

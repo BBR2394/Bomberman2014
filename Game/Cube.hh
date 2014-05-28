@@ -5,7 +5,7 @@
 // Login   <koszyc_l@epitech.net>
 // 
 // Started on  Mon May 19 17:19:07 2014 Koszyczek Laurent
-** Last update jeu. mai  22 17:03:14 2014 sofian casier
+// Last update Wed May 28 14:42:04 2014 Koszyczek Laurent
 */
 
 #ifndef _CUBE_HH_
@@ -35,8 +35,8 @@ private:
 public:
   Cube();
   Cube(int x, int y);
-  Cube(double x, double y, double z, Type type, std::string texture);
-  Cube(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture);
+  Cube(glm::vec3 pos, Type type, std::string texture);
+  Cube(glm::vec3 pos, glm::vec3 r, std::string texture);
   virtual ~Cube();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);

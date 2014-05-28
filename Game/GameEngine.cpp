@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mar. mai  27 17:46:46 2014 sofian casier
+// Last update Wed May 28 15:18:17 2014 Koszyczek Laurent
 */
 
 #include <unistd.h>
@@ -67,7 +67,7 @@ bool			GameEngine::initialize()
     std::cout << "shader failed" << std::endl;
     return (false);
   }
-  _floor = new Background(0, 0, 1, 0, 0, 0, "./includes/images/ground.tga");
+  _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/ground.tga");
   _floor->setSize(15, 15, 3);
   if (_floor->initialize() == false)
     return (false);

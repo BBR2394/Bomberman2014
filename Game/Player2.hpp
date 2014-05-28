@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Mon May 19 18:05:39 2014 Bertrand-Rapello Baptiste
-// Last update Tue May 27 12:42:11 2014 Koszyczek Laurent
+// Last update Wed May 28 15:13:58 2014 Koszyczek Laurent
 //
 
 #ifndef PLAYER2_HPP_
@@ -25,8 +25,8 @@ class Player2 : public AObject
  public:
   Player2();
   Player2(int x, int y);
-  Player2(double x, double y, double z, Type type, std::string texture);
-  Player2(int xp, int yp, int zp, int xr, int yr, int zr, std::string texture);
+  Player2(glm::vec3 pos, Type type, std::string texture);
+  Player2(glm::vec3 pos, glm::vec3 r, std::string texture);
   virtual ~Player2();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
