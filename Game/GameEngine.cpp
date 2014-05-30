@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Wed May 28 15:18:17 2014 Koszyczek Laurent
+// Last update Fri May 30 10:40:36 2014 Bertrand-Rapello Baptiste
 */
 
 #include <unistd.h>
@@ -156,13 +156,15 @@ void			GameEngine::draw()
 	_map[i]->draw(_shader, _clock);
       //for (size_t i = 0; i < _players.size(); ++i)                                               
       //_players[i]->draw(_shader, _clock);                                                      
-  if (_play1 != NULL)
-   _play1->draw(_shader, _clock);
- if (_play2 != NULL)
-   _play2->draw(_shader, _clock);
- _floor->draw(_shader, _clock);
- for (size_t i = 0; i < _bombes.size(); ++i)
-   _bombes[i]->draw(_shader, _clock);
- }
-    _context.flush();
+      if (_play1 != NULL)
+	_play1->draw(_shader, _clock);
+      if (_play2 != NULL)
+	_play2->draw(_shader, _clock);
+      _floor->draw(_shader, _clock);
+      for (size_t i = 0; i < _bombes.size(); ++i)
+	_bombes[i]->draw(_shader, _clock);
+      for (size_t i = 0; i < _explosion.size(); ++i)
+        _explosion[i]->draw(_shader, _clock);
+    }
+  _context.flush();
 }

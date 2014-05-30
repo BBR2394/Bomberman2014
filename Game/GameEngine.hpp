@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mar. mai  27 17:48:11 2014 sofian casier
+// Last update Fri May 30 11:19:13 2014 Bertrand-Rapello Baptiste
 */
 
 #ifndef   __GAMEENGINE__
@@ -24,6 +24,7 @@
 #include "Cube.hh"
 #include "Cursor.hh"
 #include "AObject.hpp"
+#include "Bombe.hh"
 #include "Save.hpp"
 
 class GameEngine : public gdl::Game
@@ -62,7 +63,8 @@ private:
   Background            *_floor;
   Player                *_play1;
   Player2               *_play2;
-  std::vector<AObject*> _bombes;
+  std::vector<Bombe*> _bombes;
+  std::vector<Bombe*> _explosion;
   Menu                  *_menu;
   Cursor                  *_cursor;
   int                   _index_cursor;

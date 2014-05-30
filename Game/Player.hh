@@ -5,7 +5,7 @@
 // Login   <koszyc_l@epitech.net>
 // 
 // Started on  Mon May 19 17:40:20 2014 Koszyczek Laurent
-// Last update Wed May 28 15:12:05 2014 Koszyczek Laurent
+// Last update Fri May 30 10:25:59 2014 Bertrand-Rapello Baptiste
 */
 
 #ifndef _PLAYER_HH_
@@ -20,6 +20,11 @@ private:
   gdl::Texture	_texture;
   gdl::Geometry	_geometry;
   float		_speed;
+  int _x_target;
+  int _y_target;
+  int _z_target;
+  int _nbBombe;
+  int _sizeExplo;
 
   int		checkCollision(char **map, int dir);
   int		getLen(char *map);
@@ -33,6 +38,12 @@ public:
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input, char **map);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
+  int getXTarget();
+  int getYTarget();
+  int getZTarget();
+  void setSizeExplo(int size);
+  int getSizeExplo();
+
 };
 
 #endif

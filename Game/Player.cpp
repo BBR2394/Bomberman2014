@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Wed May 28 15:20:58 2014 Koszyczek Laurent
+// Last update Fri May 30 11:22:49 2014 Bertrand-Rapello Baptiste
 */
 
 #include "AObject.hpp"
@@ -37,6 +37,16 @@ bool	Player::initialize()
       std::cerr << "Cannot load the cube texture" << std::endl;
       return (false);
     }
+
+  _x_target = getX();
+  _y_target = getY() - 1;
+  _z_target = getZ();
+  _nbBombe = 1;
+  _sizeExplo = 1;
+  std::cout << "suite a la création du joueur la position de la cible est : " << _x_target << " " <<\
+    _y_target << " " << _z_target << " " << std::endl;
+
+
   _model.load("./assets/marvin.fbx");
   _geometry.setColor(glm::vec4(0, 1, 1, 1));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
@@ -143,48 +153,55 @@ int	Player::checkCollision(char **map, int dir)
 
 void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
 {
-    static int repet = 0;
-    int translate_player;
+  static int repet = 0;
+  int translate_player;
 
-    translate_player = 1;
+  translate_player = 1;
 
-    if (input.getInput(SDLK_DOWN, true) && checkCollision(map, SDLK_DOWN))
-  {
-    translate(glm::vec3(0, -1 * translate_player, 0));
-}
+  if (input.getInput(SDLK_DOWN, true) && checkCollision(map, SDLK_DOWN))
+    {
+      translate(glm::vec3(0, -1 * translate_player, 0));
+      _x_target = getX();
+      _y_target = getY()-1;
+    }
   if (input.getInput(SDLK_UP, true) && checkCollision(map, SDLK_UP))
-  {
-    translate(glm::vec3(0, translate_player, 0));
-    repet++;
+    {
+      translate(glm::vec3(0, translate_player, 0));
+      repet++;
+      _x_target = getX();
+      _y_target = getY() + 1;
     }
   if (input.getInput(SDLK_LEFT, true) && checkCollision(map, SDLK_LEFT))
-  {
-    translate(glm::vec3(-1 * translate_player, 0, 0));
-    repet++;
+    {
+      translate(glm::vec3(-1 * translate_player, 0, 0));
+      _x_target = getX() - 1;
+      _y_target = getY();
+      repet++;
     }
   if (input.getInput(SDLK_RIGHT, true) && checkCollision(map, SDLK_RIGHT))
-  {
-    translate(glm::vec3(translate_player, 0, 0));
-    repet++;
+    {
+      translate(glm::vec3(translate_player, 0, 0));
+      _y_target = getY();
+      _x_target = getX() + 1;
+      repet++;
     }
-  if (input.getInput(SDLK_i, true))
-  {
-    translate(glm::vec3(0, 0, -1 * translate_player));
-    repet++;
+  if (input.getInput(SDLK_i, true) && checkCollision(map, SDLK_i))
+    {
+      _z_target--;
+      translate(glm::vec3(0, 0, -1 * translate_player));
+      repet++;
     }
-  if (input.getInput(SDLK_o, true))
-  {
-    translate(glm::vec3(0, 0, translate_player));
-    repet++;
+  if (input.getInput(SDLK_o, true) && checkCollision(map, SDLK_o))
+    {
+      _z_target++;
+      translate(glm::vec3(0, 0, translate_player));
+      repet++;
     }
-  if (input.getInput(SDLK_SPACE, true) && checkCollision(map, SDLK_SPACE))
-  {
-    std::cout << "une BOMBE" << std::endl;
-    repet++;
-    }
-    if (repet > 0)
-        repet--;
+
+  if (repet > 0)
+    repet--;
 }
+
 
 void Player::draw(gdl::AShader &shader, gdl::Clock const &clock)
 {
@@ -195,4 +212,29 @@ void Player::draw(gdl::AShader &shader, gdl::Clock const &clock)
    //test = glm::vec4( 1.0, 1.0, 0.0, 0.2);
   // printf("test x %d y %d z %d w %d\n", test.x, test.y, test.z, test.w);
     _model.draw(shader, getTransformation(), GL_QUADS);
+}
+
+int Player::getXTarget()
+{
+  return (_x_target);
+}
+
+int Player::getYTarget()
+{
+  return (_y_target);
+}
+
+int Player::getZTarget()
+{
+  return (_z_target);
+}
+
+void Player::setSizeExplo(int size)
+{
+  _sizeExplo = size;
+}
+
+int Player::getSizeExplo()
+{
+  return (_sizeExplo);
 }
