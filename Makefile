@@ -5,7 +5,7 @@
 ## Login   <casier_s@epitech.net>
 ## 
 ## Started on  Tue May  6 15:15:22 2014 sofian casier
-## Last update Thu May 22 16:51:57 2014 sofian casier
+## Last update Mon Jun  2 16:04:44 2014 sofian casier
 ##
 
 NAME		=		Bomberman
@@ -29,11 +29,12 @@ SRCS		=		Game/main.cpp		\
 				Game/Cursor.cpp		\
 				Game/Background.cpp	\
 				Game/Save.cpp		\
-				Game/Bombe.cpp
+				Game/Bombe.cpp		\
+				Game/sec_video.cpp	\
 
 OBJS		=		$(SRCS:.cpp=.o)
 
-LIB_GDL		=		-Llibs -lgdl_gl -lGL -lGLEW -ldl -lrt -lfbxsdk -lSDL2 -lpthread -g -ldl -L libs/ -lSDL2_mixer -lrt
+LIB_GDL		=		-Llibs -lgdl_gl -lGL -lGLEW -ldl -lrt -lfbxsdk -lSDL2 -lpthread -g -ldl -L libs/ -lSDL2_mixer -lrt -lvlc
 
 all		:		$(NAME)
 

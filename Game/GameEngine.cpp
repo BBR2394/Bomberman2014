@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Fri May 30 10:40:36 2014 Bertrand-Rapello Baptiste
+// Last update Mon Jun  2 16:06:28 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -55,6 +55,7 @@ bool      GameEngine::Launch_mus()
 
 bool			GameEngine::initialize()
 {
+  begin_sec_video();
   if (!_context.start(1000, 800, "Bomberman Epi"))
   {
     std::cout << "error on start context" << std::endl; 

@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Fri May 30 11:19:13 2014 Bertrand-Rapello Baptiste
+// Last update Mon Jun  2 16:03:12 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -51,7 +51,8 @@ public:
   void  Set_Two_Players();
   void  Set_One_Player();
   void  Fight_mus();
-  
+  int	begin_sec_video();
+
 private:
 
   gdl::SdlContext       _context;
