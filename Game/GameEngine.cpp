@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Mon Jun  2 16:06:28 2014 sofian casier
+** Last update mer. juin  04 00:08:35 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -15,11 +15,17 @@ GameEngine::GameEngine()
 {
   _menu = NULL;
   _cursor = NULL;
+  _cursor_map = NULL;
   _play1 = NULL;
   _play2 = NULL;
   _scene = 0;
   _index_cursor = 0;
+  _select_map = 0;
   _save = new Save("./file");
+  _map_chosen = 0;
+  _check_select_map = false;
+  _game_type = 0;
+  _launch = false;
 }
 
 GameEngine::~GameEngine()
@@ -56,7 +62,7 @@ bool      GameEngine::Launch_mus()
 bool			GameEngine::initialize()
 {
   begin_sec_video();
-  if (!_context.start(1000, 800, "Bomberman Epi"))
+  if (!_context.start(1000, 800, "Bomberman EpiK"))
   {
     std::cout << "error on start context" << std::endl; 
     return false;
@@ -93,6 +99,8 @@ void      GameEngine::Set_One_Player()
   _scene = 3;
   _menu = NULL;
   _cursor = NULL;
+  _game_type = 0;
+  _launch = true;
 }
 
 void      GameEngine::Set_Two_Players()
@@ -103,6 +111,9 @@ void      GameEngine::Set_Two_Players()
   _save->setNbPlayer(2);
   _scene = 3;
   _menu = NULL;
+  _cursor = NULL;
+  _game_type = 0;
+  _launch = true;
 }
 
 bool			GameEngine::update()
@@ -111,34 +122,44 @@ bool			GameEngine::update()
 
   if (_scene == 0)
   {
-      if (this->Go_To_Menu() == 1)
-        Update_Menu();
-      if (this->Go_To_Menu() == -1)
-        return (false);
-    }
+    if (this->Go_To_Menu() == 1)
+      Update_Menu();
+    if (this->Go_To_Menu() == -1)
+      return (false);
+  }
   else if (_scene == 1)
-    {
-      if (this->Menu_choice() == false)
-       return (false);
-    }
-  else if (_scene == 2) 
+  {
+    if (this->Menu_choice() == false)
+     return (false);
+ }
+ else if (_scene == 10)
+ {
+  if ((Choose_your_map()) == false)
+    return false;
+  if (_scene == 3)
+  {
+    if ((this->Create_loading()) == false)
+      return (false);
+  }
+  }
+  else if (_game_type == 1) 
   {
     Set_One_Player();
     nb_player = 1;
   }
-  else if (_scene == 3)
-  {
-    if ((this->Playing(_clock, nb_player) == false))
-      return false;
-  }
-  else if (_scene == 4)
+  else if (_game_type == 2)
   {
     Set_Two_Players();
     nb_player = 2;
   }
-  _context.updateClock(_clock);
-  _context.updateInputs(_input);
-  return (true);
+  else if (_scene == 3 && _launch == true)
+  {
+    if ((this->Playing(_clock, nb_player) == false))
+      return false;
+  }
+_context.updateClock(_clock);
+_context.updateInputs(_input);
+return (true);
 }
 
 void			GameEngine::draw()
@@ -149,9 +170,11 @@ void			GameEngine::draw()
     _menu->draw(_shader, _clock);
   if (_cursor != NULL)
     _cursor->draw(_shader, _clock);
+  if (_cursor_map != NULL)
+    _cursor_map->draw(_shader, _clock);
   for (size_t i = 0; i < _objects.size(); ++i)
     _objects[i]->draw(_shader, _clock);
-  if (_scene == 3)
+  if (_scene == 3 && _launch == true)
     {
       for (size_t i = 0; i < _map.size(); ++i)
 	_map[i]->draw(_shader, _clock);
