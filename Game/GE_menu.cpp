@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Tue May 13 15:26:17 2014 sofian casier
-** Last update mar. juin  03 23:42:03 2014 sofian casier
+** Last update mer. juin  04 18:57:22 2014 sofian casier
 //
 */
 
@@ -161,7 +161,7 @@ bool    GameEngine::Create_loading()
 
 bool    GameEngine::Create_select_map()
 {
-  _menu = new Menu(glm::vec3(0, 0, -5), AObject::MENU, "./includes/images/map_select.tga");
+  _menu = new Menu(glm::vec3(0, 0, -5), AObject::MENU, "./includes/images/bomber_map.tga");
   if (_menu->initialize() == false)
     return (false);
   return (true);
