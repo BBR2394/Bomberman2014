@@ -17,6 +17,7 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
   double   c, d, e, lmtx, lmty;
   int i;
   AObject *temp;
+  Bonus *temp2;
 
   if (x%2 == 0)
     x++;
@@ -102,7 +103,14 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
       _play2 = new Player2(glm::vec3(lmtx-1, lmty-1, 4), glm::vec3(0, 0, 0), "./includes/images/player.tga");
       if (_play2->initialize() == false)
        return (false);
-   }
+   }   
+
+
+   temp2 = new Bonus(glm::vec3(-4, -4, 4), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+  if (temp2->initialize() == false)
+       return (false);
+  _bonux.push_back(temp2);
+
    return (true);
  }
 
