@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 15:55:25 2014 sofian casier
-** Last update ven. mai  16 11:08:33 2014 sofian casier
+** Last update jeu. juin  05 18:28:15 2014 sofian casier
 //
 */
 
@@ -22,7 +22,9 @@ int main(int argc, char **argv, char **envp)
     }
 
     GameEngine engine;
-  if (engine.initialize() == false)
+    if (argc >= 2)
+      engine.set_Arg(argv[1]);
+    if (engine.initialize() == false)
     {
       std::cout << "failure on init" << std::endl;
       return (EXIT_FAILURE);

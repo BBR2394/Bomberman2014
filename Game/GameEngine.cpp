@@ -5,11 +5,20 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Thu Jun  5 16:16:49 2014 sofian casier
+** Last update jeu. juin  05 18:27:33 2014 sofian casier
 */
 
 #include <unistd.h>
 #include "GameEngine.hpp"
+
+void        GameEngine::set_Arg(char *arg)
+{
+  std::string video(arg);
+  if ((video.compare("-V") == 0) && (video.compare("-v") == 0))
+    _cond_video = true;
+  else
+    _cond_video = false;
+}
 
 GameEngine::GameEngine()
 {
@@ -61,7 +70,8 @@ bool      GameEngine::Launch_mus()
 
 bool			GameEngine::initialize()
 {
-  begin_sec_video();
+  if (_cond_video == true)
+    begin_sec_video();
   if (!_context.start(1000, 800, "Bomberman EpiK"))
   {
     std::cout << "error on start context" << std::endl; 

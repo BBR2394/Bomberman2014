@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mar. juin  03 23:49:45 2014 sofian casier
+** Last update jeu. juin  05 18:14:53 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -57,6 +57,7 @@ public:
   bool  Create_select_map();
   bool  Update_Select();
   bool  Map_choice();
+  void  set_Arg(char *argv);
 
 private:
 
@@ -75,6 +76,7 @@ private:
   Menu                  *_menu;
   Cursor                  *_cursor;
   Cursor                  *_cursor_map;
+  bool                  _cond_video;
   int                   _index_cursor;
   int                   _select_map;
   bool                   _check_select_map;
