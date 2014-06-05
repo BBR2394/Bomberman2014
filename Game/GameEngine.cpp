@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update jeu. juin  05 18:27:33 2014 sofian casier
+** Last update jeu. juin  05 21:46:57 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -126,6 +126,21 @@ void      GameEngine::Set_Two_Players()
   _launch = true;
 }
 
+bool      GameEngine::ReturnToMenu()
+{
+  _scene = 0;
+  _index_cursor = 0;
+  _select_map = 0;
+  _map_chosen = 0;
+  _check_select_map = false;
+  _game_type = 0;
+  _launch = false;
+  _cursor_map = NULL;
+  if ((this->Create_Menu()) == false)
+    return (false);
+  return (true);
+}
+
 bool			GameEngine::update()
 {
   static int nb_player = 0;
@@ -145,7 +160,11 @@ bool			GameEngine::update()
  else if (_scene == 10)
  {
   if ((Choose_your_map()) == false)
-    return false;
+  {
+    if (ReturnToMenu() == false)
+      return false;
+    sleep(1);
+  }
   if (_scene == 3)
   {
     if ((this->Create_loading()) == false)

@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update jeu. juin  05 18:14:53 2014 sofian casier
+** Last update jeu. juin  05 18:51:11 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -58,7 +58,8 @@ public:
   bool  Update_Select();
   bool  Map_choice();
   void  set_Arg(char *argv);
-
+  bool  ReturnToMenu();
+  
 private:
 
   gdl::SdlContext       _context;
