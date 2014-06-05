@@ -87,13 +87,13 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
   }
   _mapcols[i++][x] = '\0';
   _mapcols[i] = 0;
-  printMap();
   /*
     temp = new Background(0, 0, 3, 0, 0, 0, "./includes/images/ground.tga");
     if (temp->initialize() == false)
       return (false);
     this->_objects.push_back(temp);
   */
+  _mapcols[1][1] = '6';
   _play1 = new Player(glm::vec3((lmtx*-1)+1, lmty - 1, 4), glm::vec3(0, 0, 0), "./includes/images/player.tga");
     if (_play1->initialize() == false)
       return (false);
@@ -103,6 +103,7 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
       _play2 = new Player2(glm::vec3(lmtx-1, lmty-1, 4), glm::vec3(0, 0, 0), "./includes/images/player.tga");
       if (_play2->initialize() == false)
        return (false);
+     _mapcols[1][y-2] = '7';
    }   
 
 
@@ -110,7 +111,7 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
   if (temp2->initialize() == false)
        return (false);
   _bonux.push_back(temp2);
-
+printMap();
    return (true);
  }
 

@@ -94,7 +94,7 @@ void      GameEngine::Set_One_Player()
 {
   _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
   _save->setNbPlayer(1);
-  _floor->setType(1);
+  _floor->setType(_map_chosen);
   this->createMap(_floor->getX(), _floor->getY(), 1);
   _scene = 3;
   _menu = NULL;
@@ -192,7 +192,7 @@ void			GameEngine::draw()
 
       for (size_t i = 0; i < _bonux.size(); ++i)
         _bonux[i]->draw(_shader, _clock);
-    
+
     }
   _context.flush();
 }
