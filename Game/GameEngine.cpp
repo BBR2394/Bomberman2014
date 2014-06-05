@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update mer. juin  04 00:08:35 2014 sofian casier
+// Last update Thu Jun  5 16:16:49 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -188,8 +188,13 @@ void			GameEngine::draw()
       for (size_t i = 0; i < _bombes.size(); ++i)
 	_bombes[i]->draw(_shader, _clock);
       for (size_t i = 0; i < _explosion.size(); ++i)
-        _explosion[i]->draw(_shader, _clock);
-
+	{
+	  Mix_Chunk *bomb_sound;
+	  bomb_sound = Mix_LoadWAV("includes/music/sound_bomb_1.wav");
+	  Mix_VolumeChunk(bomb_sound, MIX_MAX_VOLUME);
+	  Mix_PlayChannel(1, bomb_sound, 0);
+	  _explosion[i]->draw(_shader, _clock);
+	}
       for (size_t i = 0; i < _bonux.size(); ++i)
         _bonux[i]->draw(_shader, _clock);
 

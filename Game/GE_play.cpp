@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Fri May 30 11:28:38 2014 Bertrand-Rapello Baptiste
+// Last update Thu Jun  5 16:18:06 2014 sofian casier
 //
 */
 
@@ -47,6 +47,9 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
 	    std::cout << "bombe test ..." << std::endl;
             if (temp->initialize() == false)
               return (false);
+	    Mix_Chunk *bomb;
+            bomb = Mix_LoadWAV("includes/music/put_bomb.wav");
+            Mix_PlayChannel(1, bomb, 0);
             temp->setTime(100);
             _bombes.push_back(temp);
             _play1->setNbBombe(_play1->getNbBombe()+1);
