@@ -40,7 +40,7 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
 	Fight_mus();
 	//temp = _objects.back();
 	//temp->update(clock, _input);
-        if (_input.getInput(SDLK_b, true))
+        if (_input.getInput(SDLK_b, true) && _play1->getNbBombe() < _play1->getMaxNbBombe())
           {
 	  std::cout << "les position de visé : " << _play1->getXTarget() << " " << _play1->getYTarget()  << " " << _play1->getZTarget() << std::endl;
             temp = new Bombe(glm::vec3(_play1->getXTarget(), _play1->getYTarget(), _play1->getZTarget()), glm::vec3(0, 0, 0), "./includes/images/bombe.tga");
@@ -49,6 +49,7 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
               return (false);
             temp->setTime(100);
             _bombes.push_back(temp);
+            _play1->setNbBombe(_play1->getNbBombe()+1);
           }
 
         for (size_t i = 0; i < _bombes.size(); ++i)
@@ -105,6 +106,7 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
                 //_play1->setSizeExplo(c++);
 		
                 _bombes.erase(_bombes.begin()+i);
+                _play1->setNbBombe(_play1->getNbBombe()-1);
               }
           }
 

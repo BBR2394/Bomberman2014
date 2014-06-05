@@ -25,6 +25,7 @@
 #include "Cursor.hh"
 #include "AObject.hpp"
 #include "Bombe.hh"
+#include "Bonus.hpp"
 #include "Save.hpp"
 
 class GameEngine : public gdl::Game
@@ -70,6 +71,7 @@ private:
   Player2               *_play2;
   std::vector<Bombe*> _bombes;
   std::vector<Bombe*> _explosion;
+  std::vector<Bonus*> _bonux;
   Menu                  *_menu;
   Cursor                  *_cursor;
   Cursor                  *_cursor_map;
@@ -83,6 +85,7 @@ private:
   int                     _map_chosen;
   int                     _game_type;
   char			           **_mapcols;
+  int _nbtour;
 };
 
 #endif

@@ -41,8 +41,9 @@ bool	Player::initialize()
   _x_target = getX();
   _y_target = getY() - 1;
   _z_target = getZ();
-  _nbBombe = 1;
+  _nbBombe = 0;
   _sizeExplo = 1;
+  _maxNbBombe = 1;
   std::cout << "suite a la création du joueur la position de la cible est : " << _x_target << " " <<\
     _y_target << " " << _z_target << " " << std::endl;
 
@@ -237,4 +238,24 @@ void Player::setSizeExplo(int size)
 int Player::getSizeExplo()
 {
   return (_sizeExplo);
+}
+
+int Player::getNbBombe()
+{
+  return (_nbBombe);
+}
+
+void Player::setNbBombe(int nb)
+{
+  _nbBombe = nb;
+}
+
+int Player::getMaxNbBombe()
+{
+  return (_maxNbBombe);
+}
+
+void Player::setMaxNbBombe(int nb)
+{
+  _maxNbBombe = nb;
 }
