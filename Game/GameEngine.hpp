@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update jeu. juin  05 18:51:11 2014 sofian casier
+** Last update ven. juin  06 00:27:12 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -59,7 +59,8 @@ public:
   bool  Map_choice();
   void  set_Arg(char *argv);
   bool  ReturnToMenu();
-  
+  bool    Go_To_Pause();
+
 private:
 
   gdl::SdlContext       _context;
@@ -75,8 +76,10 @@ private:
   std::vector<Bombe*> _explosion;
   std::vector<Bonus*> _bonux;
   Menu                  *_menu;
+  Menu                   *_pause;
   Cursor                  *_cursor;
   Cursor                  *_cursor_map;
+  bool                  _pause_cond;
   bool                  _cond_video;
   int                   _index_cursor;
   int                   _select_map;
@@ -88,7 +91,7 @@ private:
   int                     _map_chosen;
   int                     _game_type;
   char			           **_mapcols;
-  int _nbtour;
+  int                     _nbtour;
 };
 
 #endif

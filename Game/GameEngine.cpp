@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update jeu. juin  05 21:46:57 2014 sofian casier
+** Last update ven. juin  06 00:26:43 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -35,6 +35,8 @@ GameEngine::GameEngine()
   _check_select_map = false;
   _game_type = 0;
   _launch = false;
+  _pause_cond = false;
+  _pause = NULL;
 }
 
 GameEngine::~GameEngine()
@@ -141,6 +143,24 @@ bool      GameEngine::ReturnToMenu()
   return (true);
 }
 
+bool      GameEngine::Go_To_Pause()
+{
+  if (_pause == NULL)
+  {
+    _pause = new Menu(glm::vec3(0, 0, -5), AObject::MENU, "./includes/images/pause.tga");
+    if (_pause->initialize() == false)
+      return (false);
+  }
+  if (_input.getInput(SDLK_ESCAPE, true) || _input.getInput(SDL_QUIT, true))
+    {
+      _pause_cond = false;
+      _pause = NULL;
+    }
+    if (_input.getInput(SDLK_F1, true))
+      return false;
+  return true;
+}
+
 bool			GameEngine::update()
 {
   static int nb_player = 0;
@@ -183,8 +203,13 @@ bool			GameEngine::update()
   }
   else if (_scene == 3 && _launch == true)
   {
-    if ((this->Playing(_clock, nb_player) == false))
-      return false;
+    if (_pause_cond == true)
+    {
+      if ((Go_To_Pause()) == false)
+        return false;
+    }
+    else
+      Playing(_clock, nb_player);
   }
 _context.updateClock(_clock);
 _context.updateInputs(_input);
@@ -201,12 +226,14 @@ void			GameEngine::draw()
     _cursor->draw(_shader, _clock);
   if (_cursor_map != NULL)
     _cursor_map->draw(_shader, _clock);
-  for (size_t i = 0; i < _objects.size(); ++i)
-    _objects[i]->draw(_shader, _clock);
-  if (_scene == 3 && _launch == true)
+  if (_pause != NULL)
+    _pause->draw(_shader, _clock);
+  if (_scene == 3 && _launch == true && _pause_cond == false)
     {
+      for (size_t i = 0; i < _objects.size(); ++i)
+        _objects[i]->draw(_shader, _clock);
       for (size_t i = 0; i < _map.size(); ++i)
-	_map[i]->draw(_shader, _clock);
+       _map[i]->draw(_shader, _clock);
       //for (size_t i = 0; i < _players.size(); ++i)                                               
       //_players[i]->draw(_shader, _clock);                                                      
       if (_play1 != NULL)
@@ -224,8 +251,8 @@ void			GameEngine::draw()
 	  Mix_PlayChannel(1, bomb_sound, 0);
 	  _explosion[i]->draw(_shader, _clock);
 	}
-      for (size_t i = 0; i < _bonux.size(); ++i)
-        _bonux[i]->draw(_shader, _clock);
+  for (size_t i = 0; i < _bonux.size(); ++i)
+     _bonux[i]->draw(_shader, _clock);
 
     }
   _context.flush();

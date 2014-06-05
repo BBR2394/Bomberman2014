@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Thu Jun  5 16:18:06 2014 sofian casier
+** Last update ven. juin  06 00:23:38 2014 sofian casier
 //
 */
 
@@ -35,8 +35,19 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
 	Bombe *temp;
 	int c;
 
-	if (_input.getKey(SDLK_ESCAPE) || _input.getInput(SDL_QUIT))
-		return false;
+	if (_input.getKey(SDLK_ESCAPE, true) || _input.getInput(SDL_QUIT, true))
+  {
+    if (_pause_cond == false)
+    {
+      _pause_cond = true;
+      return false;
+    }
+    else
+    {
+      _pause_cond = false;
+      _pause = NULL;
+    }
+  }
 	Fight_mus();
 	//temp = _objects.back();
 	//temp->update(clock, _input);
