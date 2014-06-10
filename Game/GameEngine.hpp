@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update ven. juin  06 00:27:12 2014 sofian casier
+** Last update lun. juin  09 21:19:47 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -82,6 +82,7 @@ private:
   bool                  _pause_cond;
   bool                  _cond_video;
   int                   _index_cursor;
+  int                   _index_pause;
   int                   _select_map;
   bool                   _check_select_map;
   int		                 _scene;

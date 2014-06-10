@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update ven. juin  06 00:26:43 2014 sofian casier
+** Last update lun. juin  09 23:03:16 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -29,6 +29,7 @@ GameEngine::GameEngine()
   _play2 = NULL;
   _scene = 0;
   _index_cursor = 0;
+  _index_pause = 0;
   _select_map = 0;
   _save = new Save("./file");
   _map_chosen = 0;
@@ -41,8 +42,8 @@ GameEngine::GameEngine()
 
 GameEngine::~GameEngine()
 {
-	for (size_t i = 0; i < _objects.size(); i++)
-		delete _objects[i];
+  for (size_t i = 0; i < _objects.size(); i++)
+    delete _objects[i];
 }
 
 bool      GameEngine::Launch_mus()
@@ -130,14 +131,38 @@ void      GameEngine::Set_Two_Players()
 
 bool      GameEngine::ReturnToMenu()
 {
+/*  int i = 0;
+  for (std::vector<AObject*>::iterator it = _objects.begin(); it != _objects.end(); it++)
+  {
+    _objects[i].erase();
+    i++;
+  } */
+//  for (size_t i = 0; i < _map.size(); i++)
+  //  _map.erase[i];
+  if (_index_pause == 1)
+  {
+    Mix_Music *musique;
+    musique = Mix_LoadMUS("includes/music/title.wav");
+    if (!musique)
+    {
+      std::cout << "Error on Loading Audio" << std::endl;
+      return (false);
+    }
+    Mix_PlayMusic(musique, -1);
+    Mix_VolumeMusic(MIX_MAX_VOLUME / 2.5);
+    _music_fight = false;
+  }
   _scene = 0;
   _index_cursor = 0;
+  _index_pause = 0;
   _select_map = 0;
   _map_chosen = 0;
   _check_select_map = false;
   _game_type = 0;
   _launch = false;
+  _cursor = NULL;
   _cursor_map = NULL;
+  _pause = NULL;
   if ((this->Create_Menu()) == false)
     return (false);
   return (true);
@@ -147,7 +172,7 @@ bool      GameEngine::Go_To_Pause()
 {
   if (_pause == NULL)
   {
-    _pause = new Menu(glm::vec3(0, 0, -5), AObject::MENU, "./includes/images/pause.tga");
+    _pause = new Menu(glm::vec3(0, 0, -5), AObject::MENU, "./includes/images/bomberman_pause_1.tga");
     if (_pause->initialize() == false)
       return (false);
   }
@@ -155,6 +180,25 @@ bool      GameEngine::Go_To_Pause()
     {
       _pause_cond = false;
       _pause = NULL;
+    }
+    if (_input.getInput(SDLK_RIGHT, true))
+    {
+      _index_pause = 1;
+      _pause->Change_texture("./includes/images/bomberman_pause_2.tga");
+    }
+    if (_input.getInput(SDLK_LEFT, true))
+    {
+      _index_pause = 0;
+      _pause->Change_texture("./includes/images/bomberman_pause_1.tga");
+    }
+    if (_input.getInput(SDLK_RETURN, true))
+    {
+      _pause_cond = false;
+      _pause = NULL;
+      if (_index_pause == 0)
+        return true;
+      else
+        return false;
     }
     if (_input.getInput(SDLK_F1, true))
       return false;
@@ -206,7 +250,11 @@ bool			GameEngine::update()
     if (_pause_cond == true)
     {
       if ((Go_To_Pause()) == false)
-        return false;
+      {
+        if (ReturnToMenu() == false)
+          return false;
+        sleep(1);
+      }
     }
     else
       Playing(_clock, nb_player);
@@ -252,8 +300,7 @@ void			GameEngine::draw()
 	  _explosion[i]->draw(_shader, _clock);
 	}
   for (size_t i = 0; i < _bonux.size(); ++i)
-     _bonux[i]->draw(_shader, _clock);
-
+   _bonux[i]->draw(_shader, _clock);
     }
   _context.flush();
 }
