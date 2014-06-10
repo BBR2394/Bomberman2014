@@ -18,6 +18,7 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
   int i;
   AObject *temp;
   Bonus *temp2;
+  IA *temp3;
 
   if (x%2 == 0)
     x++;
@@ -94,24 +95,54 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
     this->_objects.push_back(temp);
   */
   _mapcols[1][1] = '6';
-  _play1 = new Player(glm::vec3((lmtx*-1)+1, lmty - 1, 4), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+  _play1 = new Player(glm::vec3((lmtx*-1)+1, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
     if (_play1->initialize() == false)
       return (false);
 
+    temp = new CubeDestr(glm::vec3((lmtx*-1)+3, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
+    if (temp->initialize() == false)
+      return (false);
+    _cubeDestr.push_back(temp);
+    temp = new CubeDestr(glm::vec3((lmtx*-1)+1, lmty - 3, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
+    if (temp->initialize() == false)
+      return (false);
+    _cubeDestr.push_back(temp);
+    _mapcols[3][1] = '2';
+    _mapcols[1][3] = '2';
+
     if (nb_player == 2)
     {
-      _play2 = new Player2(glm::vec3(lmtx-1, lmty-1, 4), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+      _play2 = new Player2(glm::vec3(lmtx-1, lmty-1, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
       if (_play2->initialize() == false)
        return (false);
-     _mapcols[1][y-2] = '7';
+     _mapcols[1][x-2] = '7';
    }   
 
+    temp = new CubeDestr(glm::vec3(lmtx-3, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
+    if (temp->initialize() == false)
+      return (false);
+    _cubeDestr.push_back(temp);
+    temp = new CubeDestr(glm::vec3(lmtx-1, lmty - 3, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
+    if (temp->initialize() == false)
+      return (false);
+    _cubeDestr.push_back(temp);
+    _mapcols[1][x-4] = '2';
+    _mapcols[3][x-2] = '2';
 
-   temp2 = new Bonus(glm::vec3(-4, -4, 4), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+   //sur repere (3;2) normalement
+   //_mapcols[5][10] = '8';
+
+    temp3 = new IA(glm::vec3(lmtx -1, (lmty * -1)+1, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+    if (temp3->initialize() == false)
+       return (false);
+    _mapcols[y-2][x-2] = '8';
+    _robot.push_back(temp3);
+
+   temp2 = new Bonus(glm::vec3(-4, -4, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
   if (temp2->initialize() == false)
        return (false);
   _bonux.push_back(temp2);
-printMap();
+  printMap();
    return (true);
  }
 

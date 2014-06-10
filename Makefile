@@ -32,6 +32,8 @@ SRCS		=		Game/main.cpp		\
 				Game/Bombe.cpp		\
 				Game/sec_video.cpp	\
 				Game/Bonus.cpp		\
+				Game/IA.cpp		\
+				Game/CubeDestr.cpp
 
 OBJS		=		$(SRCS:.cpp=.o)
 

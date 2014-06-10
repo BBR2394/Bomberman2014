@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update lun. juin  09 23:03:16 2014 sofian casier
+// Last update Tue Jun 10 23:27:36 2014 Bertrand-Rapello Baptiste
 */
 
 #include <unistd.h>
@@ -210,58 +210,58 @@ bool			GameEngine::update()
   static int nb_player = 0;
 
   if (_scene == 0)
-  {
-    if (this->Go_To_Menu() == 1)
-      Update_Menu();
-    if (this->Go_To_Menu() == -1)
-      return (false);
-  }
-  else if (_scene == 1)
-  {
-    if (this->Menu_choice() == false)
-     return (false);
- }
- else if (_scene == 10)
- {
-  if ((Choose_your_map()) == false)
-  {
-    if (ReturnToMenu() == false)
-      return false;
-    sleep(1);
-  }
-  if (_scene == 3)
-  {
-    if ((this->Create_loading()) == false)
-      return (false);
-  }
-  }
-  else if (_game_type == 1) 
-  {
-    Set_One_Player();
-    nb_player = 1;
-  }
-  else if (_game_type == 2)
-  {
-    Set_Two_Players();
-    nb_player = 2;
-  }
-  else if (_scene == 3 && _launch == true)
-  {
-    if (_pause_cond == true)
     {
-      if ((Go_To_Pause()) == false)
-      {
-        if (ReturnToMenu() == false)
-          return false;
-        sleep(1);
-      }
+      if (this->Go_To_Menu() == 1)
+	Update_Menu();
+      if (this->Go_To_Menu() == -1)
+	return (false);
     }
-    else
-      Playing(_clock, nb_player);
-  }
-_context.updateClock(_clock);
-_context.updateInputs(_input);
-return (true);
+  else if (_scene == 1)
+    {
+      if (this->Menu_choice() == false)
+	return (false);
+    }
+  else if (_scene == 10)
+    {
+      if ((Choose_your_map()) == false)
+	{
+	  if (ReturnToMenu() == false)
+	    return false;
+	  sleep(1);
+	}
+      if (_scene == 3)
+	{
+	  if ((this->Create_loading()) == false)
+	    return (false);
+	}
+    }
+  else if (_game_type == 1) 
+    {
+      Set_One_Player();
+      nb_player = 1;
+    }
+  else if (_game_type == 2)
+    {
+      Set_Two_Players();
+      nb_player = 2;
+    }
+  else if (_scene == 3 && _launch == true)
+    {
+      if (_pause_cond == true)
+	{
+	  if ((Go_To_Pause()) == false)
+	    {
+	      if (ReturnToMenu() == false)
+		return false;
+	      sleep(1);
+	    }
+	}
+      else
+	Playing(_clock, nb_player);
+    }
+  _context.updateClock(_clock);
+  _context.updateInputs(_input);
+  return (true);
 }
 
 void			GameEngine::draw()
@@ -281,7 +281,7 @@ void			GameEngine::draw()
       for (size_t i = 0; i < _objects.size(); ++i)
         _objects[i]->draw(_shader, _clock);
       for (size_t i = 0; i < _map.size(); ++i)
-       _map[i]->draw(_shader, _clock);
+	_map[i]->draw(_shader, _clock);
       //for (size_t i = 0; i < _players.size(); ++i)                                               
       //_players[i]->draw(_shader, _clock);                                                      
       if (_play1 != NULL)
@@ -289,6 +289,9 @@ void			GameEngine::draw()
       if (_play2 != NULL)
 	_play2->draw(_shader, _clock);
       _floor->draw(_shader, _clock);
+      for (size_t i = 0; i < _robot.size(); ++i)
+        _robot[i]->draw(_shader, _clock);
+
       for (size_t i = 0; i < _bombes.size(); ++i)
 	_bombes[i]->draw(_shader, _clock);
       for (size_t i = 0; i < _explosion.size(); ++i)
@@ -299,8 +302,10 @@ void			GameEngine::draw()
 	  Mix_PlayChannel(1, bomb_sound, 0);
 	  _explosion[i]->draw(_shader, _clock);
 	}
-  for (size_t i = 0; i < _bonux.size(); ++i)
-   _bonux[i]->draw(_shader, _clock);
+      for (size_t i = 0; i < _cubeDestr.size(); ++i)
+	_cubeDestr[i]->draw(_shader, _clock);
+      for (size_t i = 0; i < _bonux.size(); ++i)
+	_bonux[i]->draw(_shader, _clock);
     }
   _context.flush();
 }

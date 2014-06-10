@@ -44,11 +44,10 @@ bool	Player::initialize()
   _nbBombe = 0;
   _sizeExplo = 1;
   _maxNbBombe = 1;
-  std::cout << "suite a la création du joueur la position de la cible est : " << _x_target << " " <<\
-    _y_target << " " << _z_target << " " << std::endl;
+  std::cout << "suite a la création du joueur la position de la cible est : " << _x_target << " " << _y_target << " " << _z_target << " " << std::endl;
 
 
-  _model.load("./assets/marvin.fbx");
+  //_model.load("./assets/marvin.fbx");
   _geometry.setColor(glm::vec4(0, 1, 1, 1));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
@@ -158,7 +157,7 @@ void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
   int translate_player;
 
   translate_player = 1;
-
+map[((int)getY()*-1) + 7][(int)getX() + 7] = '0';
   if (input.getInput(SDLK_DOWN, true) && checkCollision(map, SDLK_DOWN))
     {
       translate(glm::vec3(0, -1 * translate_player, 0));
@@ -186,19 +185,19 @@ void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
       _x_target = getX() + 1;
       repet++;
     }
-  if (input.getInput(SDLK_i, true) && checkCollision(map, SDLK_i))
+  if (input.getInput(SDLK_i, true))
     {
       _z_target--;
       translate(glm::vec3(0, 0, -1 * translate_player));
       repet++;
     }
-  if (input.getInput(SDLK_o, true) && checkCollision(map, SDLK_o))
+  if (input.getInput(SDLK_o, true) )
     {
       _z_target++;
       translate(glm::vec3(0, 0, translate_player));
       repet++;
     }
-
+  map[((int)getY()*-1) + 7][(int)getX() + 7] = '6';
   if (repet > 0)
     repet--;
 }
@@ -208,11 +207,11 @@ void Player::draw(gdl::AShader &shader, gdl::Clock const &clock)
 {
   (void)clock;
   _texture.bind();
-   _geometry.draw(shader, getTransformation(), GL_QUADS);
+  _geometry.draw(shader, getTransformation(), GL_QUADS);
    //glm::mat4 test = getTransformation();
    //test = glm::vec4( 1.0, 1.0, 0.0, 0.2);
   // printf("test x %d y %d z %d w %d\n", test.x, test.y, test.z, test.w);
-    _model.draw(shader, getTransformation(), GL_QUADS);
+  _model.draw(shader, getTransformation(), GL_QUADS);
 }
 
 int Player::getXTarget()

@@ -11,7 +11,7 @@ public:
 	~Save();
 	void setSize(int , int , int, int);
 	void setNbPlayer(int);
-	void writeInFile();
+	void writeInFile(char** map);
 private:
 	int _x;
 	int _y;
