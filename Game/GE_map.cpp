@@ -136,6 +136,8 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
     if (temp3->initialize() == false)
        return (false);
     _mapcols[y-2][x-2] = '8';
+    temp3->setID(3);
+    temp3->setStrategy("attack");
     _robot.push_back(temp3);
 
    temp2 = new Bonus(glm::vec3(-4, -4, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");

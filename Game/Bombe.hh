@@ -32,6 +32,7 @@ private:
   gdl::Geometry _geometry;
   float _speed;
   int _time;
+  int _player;
 
 public:
   Bombe();
@@ -46,6 +47,7 @@ public:
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
   void setTime(int time);
   int getTime();
+  void setPlayerSeter(int);
 };
 
 #endif

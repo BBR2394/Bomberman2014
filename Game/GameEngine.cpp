@@ -131,6 +131,35 @@ void      GameEngine::Set_Two_Players()
 
 bool      GameEngine::ReturnToMenu()
 {
+
+  //aqui hay que hacer cosas !!!
+  if (_play1 != NULL)
+  {
+    delete _play1;
+    if (_play2 != NULL)
+      delete _play2;
+    for (size_t i = 0; i < _bombes.size(); i++)
+      delete _bombes[i];
+    for (size_t i = 0; i < _robot.size(); i++)
+      delete _robot[i];
+    for (size_t i = 0; i < _bonux.size(); i++)
+      delete _bonux[i];
+    for (size_t i = 0; i < _explosion.size(); i++)
+      delete _explosion[i];
+    for (size_t i = 0; i < _map.size(); i++)
+      delete _map[i];
+    for (size_t i = 0; i < _cubeDestr.size(); i++)
+      delete _cubeDestr[i];
+    
+  /*  int x, y;
+    x = _floor->getX();
+    y = _floor->getY();
+
+  for (int i = 0; i <= y ; ++i)
+    _mapcols[i] = delete [x + 2];
+  //_mapcols = delete [y + 2];*/
+  }
+
 /*  int i = 0;
   for (std::vector<AObject*>::iterator it = _objects.begin(); it != _objects.end(); it++)
   {

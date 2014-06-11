@@ -23,7 +23,6 @@ bool	IA::initialize()
       std::cerr << "Cannot load the cube texture" << std::endl;
       return (false);
     }
-
     
  _geometry.setColor(glm::vec4(1, 0, 0, 0));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
@@ -102,4 +101,9 @@ void IA::draw(gdl::AShader &shader, gdl::Clock const &clock)
 void IA::setStrategy(std::string strategie)
 {
 	this->_strat = strategie;
+}
+
+void IA::setID(int id)
+{
+    this->_idIA = id;
 }

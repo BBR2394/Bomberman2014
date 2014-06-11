@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Fri May 30 11:22:49 2014 Bertrand-Rapello Baptiste
+// Last update Wed Jun 11 11:36:17 2014 Bertrand-Rapello Baptiste
 */
 
 #include "AObject.hpp"
@@ -42,8 +42,9 @@ bool	Player::initialize()
   _y_target = getY() - 1;
   _z_target = getZ();
   _nbBombe = 0;
-  _sizeExplo = 1;
+  _sizeExplo = 2;
   _maxNbBombe = 1;
+  _idPlayer = 1;
   std::cout << "suite a la création du joueur la position de la cible est : " << _x_target << " " << _y_target << " " << _z_target << " " << std::endl;
 
 
@@ -155,9 +156,10 @@ void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
 {
   static int repet = 0;
   int translate_player;
-
+  
+  std::cout << "la montre " << clock.getElapsed() << std::endl;
   translate_player = 1;
-map[((int)getY()*-1) + 7][(int)getX() + 7] = '0';
+  map[((int)getY()*-1) + 7][(int)getX() + 7] = '0';
   if (input.getInput(SDLK_DOWN, true) && checkCollision(map, SDLK_DOWN))
     {
       translate(glm::vec3(0, -1 * translate_player, 0));
@@ -257,4 +259,9 @@ int Player::getMaxNbBombe()
 void Player::setMaxNbBombe(int nb)
 {
   _maxNbBombe = nb;
+}
+
+int Player::getID()
+{
+    return (_idPlayer);
 }

@@ -29,6 +29,7 @@ private:
   int _sizeExplo;
   int _maxNbBombe;
   std::string _strat;
+  int _idIA;
 
 public:
   IA(int x, int y);
@@ -39,6 +40,7 @@ public:
   virtual void update(gdl::Clock const &clock, gdl::Input &input, char **map);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
   void setStrategy(std::string strategie);
+  void setID(int id);
 };
 
 #endif

@@ -62,6 +62,8 @@ public:
   void  set_Arg(char *argv);
   bool  ReturnToMenu();
   bool    Go_To_Pause();
+  bool PlaceBombe(gdl::Clock const &clock, Player *player);
+  bool Bombing(gdl::Clock const &clock);
 
 private:
 

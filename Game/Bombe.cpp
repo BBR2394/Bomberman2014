@@ -114,3 +114,8 @@ int Bombe::getTime()
 {
     return (_time);
 }
+
+void Bombe::setPlayerSeter(int id)
+{
+    _player = id;
+}

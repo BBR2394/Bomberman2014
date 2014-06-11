@@ -26,6 +26,7 @@ private:
   int _nbBombe;
   int _sizeExplo;
   int _maxNbBombe;
+  int _idPlayer;
 
   int		checkCollision(char **map, int dir);
   int		getLen(char *map);
@@ -44,10 +45,11 @@ public:
   int getZTarget();
   void setSizeExplo(int size);
   int getSizeExplo();
-int getNbBombe();
+  int getNbBombe();
   void setNbBombe(int nb);
   int getMaxNbBombe();
   void setMaxNbBombe(int nb);
+  int getID();
 };
 
 #endif

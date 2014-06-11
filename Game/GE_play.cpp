@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Tue Jun 10 23:20:09 2014 Bertrand-Rapello Baptiste
+// Last update Wed Jun 11 00:01:36 2014 Bertrand-Rapello Baptiste
 //
 */
 
@@ -53,8 +53,10 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
 	//temp->update(clock, _input);
         if (_input.getInput(SDLK_b, true) && _play1->getNbBombe() < _play1->getMaxNbBombe())
           {
-	  std::cout << "les position de visé : " << _play1->getXTarget() << " " << _play1->getYTarget()  << " " << _play1->getZTarget() << std::endl;
-            temp = new Bombe(glm::vec3(_play1->getXTarget(), _play1->getYTarget(), _play1->getZTarget()), glm::vec3(0, 0, 0), "./includes/images/bombe.tga");
+            PlaceBombe(clock, _play1);
+            /*
+	  std::cout << "les position de visé : " << _play1->getX() << " " << _play1->getY()  << " " << _play1->getZ() << std::endl;
+            temp = new Bombe(glm::vec3(_play1->getX(), _play1->getY(), _play1->getZ()), glm::vec3(0, 0, 0), "./includes/images/bombe.tga");
 	    std::cout << "bombe test ..." << std::endl;
             if (temp->initialize() == false)
               return (false);
@@ -62,8 +64,9 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
             bomb = Mix_LoadWAV("includes/music/put_bomb.wav");
             Mix_PlayChannel(1, bomb, 0);
             temp->setTime(100);
+            temp->setPlayerSeter(1);
             _bombes.push_back(temp);
-            _play1->setNbBombe(_play1->getNbBombe()+1);
+            _play1->setNbBombe(_play1->getNbBombe()+1);*/
           }
 
         for (size_t i = 0; i < _bombes.size(); ++i)
@@ -76,7 +79,7 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
                   return (false);
                 temp->setTime(10);
                 _explosion.push_back(temp);
-		c = 0;
+		            c = 0;
                 while (c <= _play1->getSizeExplo())
                   {
                     temp = new Bombe(glm::vec3(_bombes[i]->getX()+c, _bombes[i]->getY(), _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
