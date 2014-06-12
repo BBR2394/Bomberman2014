@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update jeu. juin  12 20:54:59 2014 sofian casier
+** Last update jeu. juin  12 21:06:48 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -14,7 +14,8 @@
 void        GameEngine::set_Arg(char *arg)
 {
   std::string video(arg);
-  if ((video.compare("-V") == 0) && (video.compare("-v") == 0))
+//  if ((video.compare("-V") == 0) && (video.compare("-v") == 0))
+  if ((video.compare("-V")) != 0 && (video.compare("-v") != 0))
     _cond_video = true;
   else
     _cond_video = false;
