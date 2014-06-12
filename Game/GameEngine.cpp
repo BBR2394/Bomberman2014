@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update jeu. juin  12 21:06:48 2014 sofian casier
+** Last update ven. juin  13 00:58:19 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -14,7 +14,6 @@
 void        GameEngine::set_Arg(char *arg)
 {
   std::string video(arg);
-//  if ((video.compare("-V") == 0) && (video.compare("-v") == 0))
   if ((video.compare("-V")) != 0 && (video.compare("-v") != 0))
     _cond_video = true;
   else
@@ -30,6 +29,7 @@ GameEngine::GameEngine()
   _cursor_map = NULL;
   _play1 = NULL;
   _play2 = NULL;
+  _arena = NULL;
   _scene = 0;
   _index_cursor = 0;
   _index_pause = 0;
@@ -251,6 +251,7 @@ bool      GameEngine::ReturnToMenu()
   _cursor = NULL;
   _cursor_map = NULL;
   _pause = NULL;
+  _arena = NULL;
   if ((this->Create_Menu()) == false)
     return (false);
   return (true);
@@ -368,6 +369,8 @@ void			GameEngine::draw()
     _pause->draw(_shader, _clock);
   if (_scene == 3 && _launch == true && _pause_cond == false)
     {
+      if (_arena != NULL)
+        _arena->draw(_shader, _clock);
       for (size_t i = 0; i < _objects.size(); ++i)
         _objects[i]->draw(_shader, _clock);
       for (size_t i = 0; i < _map.size(); ++i)

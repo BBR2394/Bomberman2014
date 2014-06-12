@@ -6,11 +6,16 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update jeu. juin  12 20:41:43 2014 sofian casier
+** Last update ven. juin  13 00:57:36 2014 sofian casier
 //
 */
 
 #include "GameEngine.hpp"
+
+bool                    GameEngine::Create_Arena_Back()
+{
+
+}
 
 bool                    GameEngine::createMap(int x, int y, int nb_player)
 {
@@ -144,6 +149,9 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
   if (temp2->initialize() == false)
        return (false);
   _bonux.push_back(temp2);
+  _arena = new Arena(glm::vec3(0, 0, 11), glm::vec3(0, 0, 0), "./includes/images/desert_back.tga");
+  if (_arena->initialize() == false)
+    return false;
   printMap();
    return (true);
  }
@@ -280,6 +288,9 @@ bool                    GameEngine::createMap_2(int x, int y, int nb_player)
   if (temp2->initialize() == false)
        return (false);
   _bonux.push_back(temp2);
+  _arena = new Arena(glm::vec3(0, 0, 11), glm::vec3(0, 0, 0), "./includes/images/forest_back.tga");
+  if (_arena->initialize() == false)
+    return false;
   printMap();
    return (true);
  }
@@ -416,6 +427,9 @@ bool                    GameEngine::createMap_3(int x, int y, int nb_player)
   if (temp2->initialize() == false)
        return (false);
   _bonux.push_back(temp2);
+  _arena = new Arena(glm::vec3(0, 0, 11), glm::vec3(0, 0, 0), "./includes/images/water_back.tga");
+  if (_arena->initialize() == false)
+    return false;
   printMap();
    return (true);
  }

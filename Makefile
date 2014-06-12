@@ -5,7 +5,7 @@
 ## Login   <casier_s@epitech.net>
 ## 
 ## Started on  Tue May  6 15:15:22 2014 sofian casier
-## Last update Fri Jun  6 00:16:53 2014 sofian casier
+## Last update Thu Jun 12 23:44:22 2014 sofian casier
 ##
 
 NAME		=		Bomberman
@@ -32,9 +32,10 @@ SRCS		=		Game/main.cpp		\
 				Game/Bombe.cpp		\
 				Game/sec_video.cpp	\
 				Game/Bonus.cpp		\
-				Game/IA.cpp			\
+				Game/IA.cpp		\
 				Game/CubeDestr.cpp	\
-				Game/GE_Bombing.cpp
+				Game/GE_Bombing.cpp	\
+				Game/Arena_back.cpp	\
 
 OBJS		=		$(SRCS:.cpp=.o)
 
