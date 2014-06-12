@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Tue May 13 15:26:17 2014 sofian casier
-** Last update mer. juin  04 18:57:22 2014 sofian casier
+** Last update jeu. juin  12 17:23:03 2014 sofian casier
 //
 */
 
@@ -37,6 +37,8 @@ bool      GameEngine::Map_choice()
       _map_chosen = 1;
     if (_select_map == 1)
       _map_chosen = 2;
+    if (_select_map == 2)
+      _map_chosen = 3;
     _cursor_map = NULL;
     _scene = 3;
     Mix_Chunk *music;
