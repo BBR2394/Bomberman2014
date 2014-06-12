@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Wed Jun 11 11:36:17 2014 Bertrand-Rapello Baptiste
+** Last update jeu. juin  12 20:00:57 2014 sofian casier
 */
 
 #include "AObject.hpp"

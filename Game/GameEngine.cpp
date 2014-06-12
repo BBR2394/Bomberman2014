@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update jeu. juin  12 19:17:05 2014 sofian casier
+** Last update jeu. juin  12 20:54:59 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -91,6 +91,7 @@ bool			GameEngine::initialize()
   }
   _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/ground.tga");
   _floor->setSize(15, 15, 3);
+  _floor->setType(1);
   if (_floor->initialize() == false)
     return (false);
   glm::mat4 projection;
@@ -105,23 +106,76 @@ bool			GameEngine::initialize()
   return (true);
 }
 
-void      GameEngine::Set_One_Player()
+bool      GameEngine::Set_One_Player()
 {
   _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
   _save->setNbPlayer(1);
-  _floor->setType(_map_chosen);
-  this->createMap(_floor->getX(), _floor->getY(), 1);
+  if (_map_chosen == 1)
+  {
+    _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/ground.tga");
+    _floor->setSize(15, 15, 3);
+    if (_floor->initialize() == false)
+      return (false);
+    _floor->setType(1);
+    this->createMap(_floor->getX(), _floor->getY(), 1);
+  }
+  if (_map_chosen == 2)
+  {
+    _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/back_grass.tga");
+    _floor->setSize(15, 15, 3);
+    if (_floor->initialize() == false)
+      return (false);
+    _floor->setType(2);
+    this->createMap_2(_floor->getX(), _floor->getY(), 1);
+  }
+  if (_map_chosen == 3)
+  {
+    _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/water_map.tga");
+    _floor->setSize(15, 15, 3);
+    if (_floor->initialize() == false)
+      return (false);
+    _floor->setType(1);
+    this->createMap_3(_floor->getX(), _floor->getY(), 1);
+  }
   _scene = 3;
   _menu = NULL;
   _cursor = NULL;
   _game_type = 0;
   _launch = true;
+  return true;
 }
 
-void      GameEngine::Set_Two_Players()
+bool      GameEngine::Set_Two_Players()
 {
-  _floor->setType(1);
-  this->createMap(_floor->getX(), _floor->getY(), 2);
+/*  _floor->setType(1);
+  this->createMap(_floor->getX(), _floor->getY(), 2); */
+  if (_map_chosen == 1)
+  {
+    _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/ground.tga");
+    _floor->setSize(15, 15, 3);
+    if (_floor->initialize() == false)
+      return (false);
+    _floor->setType(1);
+    this->createMap(_floor->getX(), _floor->getY(), 2);
+  }
+  if (_map_chosen == 2)
+  {
+    _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/back_grass.tga");
+    _floor->setSize(15, 15, 3);
+    if (_floor->initialize() == false)
+      return (false);
+    _floor->setType(2);
+    this->createMap_2(_floor->getX(), _floor->getY(), 2);
+  }
+  if (_map_chosen == 3)
+  {
+    _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/water_map.tga");
+    _floor->setSize(15, 15, 3);
+    if (_floor->initialize() == false)
+      return (false);
+    _floor->setType(1);
+    this->createMap_3(_floor->getX(), _floor->getY(), 2);
+  }
   _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
   _save->setNbPlayer(2);
   _scene = 3;
@@ -129,6 +183,7 @@ void      GameEngine::Set_Two_Players()
   _cursor = NULL;
   _game_type = 0;
   _launch = true;
+  return true;
 }
 
 bool      GameEngine::ReturnToMenu()
@@ -209,31 +264,31 @@ bool      GameEngine::Go_To_Pause()
       return (false);
   }
   if (_input.getInput(SDLK_ESCAPE, true) || _input.getInput(SDL_QUIT, true))
-    {
-      _pause_cond = false;
-      _pause = NULL;
-    }
-    if (_input.getInput(SDLK_RIGHT, true))
-    {
-      _index_pause = 1;
-      _pause->Change_texture("./includes/images/bomberman_pause_2.tga");
-    }
-    if (_input.getInput(SDLK_LEFT, true))
-    {
-      _index_pause = 0;
-      _pause->Change_texture("./includes/images/bomberman_pause_1.tga");
-    }
-    if (_input.getInput(SDLK_RETURN, true))
-    {
-      _pause_cond = false;
-      _pause = NULL;
-      if (_index_pause == 0)
-        return true;
-      else
-        return false;
-    }
-    if (_input.getInput(SDLK_F1, true))
+  {
+    _pause_cond = false;
+    _pause = NULL;
+  }
+  if (_input.getInput(SDLK_RIGHT, true))
+  {
+    _index_pause = 1;
+    _pause->Change_texture("./includes/images/bomberman_pause_2.tga");
+  }
+  if (_input.getInput(SDLK_LEFT, true))
+  {
+    _index_pause = 0;
+    _pause->Change_texture("./includes/images/bomberman_pause_1.tga");
+  }
+  if (_input.getInput(SDLK_RETURN, true))
+  {
+    _pause_cond = false;
+    _pause = NULL;
+    if (_index_pause == 0)
+      return true;
+    else
       return false;
+  }
+  if (_input.getInput(SDLK_F1, true))
+    return false;
   return true;
 }
 
@@ -268,13 +323,15 @@ bool			GameEngine::update()
 	}
     }
    else if (_game_type == 1) 
-    {
-      Set_One_Player();
+    {      
+      if ((Set_One_Player()) == false)
+        return false;
       nb_player = 1;
     }
   else if (_game_type == 2)
     {
-      Set_Two_Players();
+      if ((Set_Two_Players()) == false)
+        return false;
       nb_player = 2;
     }
   else if (_scene == 3 && _launch == true)

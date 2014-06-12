@@ -6,7 +6,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Wed May 28 15:12:49 2014 Koszyczek Laurent
+** Last update jeu. juin  12 20:41:43 2014 sofian casier
 //
 */
 
@@ -77,6 +77,278 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
       {
         _mapcols[i][(int)(e + lmtx)] = '1';
 	temp = new Cube(glm::vec3(e, d, 3), glm::vec3(0, 0, 0), "./includes/images/cube_bis.tga");
+        if (temp->initialize() == false)
+          return (false);
+        this->_objects.push_back(temp);
+        e = e + 2;
+      }
+    }
+    i++;
+    d++;
+  }
+  _mapcols[i++][x] = '\0';
+  _mapcols[i] = 0;
+  /*
+    temp = new Background(0, 0, 3, 0, 0, 0, "./includes/images/ground.tga");
+    if (temp->initialize() == false)
+      return (false);
+    this->_objects.push_back(temp);
+  */
+  _mapcols[1][1] = '6';
+  _play1 = new Player(glm::vec3((lmtx*-1)+1, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+    if (_play1->initialize() == false)
+      return (false);
+
+    temp = new CubeDestr(glm::vec3((lmtx*-1)+3, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
+    if (temp->initialize() == false)
+      return (false);
+    _cubeDestr.push_back(temp);
+    temp = new CubeDestr(glm::vec3((lmtx*-1)+1, lmty - 3, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
+    if (temp->initialize() == false)
+      return (false);
+    _cubeDestr.push_back(temp);
+    _mapcols[3][1] = '2';
+    _mapcols[1][3] = '2';
+
+    if (nb_player == 2)
+    {
+      _play2 = new Player2(glm::vec3(lmtx-1, lmty-1, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+      if (_play2->initialize() == false)
+       return (false);
+     _mapcols[1][x-2] = '7';
+   }   
+
+    temp = new CubeDestr(glm::vec3(lmtx-3, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
+    if (temp->initialize() == false)
+      return (false);
+    _cubeDestr.push_back(temp);
+    temp = new CubeDestr(glm::vec3(lmtx-1, lmty - 3, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
+    if (temp->initialize() == false)
+      return (false);
+    _cubeDestr.push_back(temp);
+    _mapcols[1][x-4] = '2';
+    _mapcols[3][x-2] = '2';
+
+   //sur repere (3;2) normalement
+   //_mapcols[5][10] = '8';
+
+    temp3 = new IA(glm::vec3(lmtx -1, (lmty * -1)+1, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+    if (temp3->initialize() == false)
+       return (false);
+    _mapcols[y-2][x-2] = '8';
+    temp3->setID(3);
+    temp3->setStrategy("attack");
+    _robot.push_back(temp3);
+
+   temp2 = new Bonus(glm::vec3(-4, -4, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+  if (temp2->initialize() == false)
+       return (false);
+  _bonux.push_back(temp2);
+  printMap();
+   return (true);
+ }
+
+bool                    GameEngine::createMap_2(int x, int y, int nb_player)
+{
+  double   c, d, e, lmtx, lmty;
+  int i;
+  AObject *temp;
+  Bonus *temp2;
+  IA *temp3;
+
+  if (x%2 == 0)
+    x++;
+  if (y%2 == 0)
+    y++;
+  i = 0;
+  lmtx = x/2;
+  c = lmtx * -1;
+  lmty = y/2;
+  d = lmty * -1;
+  //if (y%2 != 0)
+  //lmty++;
+  printf("y : %d, x %d\n", x, y);
+  _mapcols = new char*[y + 2];
+  for (int i = 0; i <= y ; ++i)
+    _mapcols[i] = new char[x + 2];
+  while (i < x)
+  {
+    _mapcols[0][i] = '1';
+    _mapcols[y - 1][i] = '1';
+    int k = 1;
+    while (k < y - 1)
+      _mapcols[k++][i] = '0';
+    temp = new Cube(glm::vec3(c, d, 3), glm::vec3(0, 0, 0), "./includes/images/grass.tga");
+    if (temp->initialize() == false)
+      return (false);
+    this->_objects.push_back(temp);
+    temp = new Cube(glm::vec3(c, lmty, 3), glm::vec3(0, 0, 0), "./includes/images/grass.tga");
+    if (temp->initialize() == false)
+      return (false);
+    this->_objects.push_back(temp);
+    c++;
+    i++;
+  }
+  _mapcols[0][x] = '\0';
+  i = 1;
+  d++;
+  c--;
+  while (i < y - 1)
+  {
+    _mapcols[i][0] = '1';
+    _mapcols[i][x - 1] = '1';
+    _mapcols[i][x] = '\0';
+    temp = new Cube(glm::vec3(c, d, 3), glm::vec3(0, 0, 0), "./includes/images/grass.tga");
+    if (temp->initialize() == false)
+      return (false);
+    this->_objects.push_back(temp);
+    temp = new Cube(glm::vec3((lmtx * -1), d, 3), glm::vec3(0, 0, 0), "./includes/images/grass.tga");
+    if (temp->initialize() == false)
+      return (false);
+    this->_objects.push_back(temp);
+    if ((i%2 == 0) && _floor->getType() == 1)
+    {
+      e = (lmtx * -1)+2;
+      while (e <= (lmtx - 2))
+      {
+        _mapcols[i][(int)(e + lmtx)] = '1';
+  temp = new Cube(glm::vec3(e, d, 3), glm::vec3(0, 0, 0), "./includes/images/grass.tga");
+        if (temp->initialize() == false)
+          return (false);
+        this->_objects.push_back(temp);
+        e = e + 2;
+      }
+    }
+    i++;
+    d++;
+  }
+  _mapcols[i++][x] = '\0';
+  _mapcols[i] = 0;
+  /*
+    temp = new Background(0, 0, 3, 0, 0, 0, "./includes/images/ground.tga");
+    if (temp->initialize() == false)
+      return (false);
+    this->_objects.push_back(temp);
+  */
+  _mapcols[1][1] = '6';
+  _play1 = new Player(glm::vec3((lmtx*-1)+1, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+    if (_play1->initialize() == false)
+      return (false);
+
+    temp = new CubeDestr(glm::vec3((lmtx*-1)+3, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
+    if (temp->initialize() == false)
+      return (false);
+    _cubeDestr.push_back(temp);
+    temp = new CubeDestr(glm::vec3((lmtx*-1)+1, lmty - 3, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
+    if (temp->initialize() == false)
+      return (false);
+    _cubeDestr.push_back(temp);
+    _mapcols[3][1] = '2';
+    _mapcols[1][3] = '2';
+
+    if (nb_player == 2)
+    {
+      _play2 = new Player2(glm::vec3(lmtx-1, lmty-1, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+      if (_play2->initialize() == false)
+       return (false);
+     _mapcols[1][x-2] = '7';
+   }   
+
+    temp = new CubeDestr(glm::vec3(lmtx-3, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
+    if (temp->initialize() == false)
+      return (false);
+    _cubeDestr.push_back(temp);
+    temp = new CubeDestr(glm::vec3(lmtx-1, lmty - 3, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
+    if (temp->initialize() == false)
+      return (false);
+    _cubeDestr.push_back(temp);
+    _mapcols[1][x-4] = '2';
+    _mapcols[3][x-2] = '2';
+
+   //sur repere (3;2) normalement
+   //_mapcols[5][10] = '8';
+
+    temp3 = new IA(glm::vec3(lmtx -1, (lmty * -1)+1, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+    if (temp3->initialize() == false)
+       return (false);
+    _mapcols[y-2][x-2] = '8';
+    temp3->setID(3);
+    temp3->setStrategy("attack");
+    _robot.push_back(temp3);
+
+   temp2 = new Bonus(glm::vec3(-4, -4, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+  if (temp2->initialize() == false)
+       return (false);
+  _bonux.push_back(temp2);
+  printMap();
+   return (true);
+ }
+
+bool                    GameEngine::createMap_3(int x, int y, int nb_player)
+{
+  double   c, d, e, lmtx, lmty;
+  int i;
+  AObject *temp;
+  Bonus *temp2;
+  IA *temp3;
+
+  if (x%2 == 0)
+    x++;
+  if (y%2 == 0)
+    y++;
+  i = 0;
+  lmtx = x/2;
+  c = lmtx * -1;
+  lmty = y/2;
+  d = lmty * -1;
+  //if (y%2 != 0)
+  //lmty++;
+  printf("y : %d, x %d\n", x, y);
+  _mapcols = new char*[y + 2];
+  for (int i = 0; i <= y ; ++i)
+    _mapcols[i] = new char[x + 2];
+  while (i < x)
+  {
+    _mapcols[0][i] = '1';
+    _mapcols[y - 1][i] = '1';
+    int k = 1;
+    while (k < y - 1)
+      _mapcols[k++][i] = '0';
+    temp = new Cube(glm::vec3(c, d, 3), glm::vec3(0, 0, 0), "./includes/images/steel_map.tga");
+    if (temp->initialize() == false)
+      return (false);
+    this->_objects.push_back(temp);
+    temp = new Cube(glm::vec3(c, lmty, 3), glm::vec3(0, 0, 0), "./includes/images/steel_map.tga");
+    if (temp->initialize() == false)
+      return (false);
+    this->_objects.push_back(temp);
+    c++;
+    i++;
+  }
+  _mapcols[0][x] = '\0';
+  i = 1;
+  d++;
+  c--;
+  while (i < y - 1)
+  {
+    _mapcols[i][0] = '1';
+    _mapcols[i][x - 1] = '1';
+    _mapcols[i][x] = '\0';
+    temp = new Cube(glm::vec3(c, d, 3), glm::vec3(0, 0, 0), "./includes/images/steel_map.tga");
+    if (temp->initialize() == false)
+      return (false);
+    this->_objects.push_back(temp);
+    temp = new Cube(glm::vec3((lmtx * -1), d, 3), glm::vec3(0, 0, 0), "./includes/images/steel_map.tga");
+    if (temp->initialize() == false)
+      return (false);
+    this->_objects.push_back(temp);
+    if ((i%2 == 0) && _floor->getType() == 1)
+    {
+      e = (lmtx * -1)+2;
+      while (e <= (lmtx - 2))
+      {
+        _mapcols[i][(int)(e + lmtx)] = '1';
+  temp = new Cube(glm::vec3(e, d, 3), glm::vec3(0, 0, 0), "./includes/images/steel_map.tga");
         if (temp->initialize() == false)
           return (false);
         this->_objects.push_back(temp);

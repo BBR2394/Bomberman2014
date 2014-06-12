@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update jeu. juin  12 16:43:14 2014 sofian casier
+** Last update jeu. juin  12 20:52:08 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -42,6 +42,8 @@ public:
   void draw();
   GameEngine &getEngine() const;
   bool createMap(int x, int y, int nb_player);
+  bool createMap_2(int x, int y, int nb_player);
+  bool createMap_3(int x, int y, int nb_player);
   bool    Menu_choice();
   bool  Launch_mus();
   void    launch_title_music();
@@ -52,8 +54,8 @@ public:
   bool    Playing(gdl::Clock const &clock, int nb_player);
   bool    Update_Menu();
   void	printMap();
-  void  Set_Two_Players();
-  void  Set_One_Player();
+  bool  Set_Two_Players();
+  bool  Set_One_Player();
   int	begin_sec_video();
   bool  Choose_your_map();
   bool  Create_select_map();
