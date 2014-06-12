@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Wed Jun 11 00:01:36 2014 Bertrand-Rapello Baptiste
+** Last update jeu. juin  12 17:18:19 2014 sofian casier
 //
 */
 
@@ -37,6 +37,9 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
 
 	if (_input.getKey(SDLK_ESCAPE, true) || _input.getInput(SDL_QUIT, true))
   {
+    glm::mat4 transformation;
+    transformation = glm::lookAt(glm::vec3(0, 0, 20), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+    _shader.setUniform("view", transformation);
     if (_pause_cond == false)
     {
       _pause_cond = true;
@@ -51,9 +54,49 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
 	Fight_mus();
 	//temp = _objects.back();
 	//temp->update(clock, _input);
-        if (_input.getInput(SDLK_b, true) && _play1->getNbBombe() < _play1->getMaxNbBombe())
-          {
-            PlaceBombe(clock, _play1);
+  if (_input.getInput(SDLK_F3, true))
+  {
+    _angle -= 0.5;
+    if (_angle <= -10)
+      _angle = -10;
+    glm::mat4 transformation;
+    transformation = glm::lookAt(glm::vec3(0, _angle, 20), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
+    _shader.setUniform("view", transformation);
+  }
+    if (_input.getInput(SDLK_F4, true))
+  {
+    _angle += 0.5;
+    if (_angle >= 10)
+      _angle = 10;
+    glm::mat4 transformation;
+    transformation = glm::lookAt(glm::vec3(0, _angle, 20), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
+    _shader.setUniform("view", transformation);
+  }
+  if (_input.getInput(SDLK_F5, true))
+  {
+    _rotation += 0.1;
+    glm::mat4 transformation;
+    transformation = glm::lookAt(glm::vec3(0, _angle, 20), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
+    _shader.setUniform("view", transformation);
+  }
+  if (_input.getInput(SDLK_F6, true))
+  {
+    _rotation -= 0.1;
+    glm::mat4 transformation;
+    transformation = glm::lookAt(glm::vec3(0, _angle, 20), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
+    _shader.setUniform("view", transformation);
+  }
+  if (_input.getInput(SDLK_F10, true))
+  {
+    _angle = 0;
+    _rotation = 0;
+    glm::mat4 transformation;
+    transformation = glm::lookAt(glm::vec3(0, _angle, 20), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
+    _shader.setUniform("view", transformation);
+  }
+  if (_input.getInput(SDLK_b, true) && _play1->getNbBombe() < _play1->getMaxNbBombe())
+  {
+    PlaceBombe(clock, _play1);
             /*
 	  std::cout << "les position de visé : " << _play1->getX() << " " << _play1->getY()  << " " << _play1->getZ() << std::endl;
             temp = new Bombe(glm::vec3(_play1->getX(), _play1->getY(), _play1->getZ()), glm::vec3(0, 0, 0), "./includes/images/bombe.tga");

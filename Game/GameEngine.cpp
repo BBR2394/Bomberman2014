@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Tue Jun 10 23:27:36 2014 Bertrand-Rapello Baptiste
+** Last update jeu. juin  12 16:52:43 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -22,6 +22,8 @@ void        GameEngine::set_Arg(char *arg)
 
 GameEngine::GameEngine()
 {
+  _angle = 0;
+  _rotation = 0;
   _menu = NULL;
   _cursor = NULL;
   _cursor_map = NULL;
@@ -131,7 +133,6 @@ void      GameEngine::Set_Two_Players()
 
 bool      GameEngine::ReturnToMenu()
 {
-
   //aqui hay que hacer cosas !!!
   if (_play1 != NULL)
   {
@@ -150,7 +151,9 @@ bool      GameEngine::ReturnToMenu()
       delete _map[i];
     for (size_t i = 0; i < _cubeDestr.size(); i++)
       delete _cubeDestr[i];
-    
+    _play1 = NULL;
+    _play2 = NULL;
+
   /*  int x, y;
     x = _floor->getX();
     y = _floor->getY();
@@ -264,7 +267,7 @@ bool			GameEngine::update()
 	    return (false);
 	}
     }
-  else if (_game_type == 1) 
+   else if (_game_type == 1) 
     {
       Set_One_Player();
       nb_player = 1;

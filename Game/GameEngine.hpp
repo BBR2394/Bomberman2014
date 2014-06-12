@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Tue Jun 10 23:19:17 2014 Bertrand-Rapello Baptiste
+** Last update jeu. juin  12 16:43:14 2014 sofian casier
 */
 
 #ifndef   __GAMEENGINE__
@@ -99,6 +99,8 @@ private:
   int                     _game_type;
   char			           **_mapcols;
   int                     _nbtour;
+  float                 _angle;
+  float                 _rotation;
 };
 
 #endif
