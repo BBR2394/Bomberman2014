@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update jeu. juin  12 16:52:43 2014 sofian casier
+** Last update jeu. juin  12 19:17:05 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -33,7 +33,7 @@ GameEngine::GameEngine()
   _index_cursor = 0;
   _index_pause = 0;
   _select_map = 0;
-  _save = new Save("./file");
+  _save = new Save("Save");
   _map_chosen = 0;
   _check_select_map = false;
   _game_type = 0;

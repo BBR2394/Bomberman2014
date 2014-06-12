@@ -4,8 +4,13 @@
 
 Save::Save(std::string fileName)
 {
-	//this->_fd = 
-}
+	std::ofstream save(fileName.c_str(), std::ios::out | std::ios::trunc);
+	if (!save)
+	{
+		std::cout << "Error on open Save" << std::endl;
+		save.close();
+	}
+ }
 
 Save::~Save()
 {
@@ -29,16 +34,24 @@ void Save::writeInFile(char **map)
 {
 	int j,i;
 
-	std::cout << "les differentes informations : " << this->_x << " " << this->_y << " " << this->_z << " de type " << this->_type << " nb player : " << this->_nbPlayer << std::endl;
+//	std::cout << "les differentes informations : " << this->_x << " " << this->_y << " " << this->_z << " de type " << this->_type << " nb player : " << this->_nbPlayer << std::endl;
 	j = 0;
+	std::ofstream save("Save", std::ios::out | std::ios::trunc);
+	if (!save)
+		{
+			std::cout << "Error on open Save" << std::endl;
+			save.close();
+		}
+		save << "x |" << " y " << "| z |" << " type |" << " nb player" << std::endl;
+		save << _x << " " << _y << " " << this->_z << this->_type << this->_nbPlayer << std::endl;
 	while (map[j])
     {
       i = 0;
       while (map[j][i])
-        {
-          std::cout << map[j][i++];
-        }
-      std::cout << std::endl;
+      {
+      	save << map[j][i++];
+      }
+      save << std::endl;
       j++;
     }
 sleep(1);

@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Tue May 13 15:26:17 2014 sofian casier
-** Last update jeu. juin  12 17:23:03 2014 sofian casier
+** Last update jeu. juin  12 19:24:18 2014 sofian casier
 //
 */
 
@@ -86,14 +86,12 @@ bool      GameEngine::Menu_choice()
   {
     if (_index_cursor == 0)
     {
-      std::cout << "C'est parti pour un jeu solo!" << std::endl;
       _game_type = 1;
       _cursor = NULL;
       _scene = 10;
     }
     if (_index_cursor == 1)
     {
-     std::cout << "C'est parti pour un jeu multi!" << std::endl;
      _game_type = 2;
      _scene = 10;
      _cursor = NULL;
