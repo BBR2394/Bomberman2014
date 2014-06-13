@@ -47,8 +47,11 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i)
   temp = new Bombe(glm::vec3(_bombes[i]->getX(), _bombes[i]->getY(), _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
   if (temp->initialize() == false)
     return (false);
-  temp->setTime(10);
-  _explosion.push_back(temp);
+  if (checkCollision(temp) != 2)
+  {
+    temp->setTime(10);
+    _explosion.push_back(temp);
+  }
   c = 1;
   while (c <= _play1->getSizeExplo())
     {
@@ -60,7 +63,6 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i)
 	  temp->setTime(10);
 	  _explosion.push_back(temp);
 	  c++;
-	  std::cout << "normalement un objet a ete detruit" << std::endl;
 	}
       else
 	{
@@ -79,7 +81,6 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i)
 	  temp->setTime(10);
 	  _explosion.push_back(temp);
 	  c++;
-	  std::cout << "normalement un objet a ete detruit" << std::endl;
 	}
       else
 	{
@@ -98,7 +99,6 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i)
 	  temp->setTime(10);
 	  _explosion.push_back(temp);
 	  c++;
-	  std::cout << "normalement un objet a ete detruit" << std::endl;
 	}
       else
 	{
@@ -117,7 +117,6 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i)
 	  temp->setTime(10);
 	  _explosion.push_back(temp);
 	  c++;
-	  std::cout << "normalement un objet a ete detruit" << std::endl;
 	}
       else
 	{
