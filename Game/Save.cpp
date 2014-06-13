@@ -54,5 +54,4 @@ void Save::writeInFile(char **map)
       save << std::endl;
       j++;
     }
-sleep(1);
 }
