@@ -50,6 +50,8 @@ public:
   int getMaxNbBombe();
   void setMaxNbBombe(int nb);
   int getID();
+
+  bool poseBomb;
 };
 
 #endif

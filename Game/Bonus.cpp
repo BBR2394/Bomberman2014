@@ -20,7 +20,8 @@ bool	Bonus::initialize()
       std::cerr << "Cannot load the cube texture" << std::endl;
       return (false);
     }
-
+_counter = 0;
+_toWatch = false;
     _geometry.setColor(glm::vec4(1, 1, 1, 1));
     _geometry.pushVertex(glm::vec3(-0.5, -0.5, 0.25));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.25));
@@ -36,6 +37,13 @@ bool	Bonus::initialize()
 }
 void Bonus::update(gdl::Clock const &clock, gdl::Input &input, char **map)
 {
+if (_counter >= 1000)
+{
+  _toWatch = true;
+}
+else
+_counter++;
+std::cout << "le compteur " << _counter << std::endl;
 }
 
 void Bonus::draw(gdl::AShader &shader, gdl::Clock const &clock)
@@ -47,4 +55,9 @@ void Bonus::draw(gdl::AShader &shader, gdl::Clock const &clock)
    //test = glm::vec4( 1.0, 1.0, 0.0, 0.2);
   // printf("test x %d y %d z %d w %d\n", test.x, test.y, test.z, test.w);
     _model.draw(shader, getTransformation(), GL_QUADS);
+}
+
+bool Bonus::getWatch()
+{
+return (_toWatch);
 }

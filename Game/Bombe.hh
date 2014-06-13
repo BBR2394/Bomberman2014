@@ -48,6 +48,7 @@ public:
   void setTime(int time);
   int getTime();
   void setPlayerSeter(int);
+  int getPlayerSeter();
 };
 
 #endif

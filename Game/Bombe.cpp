@@ -119,3 +119,9 @@ void Bombe::setPlayerSeter(int id)
 {
     _player = id;
 }
+
+int Bombe::getPlayerSeter()
+{
+    return (_player);
+}
+

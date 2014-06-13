@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update jeu. juin  12 23:26:55 2014 sofian casier
+// Last update Fri Jun 13 12:31:10 2014 Bertrand-Rapello Baptiste
 */
 
 #ifndef   __GAMEENGINE__
@@ -67,7 +67,11 @@ public:
   bool  ReturnToMenu();
   bool    Go_To_Pause();
   bool PlaceBombe(gdl::Clock const &clock, Player *player);
-  bool Bombing(gdl::Clock const &clock);
+  bool PlaceBombeIA(gdl::Clock const &clock, IA *ia);
+  bool Bombing(gdl::Clock const &clock, size_t i);
+  int getLen(char *map);
+  int checkCollision(AObject *obj);
+  int destroyObject(AObject *obj, char id, int size);
 
 private:
 
@@ -106,6 +110,7 @@ private:
   int                     _nbtour;
   float                 _angle;
   float                 _rotation;
+
 };
 
 #endif

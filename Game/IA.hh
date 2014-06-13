@@ -29,7 +29,8 @@ private:
   int _sizeExplo;
   int _maxNbBombe;
   std::string _strat;
-  int _idIA;
+  long _counter;
+  int _id;
 
 public:
   IA(int x, int y);
@@ -41,6 +42,9 @@ public:
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
   void setStrategy(std::string strategie);
   void setID(int id);
+  int getID();
+  int checkCollision(char **map, int dir);
+  int getLen(char *map);
 };
 
 #endif

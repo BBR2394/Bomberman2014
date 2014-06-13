@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update ven. juin  13 00:58:19 2014 sofian casier
+// Last update Fri Jun 13 12:28:19 2014 Bertrand-Rapello Baptiste
 */
 
 #include <unistd.h>
@@ -14,7 +14,7 @@
 void        GameEngine::set_Arg(char *arg)
 {
   std::string video(arg);
-  if ((video.compare("-V")) != 0 && (video.compare("-v") != 0))
+  if ((video.compare("-V") == 0) && (video.compare("-v") == 0))
     _cond_video = true;
   else
     _cond_video = false;
@@ -29,12 +29,11 @@ GameEngine::GameEngine()
   _cursor_map = NULL;
   _play1 = NULL;
   _play2 = NULL;
-  _arena = NULL;
   _scene = 0;
   _index_cursor = 0;
   _index_pause = 0;
   _select_map = 0;
-  _save = new Save("Save");
+  _save = new Save("./file");
   _map_chosen = 0;
   _check_select_map = false;
   _game_type = 0;
@@ -52,22 +51,22 @@ GameEngine::~GameEngine()
 bool      GameEngine::Launch_mus()
 {
   if ((Mix_Init(MIX_INIT_OGG | MIX_INIT_MOD | MIX_INIT_MP3)) == -1)
-  {
-    std::cout << "Error on SDL Audio Init" << std::endl;
-    return false;
-  }
+    {
+      std::cout << "Error on SDL Audio Init" << std::endl;
+      return false;
+    }
   if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1)
-  {
-    std::cout << "Error on Open Audio" << std::endl;
-    return (false);
-  }
+    {
+      std::cout << "Error on Open Audio" << std::endl;
+      return (false);
+    }
   Mix_Music *musique;
   musique = Mix_LoadMUS("includes/music/title.wav");
   if (!musique)
-  {
-    std::cout << "Error on Loading Audio" << std::endl;
-    return (false);
-  }
+    {
+      std::cout << "Error on Loading Audio" << std::endl;
+      return (false);
+    }
   Mix_PlayMusic(musique, -1);
   Mix_VolumeMusic(MIX_MAX_VOLUME / 2.5);
   _music_fight = false;
@@ -79,17 +78,17 @@ bool			GameEngine::initialize()
   if (_cond_video == true)
     begin_sec_video();
   if (!_context.start(1000, 800, "Bomberman EpiK"))
-  {
-    std::cout << "error on start context" << std::endl; 
-    return false;
-  }
+    {
+      std::cout << "error on start context" << std::endl; 
+      return false;
+    }
   Launch_mus();
   glEnable(GL_DEPTH_TEST);
   if (!_shader.load("./shaders/basic.fp", GL_FRAGMENT_SHADER) || !_shader.load("./shaders/basic.vp", GL_VERTEX_SHADER) || !_shader.build())
-  {
-    std::cout << "shader failed" << std::endl;
-    return (false);
-  }
+    {
+      std::cout << "shader failed" << std::endl;
+      return (false);
+    }
   _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/ground.tga");
   _floor->setSize(15, 15, 3);
   _floor->setType(1);
@@ -102,8 +101,8 @@ bool			GameEngine::initialize()
   _shader.bind();
   _shader.setUniform("view", transformation);
   _shader.setUniform("projection", projection);
- if ((this->Create_Menu()) == false)
-  return (false);
+  if ((this->Create_Menu()) == false)
+    return (false);
   return (true);
 }
 
@@ -112,32 +111,32 @@ bool      GameEngine::Set_One_Player()
   _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
   _save->setNbPlayer(1);
   if (_map_chosen == 1)
-  {
-    _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/ground.tga");
-    _floor->setSize(15, 15, 3);
-    if (_floor->initialize() == false)
-      return (false);
-    _floor->setType(1);
-    this->createMap(_floor->getX(), _floor->getY(), 1);
-  }
+    {
+      _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/ground.tga");
+      _floor->setSize(15, 15, 3);
+      if (_floor->initialize() == false)
+	return (false);
+      _floor->setType(1);
+      this->createMap(_floor->getX(), _floor->getY(), 1);
+    }
   if (_map_chosen == 2)
-  {
-    _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/back_grass.tga");
-    _floor->setSize(15, 15, 3);
-    if (_floor->initialize() == false)
-      return (false);
-    _floor->setType(2);
-    this->createMap_2(_floor->getX(), _floor->getY(), 1);
-  }
+    {
+      _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/back_grass.tga");
+      _floor->setSize(15, 15, 3);
+      if (_floor->initialize() == false)
+	return (false);
+      _floor->setType(2);
+      this->createMap_2(_floor->getX(), _floor->getY(), 1);
+    }
   if (_map_chosen == 3)
-  {
-    _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/water_map.tga");
-    _floor->setSize(15, 15, 3);
-    if (_floor->initialize() == false)
-      return (false);
-    _floor->setType(1);
-    this->createMap_3(_floor->getX(), _floor->getY(), 1);
-  }
+    {
+      _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/water_map.tga");
+      _floor->setSize(15, 15, 3);
+      if (_floor->initialize() == false)
+	return (false);
+      _floor->setType(1);
+      this->createMap_3(_floor->getX(), _floor->getY(), 1);
+    }
   _scene = 3;
   _menu = NULL;
   _cursor = NULL;
@@ -148,35 +147,35 @@ bool      GameEngine::Set_One_Player()
 
 bool      GameEngine::Set_Two_Players()
 {
-/*  _floor->setType(1);
-  this->createMap(_floor->getX(), _floor->getY(), 2); */
+  /*  _floor->setType(1);                                                                               
+      this->createMap(_floor->getX(), _floor->getY(), 2); */
   if (_map_chosen == 1)
-  {
-    _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/ground.tga");
-    _floor->setSize(15, 15, 3);
-    if (_floor->initialize() == false)
-      return (false);
-    _floor->setType(1);
-    this->createMap(_floor->getX(), _floor->getY(), 2);
-  }
+    {
+      _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/ground.tga");
+      _floor->setSize(15, 15, 3);
+      if (_floor->initialize() == false)
+	return (false);
+      _floor->setType(1);
+      this->createMap(_floor->getX(), _floor->getY(), 2);
+    }
   if (_map_chosen == 2)
-  {
-    _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/back_grass.tga");
-    _floor->setSize(15, 15, 3);
-    if (_floor->initialize() == false)
-      return (false);
-    _floor->setType(2);
-    this->createMap_2(_floor->getX(), _floor->getY(), 2);
-  }
+    {
+      _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/back_grass.tga");
+      _floor->setSize(15, 15, 3);
+      if (_floor->initialize() == false)
+	return (false);
+      _floor->setType(2);
+      this->createMap_2(_floor->getX(), _floor->getY(), 2);
+    }
   if (_map_chosen == 3)
-  {
-    _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/water_map.tga");
-    _floor->setSize(15, 15, 3);
-    if (_floor->initialize() == false)
-      return (false);
-    _floor->setType(1);
-    this->createMap_3(_floor->getX(), _floor->getY(), 2);
-  }
+    {
+      _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/water_map.tga");
+      _floor->setSize(15, 15, 3);
+      if (_floor->initialize() == false)
+	return (false);
+      _floor->setType(1);
+      this->createMap_3(_floor->getX(), _floor->getY(), 2);
+    }
   _save->setSize(_floor->getX(), _floor->getY(), 1, 2);
   _save->setNbPlayer(2);
   _scene = 3;
@@ -184,11 +183,12 @@ bool      GameEngine::Set_Two_Players()
   _cursor = NULL;
   _game_type = 0;
   _launch = true;
-  return true;
+  return (true);
 }
 
 bool      GameEngine::ReturnToMenu()
 {
+
   //aqui hay que hacer cosas !!!
   if (_play1 != NULL)
   {
@@ -210,6 +210,7 @@ bool      GameEngine::ReturnToMenu()
     _play1 = NULL;
     _play2 = NULL;
 
+    
   /*  int x, y;
     x = _floor->getX();
     y = _floor->getY();
@@ -266,31 +267,31 @@ bool      GameEngine::Go_To_Pause()
       return (false);
   }
   if (_input.getInput(SDLK_ESCAPE, true) || _input.getInput(SDL_QUIT, true))
-  {
-    _pause_cond = false;
-    _pause = NULL;
-  }
-  if (_input.getInput(SDLK_RIGHT, true))
-  {
-    _index_pause = 1;
-    _pause->Change_texture("./includes/images/bomberman_pause_2.tga");
-  }
-  if (_input.getInput(SDLK_LEFT, true))
-  {
-    _index_pause = 0;
-    _pause->Change_texture("./includes/images/bomberman_pause_1.tga");
-  }
-  if (_input.getInput(SDLK_RETURN, true))
-  {
-    _pause_cond = false;
-    _pause = NULL;
-    if (_index_pause == 0)
-      return true;
-    else
+    {
+      _pause_cond = false;
+      _pause = NULL;
+    }
+    if (_input.getInput(SDLK_RIGHT, true))
+    {
+      _index_pause = 1;
+      _pause->Change_texture("./includes/images/bomberman_pause_2.tga");
+    }
+    if (_input.getInput(SDLK_LEFT, true))
+    {
+      _index_pause = 0;
+      _pause->Change_texture("./includes/images/bomberman_pause_1.tga");
+    }
+    if (_input.getInput(SDLK_RETURN, true))
+    {
+      _pause_cond = false;
+      _pause = NULL;
+      if (_index_pause == 0)
+        return true;
+      else
+        return false;
+    }
+    if (_input.getInput(SDLK_F1, true))
       return false;
-  }
-  if (_input.getInput(SDLK_F1, true))
-    return false;
   return true;
 }
 
@@ -324,8 +325,8 @@ bool			GameEngine::update()
 	    return (false);
 	}
     }
-   else if (_game_type == 1) 
-    {      
+  else if (_game_type == 1) 
+    {
       if ((Set_One_Player()) == false)
         return false;
       nb_player = 1;
@@ -398,7 +399,16 @@ void			GameEngine::draw()
       for (size_t i = 0; i < _cubeDestr.size(); ++i)
 	_cubeDestr[i]->draw(_shader, _clock);
       for (size_t i = 0; i < _bonux.size(); ++i)
-	_bonux[i]->draw(_shader, _clock);
+      {
+        if (_bonux[i]->getWatch() == true)
+        {
+          int size;
+
+    	   _bonux[i]->draw(_shader, _clock);
+         size = getLen(_mapcols[0]) / 2;
+         _mapcols[((int)_bonux[i]->getY()*-1) + size][(int)_bonux[i]->getX() + size] = '3';
+        }
+      }
     }
   _context.flush();
 }
