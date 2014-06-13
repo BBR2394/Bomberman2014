@@ -1,11 +1,11 @@
 #include "IA.hh"
 
-IA::IA(glm::vec3 pos, Type type, std::string texture) : Player(pos, type, texture)
+IA::IA(glm::vec3 pos, Type type, std::string texture) : AObject(pos, type, texture)
 {
 
 }
 
-IA::IA(glm::vec3 pos, glm::vec3 r, std::string texture) : Player(pos, r, texture)
+IA::IA(glm::vec3 pos, glm::vec3 r, std::string texture) : AObject(pos, r, texture)
 {
 
 }
@@ -186,4 +186,34 @@ void IA::setID(int id)
 int IA::getID()
 {
     return (_id);
+}
+
+void IA::setSizeExplo(int size)
+{
+  _sizeExplo = size;
+}
+
+int IA::getSizeExplo()
+{
+  return (_sizeExplo);
+}
+
+int IA::getNbBombe()
+{
+  return (_nbBombe);
+}
+
+void IA::setNbBombe(int nb)
+{
+  _nbBombe = nb;
+}
+
+int IA::getMaxNbBombe()
+{
+  return (_maxNbBombe);
+}
+
+void IA::setMaxNbBombe(int nb)
+{
+  _maxNbBombe = nb;
 }

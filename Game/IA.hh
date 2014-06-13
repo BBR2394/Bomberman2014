@@ -16,7 +16,7 @@
 # include "AObject.hpp"
 # include "Player.hh"
 
-class IA : public Player
+class IA : public AObject
 {
 private:
   gdl::Texture _texture;
@@ -45,6 +45,14 @@ public:
   int getID();
   int checkCollision(char **map, int dir);
   int getLen(char *map);
+  void setSizeExplo(int size);
+  int getSizeExplo();
+  int getNbBombe();
+  void setNbBombe(int nb);
+  int getMaxNbBombe();
+  void setMaxNbBombe(int nb);
+
+  bool poseBomb;
 };
 
 #endif
