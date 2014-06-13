@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Fri Jun 13 12:28:19 2014 Bertrand-Rapello Baptiste
+** Last update ven. juin  13 14:46:26 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -14,7 +14,7 @@
 void        GameEngine::set_Arg(char *arg)
 {
   std::string video(arg);
-  if ((video.compare("-V") == 0) && (video.compare("-v") == 0))
+  if ((video.compare("-V") != 0) && (video.compare("-v") != 0))
     _cond_video = true;
   else
     _cond_video = false;
@@ -33,7 +33,7 @@ GameEngine::GameEngine()
   _index_cursor = 0;
   _index_pause = 0;
   _select_map = 0;
-  _save = new Save("./file");
+  _save = new Save("Save");
   _map_chosen = 0;
   _check_select_map = false;
   _game_type = 0;
