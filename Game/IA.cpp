@@ -170,7 +170,7 @@ void IA::draw(gdl::AShader &shader, gdl::Clock const &clock)
 {
   (void)clock;
   _texture.bind();
-  _geometry.draw(shader, getTransformation(), GL_QUADS);
+  _geometry.draw(shader, getTransformationPlayer(), GL_QUADS);
 }
 
 void IA::setStrategy(std::string strategie)
