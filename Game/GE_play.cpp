@@ -119,10 +119,14 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
     _play1->setNbBombe(_play1->getNbBombe()+1);*/
   for (size_t i = 0; i < _bombes.size(); ++i)
     {
+      int size = (getLen(_mapcols[0]) / 2);
       _bombes[i]->update(_clock, _input);
+      if (_mapcols[((int)_bombes[i]->getY()*-1) + size][(int)_bombes[i]->getX() + size] == '0')
+        _mapcols[((int)_bombes[i]->getY()*-1) + size][(int)_bombes[i]->getX() + size] = '4';
       if (_bombes[i]->getTime() <= 0)
 	     {
 	        this->Bombing(_clock, i);
+          _mapcols[((int)_bombes[i]->getY()*-1) + size][(int)_bombes[i]->getX() + size] = '0';
 	     }
     }
 

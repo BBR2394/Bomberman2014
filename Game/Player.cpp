@@ -157,10 +157,12 @@ void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
 {
   static int repet = 0;
   int translate_player;
-  
+  int size;
+
+size = (getLen(map[0]) / 2);
   //std::cout << "la montre " << clock.getElapsed() << std::endl;
   translate_player = 1;
-  map[((int)getY()*-1) + 7][(int)getX() + 7] = '0';
+  map[((int)getY()*-1) + size][(int)getX() + size] = '0';
   if (input.getInput(SDLK_DOWN, true) && checkCollision(map, SDLK_DOWN))
     {
       translate(glm::vec3(0, -1 * translate_player, 0));
@@ -203,7 +205,7 @@ void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
   if (input.getInput(SDLK_b, true && this->getNbBombe() < this->getMaxNbBombe()))
     poseBomb = true;
 
-  map[((int)getY()*-1) + 7][(int)getX() + 7] = '6';
+  map[((int)getY()*-1) + size][(int)getX() + size] = '6';
   if (repet > 0)
     repet--;
 }

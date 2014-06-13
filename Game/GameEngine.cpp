@@ -408,6 +408,7 @@ void			GameEngine::draw()
          _mapcols[((int)_bonux[i]->getY()*-1) + size][(int)_bonux[i]->getX() + size] = '3';
         }
       }
+      printMap();
     }
   _context.flush();
 }
