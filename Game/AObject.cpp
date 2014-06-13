@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Wed May 28 15:19:52 2014 Koszyczek Laurent
+// Last update Fri Jun 13 14:57:29 2014 Koszyczek Laurent
 */
 
 #include "AObject.hpp"
@@ -32,6 +32,19 @@ AObject::AObject(glm::vec3 pos, glm::vec3 r, std::string texture) : _scale(1, 1,
   _texture_name = texture;
 }
 
+AObject::AObject(glm::vec3 pos, Type type, std::string texture, double s): _rotation(0, 0, -90), _scale(s, s, s)
+{
+  _type = type;
+  _position = pos;
+  _texture_name = texture;
+}
+
+AObject::AObject(glm::vec3 pos, glm::vec3 r, std::string texture, double s) : _scale(s, s, s)
+{
+  _position = pos;
+  _rotation = r;
+  _texture_name = texture;
+}
 
 AObject::~AObject()
 {
@@ -84,6 +97,18 @@ glm::mat4 AObject::getTransformation()
   transform = glm::rotate(transform, _rotation.y, glm::vec3(0, 1, 0));
   transform = glm::rotate(transform, _rotation.z, glm::vec3(0, 0, 1));
   transform = glm::translate(transform, _position);
+  transform = glm::scale(transform, _scale);
+  return (transform);
+}
+
+glm::mat4 AObject::getTransformationPlayer()
+{
+  glm::mat4 transform(1);
+
+  transform = glm::translate(transform, _position);
+  transform = glm::rotate(transform, _rotation.x, glm::vec3(1, 0, 0));
+  transform = glm::rotate(transform, _rotation.y, glm::vec3(0, 1, 0));
+  transform = glm::rotate(transform, _rotation.z, glm::vec3(0, 0, 1));
   transform = glm::scale(transform, _scale);
   return (transform);
 

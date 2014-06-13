@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Wed Jun 11 11:36:17 2014 Bertrand-Rapello Baptiste
+// Last update Fri Jun 13 14:59:33 2014 Koszyczek Laurent
 */
 
 #include "AObject.hpp"
@@ -14,12 +14,12 @@
 {
 }*/
 
-Player::Player(glm::vec3 pos, Type type, std::string texture) : AObject(pos, type, texture)
+Player::Player(glm::vec3 pos, Type type, std::string texture) : AObject(pos, type, texture, 0.0025)
 {
     _texture_name = texture;
 }
 
-Player::Player(glm::vec3 pos, glm::vec3 r, std::string texture) : AObject(pos, r, texture)
+Player::Player(glm::vec3 pos, glm::vec3 r, std::string texture) : AObject(pos, r, texture, 0.0025)
 {
 
 }
@@ -49,7 +49,7 @@ bool	Player::initialize()
   std::cout << "suite a la création du joueur la position de la cible est : " << _x_target << " " << _y_target << " " << _z_target << " " << std::endl;
 
 
-  //_model.load("./assets/marvin.fbx");
+  _model.load("./assets/marvin.fbx");
   _geometry.setColor(glm::vec4(0, 1, 1, 1));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
@@ -217,7 +217,7 @@ void Player::draw(gdl::AShader &shader, gdl::Clock const &clock)
    //glm::mat4 test = getTransformation();
    //test = glm::vec4( 1.0, 1.0, 0.0, 0.2);
   // printf("test x %d y %d z %d w %d\n", test.x, test.y, test.z, test.w);
-  _model.draw(shader, getTransformation(), GL_QUADS);
+  _model.draw(shader, getTransformationPlayer(), GL_QUADS);
 }
 
 int Player::getXTarget()

@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-// Last update Wed May 28 15:01:59 2014 Koszyczek Laurent
+// Last update Fri Jun 13 14:58:17 2014 Koszyczek Laurent
 */
 
 #ifndef _AOBJECT_HH__
@@ -42,6 +42,8 @@ public:
   AObject(int x, int y);
   AObject(glm::vec3 pos, Type type, std::string texture);
   AObject(glm::vec3 pos, glm::vec3 r, std::string texture);
+  AObject(glm::vec3 pos, Type type, std::string texture, double s);
+  AObject(glm::vec3 pos, glm::vec3 r, std::string texture, double s);
   virtual ~AObject();
   virtual bool initialize();
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
@@ -50,6 +52,7 @@ public:
   void rotate(glm::vec3 const& axis, float angle);
   void scale(glm::vec3 const& scale);
   glm::mat4 getTransformation();
+  glm::mat4 getTransformationPlayer();
   Type  getType() const;
   void    setXcurs(double);
   void    setYcurs(double);
