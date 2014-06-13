@@ -121,9 +121,9 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
     {
       _bombes[i]->update(_clock, _input);
       if (_bombes[i]->getTime() <= 0)
-	{
-	  this->Bombing(_clock, i);
-	}
+	     {
+	        this->Bombing(_clock, i);
+	     }
     }
 
   for (size_t i = 0; i < _explosion.size(); ++i)

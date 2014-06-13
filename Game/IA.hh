@@ -16,10 +16,9 @@
 # include "AObject.hpp"
 # include "Player.hh"
 
-class IA : public AObject
+class IA : public Player
 {
 private:
-  bool poseBomb;
   gdl::Texture _texture;
   gdl::Geometry _geometry;
   float _speed;

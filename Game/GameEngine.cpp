@@ -385,7 +385,6 @@ void			GameEngine::draw()
       _floor->draw(_shader, _clock);
       for (size_t i = 0; i < _robot.size(); ++i)
         _robot[i]->draw(_shader, _clock);
-
       for (size_t i = 0; i < _bombes.size(); ++i)
 	_bombes[i]->draw(_shader, _clock);
       for (size_t i = 0; i < _explosion.size(); ++i)

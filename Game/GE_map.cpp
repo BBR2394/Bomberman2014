@@ -149,6 +149,7 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
   if (temp2->initialize() == false)
        return (false);
   _bonux.push_back(temp2);
+
   _arena = new Arena(glm::vec3(0, 0, 11), glm::vec3(0, 0, 0), "./includes/images/desert_back.tga");
   if (_arena->initialize() == false)
     return false;

@@ -1,11 +1,11 @@
 #include "IA.hh"
 
-IA::IA(glm::vec3 pos, Type type, std::string texture) : AObject(pos, type, texture)
+IA::IA(glm::vec3 pos, Type type, std::string texture) : Player(pos, type, texture)
 {
 
 }
 
-IA::IA(glm::vec3 pos, glm::vec3 r, std::string texture) : AObject(pos, r, texture)
+IA::IA(glm::vec3 pos, glm::vec3 r, std::string texture) : Player(pos, r, texture)
 {
 
 }
@@ -25,7 +25,7 @@ bool	IA::initialize()
     }
     poseBomb = false;
     _counter = 1;
- _geometry.setColor(glm::vec4(1, 0, 0, 1));
+ _geometry.setColor(glm::vec4(1, 0, 0, 0));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
     _geometry.pushVertex(glm::vec3(-0.5, 0.5, 0.5));
@@ -34,7 +34,7 @@ bool	IA::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.setColor(glm::vec4(1, 0, 0, 1));
+    _geometry.setColor(glm::vec4(1, 0, 0, 0));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, -0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, -0.5));
     _geometry.pushVertex(glm::vec3(-0.5, 0.5, -0.5));
@@ -43,7 +43,7 @@ bool	IA::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.setColor(glm::vec4(1, 0, 0, 1));
+    _geometry.setColor(glm::vec4(1, 0, 0, 0));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, -0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, -0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
@@ -52,7 +52,7 @@ bool	IA::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.setColor(glm::vec4(1, 0, 0, 1));
+    _geometry.setColor(glm::vec4(1, 0, 0, 0));
     _geometry.pushVertex(glm::vec3(-0.5, -0.5, 0.5));
     _geometry.pushVertex(glm::vec3(-0.5, 0.5, 0.5));
     _geometry.pushVertex(glm::vec3(-0.5, 0.5, -0.5));
@@ -61,7 +61,7 @@ bool	IA::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.setColor(glm::vec4(1, 0, 0, 1));
+    _geometry.setColor(glm::vec4(1, 0, 0, 0));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, 0.5));
     _geometry.pushVertex(glm::vec3(0.5, 0.5, -0.5));
     _geometry.pushVertex(glm::vec3(-0.5, 0.5, -0.5));
@@ -70,7 +70,7 @@ bool	IA::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.setColor(glm::vec4(1, 0, 0, 1));
+    _geometry.setColor(glm::vec4(1, 0, 0, 0));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, -0.5));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
     _geometry.pushVertex(glm::vec3(-0.5, -0.5, 0.5));
@@ -170,7 +170,7 @@ void IA::draw(gdl::AShader &shader, gdl::Clock const &clock)
 {
   (void)clock;
   _texture.bind();
-  _geometry.draw(shader, getTransformationPlayer(), GL_QUADS);
+  _geometry.draw(shader, getTransformation(), GL_QUADS);
 }
 
 void IA::setStrategy(std::string strategie)

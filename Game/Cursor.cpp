@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update ven. juin  13 17:04:19 2014 sofian casier
+** Last update ven. juin  13 11:51:25 2014 sofian casier
 */
 
 #include "Cursor.hh"
@@ -55,6 +55,6 @@ void Cursor::draw(gdl::AShader &shader, gdl::Clock const &clock)
   (void)clock;
   _texture.bind();
   _geometry.draw(shader, getTransformation(), GL_QUADS);
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  //glEnable(GL_BLEND);
+  //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
