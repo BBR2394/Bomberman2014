@@ -209,7 +209,6 @@ void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
     }
   if (input.getInput(_key[6], true && this->getNbBombe() < this->getMaxNbBombe())) //key b
     poseBomb = true;
-  std::cout << "idmap !!!!!!!" << _idMap << std::endl;
   map[((int)getY()*-1) + size][(int)getX() + size] = _idMap;
   if (repet > 0)
     repet--;
