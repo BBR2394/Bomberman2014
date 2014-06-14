@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update ven. juin  13 14:46:26 2014 sofian casier
+** Last update sam. juin  14 17:19:16 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -192,7 +192,7 @@ bool      GameEngine::ReturnToMenu()
   //aqui hay que hacer cosas !!!
   if (_play1 != NULL)
   {
-    delete _play1;
+   delete _play1;
     if (_play2 != NULL)
       delete _play2;
     for (size_t i = 0; i < _bombes.size(); i++)
@@ -207,10 +207,19 @@ bool      GameEngine::ReturnToMenu()
       delete _map[i];
     for (size_t i = 0; i < _cubeDestr.size(); i++)
       delete _cubeDestr[i];
+    delete _arena;
+    delete _floor;
+
     _play1 = NULL;
     _play2 = NULL;
+    _map.erase(_map.begin(), _map.end());
+    _bombes.erase(_bombes.begin(), _bombes.end());
+    _bonux.erase(_bonux.begin(), _bonux.end());
+    _explosion.erase(_explosion.begin(), _explosion.end());
+    _cubeDestr.erase(_cubeDestr.begin(), _cubeDestr.end());
+    _robot.erase(_robot.begin(), _robot.end());
+    _objects.erase(_objects.begin(), _objects.end());
 
-    
   /*  int x, y;
     x = _floor->getX();
     y = _floor->getY();
@@ -382,7 +391,8 @@ void			GameEngine::draw()
 	     _play1->draw(_shader, _clock);
       if (_play2 != NULL)
 	_play2->draw(_shader, _clock);
-      _floor->draw(_shader, _clock);
+//  if (_floor != NULL)
+    _floor->draw(_shader, _clock);
       for (size_t i = 0; i < _robot.size(); ++i)
         _robot[i]->draw(_shader, _clock);
       for (size_t i = 0; i < _bombes.size(); ++i)
