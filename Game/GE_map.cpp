@@ -6,7 +6,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Fri Jun 13 15:02:19 2014 Koszyczek Laurent
+// Last update Sat Jun 14 14:14:22 2014 Koszyczek Laurent
 //
 */
 
@@ -240,7 +240,7 @@ bool                    GameEngine::createMap_2(int x, int y, int nb_player)
     this->_objects.push_back(temp);
   */
   _mapcols[1][1] = '6';
-  _play1 = new Player(glm::vec3((lmtx*-1)+1, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+  _play1 = new Player(glm::vec3((lmtx*-1)+1, lmty - 1, 3), glm::vec3(90, 0, 0), "./includes/images/player.tga");
     if (_play1->initialize() == false)
       return (false);
 
@@ -379,7 +379,7 @@ bool                    GameEngine::createMap_3(int x, int y, int nb_player)
     this->_objects.push_back(temp);
   */
   _mapcols[1][1] = '6';
-  _play1 = new Player(glm::vec3((lmtx*-1)+1, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/player.tga");
+  _play1 = new Player(glm::vec3((lmtx*-1)+1, lmty - 1, 3), glm::vec3(90, 0, 0), "./includes/images/player.tga");
     if (_play1->initialize() == false)
       return (false);
 
