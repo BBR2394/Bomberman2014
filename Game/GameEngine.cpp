@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update sam. juin  14 17:19:16 2014 sofian casier
+** Last update sam. juin  14 18:06:16 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -147,8 +147,6 @@ bool      GameEngine::Set_One_Player()
 
 bool      GameEngine::Set_Two_Players()
 {
-  /*  _floor->setType(1);                                                                               
-      this->createMap(_floor->getX(), _floor->getY(), 2); */
   if (_map_chosen == 1)
     {
       _floor = new Background(glm::vec3(0, 0, 1), glm::vec3(0, 0, 0), "./includes/images/ground.tga");
@@ -188,8 +186,6 @@ bool      GameEngine::Set_Two_Players()
 
 bool      GameEngine::ReturnToMenu()
 {
-
-  //aqui hay que hacer cosas !!!
   if (_play1 != NULL)
   {
    delete _play1;
@@ -220,23 +216,6 @@ bool      GameEngine::ReturnToMenu()
     _robot.erase(_robot.begin(), _robot.end());
     _objects.erase(_objects.begin(), _objects.end());
 
-  /*  int x, y;
-    x = _floor->getX();
-    y = _floor->getY();
-
-  for (int i = 0; i <= y ; ++i)
-    _mapcols[i] = delete [x + 2];
-  //_mapcols = delete [y + 2];*/
-  }
-
-/*  int i = 0;
-  for (std::vector<AObject*>::iterator it = _objects.begin(); it != _objects.end(); it++)
-  {
-    _objects[i].erase();
-    i++;
-  } */
-//  for (size_t i = 0; i < _map.size(); i++)
-  //  _map.erase[i];
   if (_index_pause == 1)
   {
     Mix_Music *musique;
@@ -250,6 +229,7 @@ bool      GameEngine::ReturnToMenu()
     Mix_VolumeMusic(MIX_MAX_VOLUME / 2.5);
     _music_fight = false;
   }
+
   _scene = 0;
   _index_cursor = 0;
   _index_pause = 0;
@@ -262,10 +242,12 @@ bool      GameEngine::ReturnToMenu()
   _cursor_map = NULL;
   _pause = NULL;
   _arena = NULL;
+
   if ((this->Create_Menu()) == false)
     return (false);
   return (true);
-}
+  }
+  }
 
 bool      GameEngine::Go_To_Pause()
 {
@@ -311,28 +293,28 @@ bool			GameEngine::update()
   if (_scene == 0)
     {
       if (this->Go_To_Menu() == 1)
-	Update_Menu();
+  Update_Menu();
       if (this->Go_To_Menu() == -1)
-	return (false);
+  return (false);
     }
   else if (_scene == 1)
     {
       if (this->Menu_choice() == false)
-	return (false);
+  return (false);
     }
   else if (_scene == 10)
     {
       if ((Choose_your_map()) == false)
-	{
-	  if (ReturnToMenu() == false)
-	    return false;
-	  sleep(1);
-	}
+  {
+    if (ReturnToMenu() == false)
+      return false;
+    sleep(1);
+  }
       if (_scene == 3)
-	{
-	  if ((this->Create_loading()) == false)
-	    return (false);
-	}
+  {
+    if ((this->Create_loading()) == false)
+      return (false);
+  }
     }
   else if (_game_type == 1) 
     {
@@ -349,16 +331,16 @@ bool			GameEngine::update()
   else if (_scene == 3 && _launch == true)
     {
       if (_pause_cond == true)
-	{
-	  if ((Go_To_Pause()) == false)
-	    {
-	      if (ReturnToMenu() == false)
-		return false;
-	      sleep(1);
-	    }
-	}
+  {
+    if ((Go_To_Pause()) == false)
+      {
+        if (ReturnToMenu() == false)
+    return false;
+        sleep(1);
+      }
+  }
       else
-	Playing(_clock, nb_player);
+  Playing(_clock, nb_player);
     }
   _context.updateClock(_clock);
   _context.updateInputs(_input);
@@ -385,13 +367,10 @@ void			GameEngine::draw()
         _objects[i]->draw(_shader, _clock);
       for (size_t i = 0; i < _map.size(); ++i)
 	_map[i]->draw(_shader, _clock);
-      //for (size_t i = 0; i < _players.size(); ++i)                                               
-      //_players[i]->draw(_shader, _clock);                                                      
       if (_play1 != NULL)
 	     _play1->draw(_shader, _clock);
       if (_play2 != NULL)
 	_play2->draw(_shader, _clock);
-//  if (_floor != NULL)
     _floor->draw(_shader, _clock);
       for (size_t i = 0; i < _robot.size(); ++i)
         _robot[i]->draw(_shader, _clock);
@@ -418,7 +397,7 @@ void			GameEngine::draw()
          _mapcols[((int)_bonux[i]->getY()*-1) + size][(int)_bonux[i]->getX() + size] = '3';
         }
       }
-      printMap();
+      //printMap();
     }
   _context.flush();
 }

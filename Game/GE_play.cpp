@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Sat Jun 14 15:17:19 2014 Koszyczek Laurent
+** Last update sam. juin  14 18:04:39 2014 sofian casier
 //
 */
 
@@ -42,6 +42,8 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
   IA *temp2;
   int c;
 
+  if (_play1 == NULL)
+    std::cout << "partie termine" << std::endl;
   if (_input.getKey(SDLK_ESCAPE, true) || _input.getInput(SDL_QUIT, true))
     {
       glm::mat4 transformation;
@@ -99,25 +101,7 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
       transformation = glm::lookAt(glm::vec3(0, _angle, 20), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
       _shader.setUniform("view", transformation);
     }
-  //temp = _objects.back();
-  //temp->update(clock, _input);
-  /*if (_input.getInput(SDLK_b, true) && _play1->getNbBombe() < _play1->getMaxNbBombe())
-    {
-    PlaceBombe(clock, _play1);
-    /*
-    std::cout << "les position de visé : " << _play1->getX() << " " << _play1->getY()  << " " << _play1->getZ() << std::endl;
-    temp = new Bombe(glm::vec3(_play1->getX(), _play1->getY(), _play1->getZ()), glm::vec3(0, 0, 0), "./includes/images/bombe.tga");
-    std::cout << "bombe test ..." << std::endl;
-    if (temp->initialize() == false)
-    return (false);
-    Mix_Chunk *bomb;
-    bomb = Mix_LoadWAV("includes/music/put_bomb.wav");
-    Mix_PlayChannel(1, bomb, 0);
-    temp->setTime(100);
-    temp->setPlayerSeter(1);
-    _bombes.push_back(temp);
-    _play1->setNbBombe(_play1->getNbBombe()+1);*/
-  for (size_t i = 0; i < _bombes.size(); ++i)
+   for (size_t i = 0; i < _bombes.size(); ++i)
     {
       int size = (getLen(_mapcols[0]) / 2);
       _bombes[i]->update(_clock, _input);
@@ -167,7 +151,6 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
         {
           temp2 = _robot[i];
           _robot[i]->poseBomb = false;
-          std::cout << "l'ia va poser une bombe son id : " << temp2->getID() << std::endl;
           PlaceBombeIA(clock, temp2);
         }
     }

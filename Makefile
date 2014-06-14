@@ -1,11 +1,10 @@
-##
 ## Makefile for bolber in /home/casier_s/libbomber
 ## 
 ## Made by sofian casier
 ## Login   <casier_s@epitech.net>
 ## 
 ## Started on  Tue May  6 15:15:22 2014 sofian casier
-## Last update Thu Jun 12 23:44:22 2014 sofian casier
+## Last update Sat Jun 14 18:00:59 2014 sofian casier
 ##
 
 NAME		=		Bomberman

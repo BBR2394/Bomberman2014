@@ -33,8 +33,6 @@ void Save::setNbPlayer(int nb)
 void Save::writeInFile(char **map)
 {
 	int j,i;
-
-//	std::cout << "les differentes informations : " << this->_x << " " << this->_y << " " << this->_z << " de type " << this->_type << " nb player : " << this->_nbPlayer << std::endl;
 	j = 0;
 	std::ofstream save("Save", std::ios::out | std::ios::trunc);
 	if (!save)

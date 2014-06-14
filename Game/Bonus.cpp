@@ -43,7 +43,6 @@ if (_counter >= 1000)
 }
 else
 _counter++;
-std::cout << "le compteur " << _counter << std::endl;
 }
 
 void Bonus::draw(gdl::AShader &shader, gdl::Clock const &clock)
@@ -51,9 +50,6 @@ void Bonus::draw(gdl::AShader &shader, gdl::Clock const &clock)
   (void)clock;
   _texture.bind();
    _geometry.draw(shader, getTransformation(), GL_QUADS);
-   //glm::mat4 test = getTransformation();
-   //test = glm::vec4( 1.0, 1.0, 0.0, 0.2);
-  // printf("test x %d y %d z %d w %d\n", test.x, test.y, test.z, test.w);
     _model.draw(shader, getTransformation(), GL_QUADS);
 }
 
