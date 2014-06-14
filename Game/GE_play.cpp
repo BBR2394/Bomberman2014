@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Fri Jun 13 12:29:26 2014 Bertrand-Rapello Baptiste
+// Last update Sat Jun 14 15:17:19 2014 Koszyczek Laurent
 //
 */
 
@@ -145,7 +145,7 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
       PlaceBombe(clock, _play1);
     }
   if (nb_player == 2)
-    _play2->update(clock, _input);
+    _play2->update(clock, _input, _mapcols);
   for (size_t i = 0; i < _robot.size(); ++i)
     {
       _robot[i]->update(clock, _input, _mapcols);

@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Fri Jun 13 12:31:10 2014 Bertrand-Rapello Baptiste
+// Last update Sat Jun 14 15:15:13 2014 Koszyczek Laurent
 */
 
 #ifndef   __GAMEENGINE__
@@ -84,7 +84,7 @@ private:
   Background            *_floor;
   Arena                 *_arena;
   Player                *_play1;
-  Player2               *_play2;
+  Player                *_play2;
   std::vector<Bombe*> _bombes;
   std::vector<Bombe*> _explosion;
   std::vector<Bonus*> _bonux;

@@ -1,32 +1,41 @@
-/*
+//
 // AObject.cpp for AO in /home/casier_s/cpp_bomberman/Game
 // 
 // Made by sofian casier
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Fri Jun 13 14:59:33 2014 Koszyczek Laurent
-*/
+// Last update Sat Jun 14 15:10:44 2014 Koszyczek Laurent
+//
 
 #include "AObject.hpp"
 #include "Player.hh"
-/*Cube::Cube()
-{
-}*/
 
 Player::Player(glm::vec3 pos, Type type, std::string texture) : AObject(pos, type, texture, 0.0025)
 {
-    _texture_name = texture;
+  _texture_name = texture;
+  setKeyPlayer(SDLK_DOWN, SDLK_UP, SDLK_LEFT, SDLK_RIGHT, SDLK_i, SDLK_o, SDLK_b);
 }
 
 Player::Player(glm::vec3 pos, glm::vec3 r, std::string texture) : AObject(pos, r, texture, 0.0025)
 {
-
+  setKeyPlayer(SDLK_DOWN, SDLK_UP, SDLK_LEFT, SDLK_RIGHT, SDLK_i, SDLK_o, SDLK_b);
 }
 
 Player::~Player()
 {
 
+}
+
+void	Player::setKeyPlayer(int k1, int k2, int k3, int k4, int k5, int k6, int k7)
+{
+  _key[0] = k1;
+  _key[1] = k2;
+  _key[2] = k3;
+  _key[3] = k4;
+  _key[4] = k5;
+  _key[5] = k6;
+  _key[6] = k7;
 }
 
 bool	Player::initialize()
@@ -38,15 +47,15 @@ bool	Player::initialize()
       return (false);
     }
 
-  _x_target = getX();
-  _y_target = getY() - 1;
-  _z_target = getZ();
+  _target.x = getX();
+  _target.y = getY() - 1;
+  _target.z = getZ();
   _nbBombe = 0;
   _sizeExplo = 2;
   _maxNbBombe = 1;
   _idPlayer = 1;
   poseBomb = false;
-  std::cout << "suite a la création du joueur la position de la cible est : " << _x_target << " " << _y_target << " " << _z_target << " " << std::endl;
+  std::cout << "suite a la création du joueur la position de la cible est : " << _target.x << " " << _target.y << " " << _target.z << " " << std::endl;
 
 
   _model.load("./assets/marvin.fbx");
@@ -120,32 +129,31 @@ int	Player::getLen(char *map)
 
 int	Player::checkCollision(char **map, int dir)
 {
-  // std::cout << "pos x " << getX() << "pos y \n" << getY());
   int		size;
 
   size = (getLen(map[0]) / 2);
-  if (dir == SDLK_DOWN)
+  if (dir == _key[0]) //DOwn
     {
       if (map[((int)((getY() - size) * -1) + 1)] == 0)
 	return 0;
       if (map[(int)((getY() - size) * -1) + 1][(int)getX() + size] == '0')
 	return (1);
     }
-  else if (dir == SDLK_UP)
+  else if (dir == _key[1]) // UP
     {
       if (((int)((getY() - size) * -1)) - 1 < 0)
 	return 0;
       if (map[(int)((getY() - size) * -1) - 1][(int)getX() + size] == '0')
 	return (1);
     }
-  else if (dir == SDLK_LEFT)
+  else if (dir == _key[2]) //Left
     {
       if ((getX() + size - 1) < 0)
 	return 0;
       if (map[(int)((getY() - size) * -1)][(int)getX() + size - 1] == '0')
 	return (1);
     }
-  else if (dir == SDLK_RIGHT)
+  else if (dir == _key[3]) // right
     {
       if (map[(int)((getY() - size) * -1)][(int)getX() + size + 1] == '0')
 	return (1);
@@ -159,57 +167,54 @@ void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
   int translate_player;
   int size;
 
-size = (getLen(map[0]) / 2);
-  //std::cout << "la montre " << clock.getElapsed() << std::endl;
+  size = (getLen(map[0]) / 2);
   translate_player = 1;
   map[((int)getY()*-1) + size][(int)getX() + size] = '0';
-  if (input.getInput(SDLK_DOWN, true) && checkCollision(map, SDLK_DOWN))
+  if (input.getInput(_key[0], true) && checkCollision(map, _key[0])) // DOwn
     {
       translate(glm::vec3(0, -1 * translate_player, 0));
-      _x_target = getX();
-      _y_target = getY()-1;
+      _target.x = getX();
+      _target.y = getY()-1;
     }
-  if (input.getInput(SDLK_UP, true) && checkCollision(map, SDLK_UP))
+  if (input.getInput(_key[1], true) && checkCollision(map, _key[1])) // UP
     {
       translate(glm::vec3(0, translate_player, 0));
       repet++;
-      _x_target = getX();
-      _y_target = getY() + 1;
+      _target.x = getX();
+      _target.y = getY() + 1;
     }
-  if (input.getInput(SDLK_LEFT, true) && checkCollision(map, SDLK_LEFT))
+  if (input.getInput(_key[2], true) && checkCollision(map, _key[2])) // left
     {
       translate(glm::vec3(-1 * translate_player, 0, 0));
-      _x_target = getX() - 1;
-      _y_target = getY();
+      _target.x = getX() - 1;
+      _target.y = getY();
       repet++;
     }
-  if (input.getInput(SDLK_RIGHT, true) && checkCollision(map, SDLK_RIGHT))
+  if (input.getInput(_key[3], true) && checkCollision(map, _key[3])) //right
     {
       translate(glm::vec3(translate_player, 0, 0));
-      _y_target = getY();
-      _x_target = getX() + 1;
+      _target.y = getY();
+      _target.x = getX() + 1;
       repet++;
     }
-  if (input.getInput(SDLK_i, true))
+  if (input.getInput(_key[4], true)) // key i
     {
-      _z_target--;
+      _target.z--;
       translate(glm::vec3(0, 0, -1 * translate_player));
       repet++;
     }
-  if (input.getInput(SDLK_o, true) )
+  if (input.getInput(_key[5], true)) // key o
     {
-      _z_target++;
+      _target.z++;
       translate(glm::vec3(0, 0, translate_player));
       repet++;
     }
-  if (input.getInput(SDLK_b, true && this->getNbBombe() < this->getMaxNbBombe()))
+  if (input.getInput(_key[6], true && this->getNbBombe() < this->getMaxNbBombe())) //key b
     poseBomb = true;
-
   map[((int)getY()*-1) + size][(int)getX() + size] = '6';
   if (repet > 0)
     repet--;
 }
-
 
 void Player::draw(gdl::AShader &shader, gdl::Clock const &clock)
 {
@@ -224,17 +229,17 @@ void Player::draw(gdl::AShader &shader, gdl::Clock const &clock)
 
 int Player::getXTarget()
 {
-  return (_x_target);
+  return (_target.x);
 }
 
 int Player::getYTarget()
 {
-  return (_y_target);
+  return (_target.y);
 }
 
 int Player::getZTarget()
 {
-  return (_z_target);
+  return (_target.z);
 }
 
 void Player::setSizeExplo(int size)
