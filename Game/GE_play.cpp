@@ -125,7 +125,9 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
         _mapcols[((int)_bombes[i]->getY()*-1) + size][(int)_bombes[i]->getX() + size] = '4';
       if (_bombes[i]->getTime() <= 0)
 	     {
-	        this->Bombing(_clock, i);
+	         int sizeexplo;
+          //sizeexplo = (whichPlayerFromID(_bombes[i]->getPlayerSeter()))->getSizeExplo();
+          this->Bombing(_clock, i, 2);
           _mapcols[((int)_bombes[i]->getY()*-1) + size][(int)_bombes[i]->getX() + size] = '0';
 	     }
     }
@@ -138,14 +140,26 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
     }
   if (_input.getInput(SDLK_t, true))
     _save->writeInFile(_mapcols);
+
+  if (_play1 != NULL)
+  {
   _play1->update(clock, _input, _mapcols);
   if (_play1->poseBomb == true && _play1->getNbBombe() < _play1->getMaxNbBombe())
     {
       _play1->poseBomb = false;
       PlaceBombe(clock, _play1);
     }
-  if (nb_player == 2)
+  }
+  if (nb_player == 2 && _play2 != NULL)
+  {
     _play2->update(clock, _input, _mapcols);
+  if (_play2->poseBomb == true && _play2->getNbBombe() < _play2->getMaxNbBombe())
+    {
+      _play2->poseBomb = false;
+      PlaceBombe(clock, _play2);
+    }
+  }
+
   for (size_t i = 0; i < _robot.size(); ++i)
     {
       _robot[i]->update(clock, _input, _mapcols);

@@ -379,7 +379,7 @@ void			GameEngine::draw()
       //for (size_t i = 0; i < _players.size(); ++i)                                               
       //_players[i]->draw(_shader, _clock);                                                      
       if (_play1 != NULL)
-	_play1->draw(_shader, _clock);
+	     _play1->draw(_shader, _clock);
       if (_play2 != NULL)
 	_play2->draw(_shader, _clock);
       _floor->draw(_shader, _clock);

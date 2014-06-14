@@ -37,7 +37,24 @@ bool GameEngine::PlaceBombeIA(gdl::Clock const &clock, IA *ia)
    	std::cout << "id du player : " << ia->getID() << std::endl;
    _bombes.push_back(temp);	
 }
-bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i)
+
+AObject *GameEngine::whichPlayerFromID(int id)
+{
+  if (id == 1)
+    return (_play1);
+  else if (id == 2)
+    return (_play2);
+  else 
+  {
+    for (size_t i = 0; i < _robot.size(); ++i)
+    {
+      if (_robot[i]->getID() == id)
+        return (_robot[i]);
+    }
+  }
+}
+
+bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i, int sizeExplo)
 {
   Bombe *temp;
   int c;
@@ -53,7 +70,7 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i)
     _explosion.push_back(temp);
   }
   c = 1;
-  while (c <= _play1->getSizeExplo())
+  while (c <= sizeExplo)
     {
       temp = new Bombe(glm::vec3(_bombes[i]->getX()+c, _bombes[i]->getY(), _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
       if (temp->initialize() == false)
@@ -71,7 +88,7 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i)
 	}
     }
   c = 1;
-  while (c <= _play1->getSizeExplo())
+  while (c <= sizeExplo)
     {
       temp = new Bombe(glm::vec3(_bombes[i]->getX(), _bombes[i]->getY()+c, _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
       if (temp->initialize() == false)
@@ -89,7 +106,7 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i)
 	}
     }
   c = 1;
-  while (c <= _play1->getSizeExplo())
+  while (c <= sizeExplo)
     {
       temp = new Bombe(glm::vec3(_bombes[i]->getX(), _bombes[i]->getY()-c, _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
       if (temp->initialize() == false)
@@ -107,7 +124,7 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i)
 	}
     }
   c = 1;
-  while (c <= _play1->getSizeExplo())
+  while (c <= sizeExplo)
     {
       temp = new Bombe(glm::vec3(_bombes[i]->getX()-c, _bombes[i]->getY(), _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
       if (temp->initialize() == false)
@@ -132,6 +149,8 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i)
 
   if (_bombes[i]->getPlayerSeter() == 1)
     _play1->setNbBombe(_play1->getNbBombe()-1);
+  else if (_bombes[i]->getPlayerSeter() == 2)
+    _play2->setNbBombe(_play2->getNbBombe()-1);
   else
     {
       while (i2 < _robot.size())
@@ -163,6 +182,12 @@ int GameEngine::destroyObject(AObject *obj, char id, int size)
   {
     delete _play1;
     _play1 = NULL;
+    return (1);
+  }
+  else if (id == '7')
+  {
+    delete _play2;
+    _play2 = NULL;
     return (1);
   }
   else if (id == '2')
@@ -213,6 +238,11 @@ std::cout << "check collision 1 " << std::endl;
           {
             std::cout << "check collision 3 " << std::endl;
             std::cout << "j'ai modifie une case " << _mapcols[((int)obj->getY()*-1) + size][(int)obj->getX() + size] << std::endl;
+            _mapcols[((int)obj->getY()*-1) + size][(int)obj->getX() + size] = '0';
+            return (0);
+          }
+          else if (_mapcols[((int)obj->getY()*-1) + size][(int)obj->getX() + size] == '4')
+          {
             _mapcols[((int)obj->getY()*-1) + size][(int)obj->getX() + size] = '0';
             return (0);
           }

@@ -68,10 +68,11 @@ public:
   bool    Go_To_Pause();
   bool PlaceBombe(gdl::Clock const &clock, Player *player);
   bool PlaceBombeIA(gdl::Clock const &clock, IA *ia);
-  bool Bombing(gdl::Clock const &clock, size_t i);
+  bool Bombing(gdl::Clock const &clock, size_t i, int sizeExplo);
   int getLen(char *map);
   int checkCollision(AObject *obj);
   int destroyObject(AObject *obj, char id, int size);
+  AObject *whichPlayerFromID(int id);
 
 private:
 

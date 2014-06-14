@@ -26,6 +26,7 @@ private:
   int		_sizeExplo;
   int		_maxNbBombe;
   int		_idPlayer;
+  char _idMap;
 
   int		checkCollision(char **map, int dir);
   int		getLen(char *map);
@@ -50,6 +51,7 @@ public:
   int getMaxNbBombe();
   void setMaxNbBombe(int nb);
   int getID();
+  void setIDnMap(int id, char idm);
 
   bool poseBomb;
 };

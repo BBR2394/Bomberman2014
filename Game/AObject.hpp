@@ -60,6 +60,7 @@ public:
   double	getX() const;
   double	getY() const;
   double	getZ() const;
+  //virtual int getSizeExplo();
 
   double                  _ycurs;
   double                  _zcurs;

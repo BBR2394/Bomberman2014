@@ -103,6 +103,7 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
   _play1 = new Player(glm::vec3((lmtx*-1)+1, lmty - 1, 3), glm::vec3(90, 0, 0), "./includes/images/player.tga");
     if (_play1->initialize() == false)
       return (false);
+    _play1->setIDnMap(1, '6');
 
     temp = new CubeDestr(glm::vec3((lmtx*-1)+3, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
     if (temp->initialize() == false)
@@ -122,6 +123,7 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
        return (false);
      _mapcols[1][x-2] = '7';
      _play2->setKeyPlayer(SDLK_s, SDLK_z, SDLK_q, SDLK_d, SDLK_w, SDLK_x, SDLK_c);
+     _play2->setIDnMap(2, '7');
     }
     temp = new CubeDestr(glm::vec3(lmtx-3, lmty - 1, 3), glm::vec3(0, 0, 0), "./includes/images/woodbox.tga");
     if (temp->initialize() == false)
