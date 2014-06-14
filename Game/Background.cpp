@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Wed May 28 15:17:15 2014 Koszyczek Laurent
+// Last update Sun Jun 15 00:27:01 2014 Koszyczek Laurent
 */
 
 #include "Background.hh"
@@ -39,11 +39,10 @@ bool	Background::initialize()
   _geometry.pushVertex(glm::vec3(((this->_x/2) * -1), ((this->_y/2) * -1), 0.25));
   std::cout << this->_x/2 << " " << this->_y/2 << std::endl;
   std::cout << this->getX() << " " << this->getY() << std::endl;
-  /*                                                                                                
-    _geometry.pushVertex(glm::vec3(7.5, -7.5, -0.5));                                                 
-    _geometry.pushVertex(glm::vec3(7.5, 7.5, -0.5));                                                  
-    _geometry.pushVertex(glm::vec3(-7.5, 7.5, -0.5));                                                 
-    _geometry.pushVertex(glm::vec3(-7.5, -7.5, -0.5));                                                
+  /* _geometry.pushVertex(glm::vec3(7.5, -7.5, -0.5));
+    _geometry.pushVertex(glm::vec3(7.5, 7.5, -0.5));
+    _geometry.pushVertex(glm::vec3(-7.5, 7.5, -0.5));
+    _geometry.pushVertex(glm::vec3(-7.5, -7.5, -0.5));
   */
   _geometry.pushUv(glm::vec2(0.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 0.0f));
@@ -74,17 +73,17 @@ void Background::setSize(int x, int y, int z)
   this->_z = z;
 }
 
-int Background::getX()
+int Background::getX() const
 {
   return (this->_x);
 }
 
-int Background::getY()
+int Background::getY() const
 {
   return (this->_y);
 }
 
-int Background::getZ()
+int Background::getZ() const
 {
   return (this->_z);
 }
@@ -94,7 +93,7 @@ void Background::setType(int typ)
   this->_type = typ;
 }
 
-int Background::getType()
+int Background::getType() const
 {
   return (this->_type);
 }

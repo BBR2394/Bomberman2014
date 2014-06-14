@@ -16,7 +16,7 @@ public:
 	virtual bool initialize();
   	virtual void update(gdl::Clock const &clock, gdl::Input &input, char **map);
   	virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
-  	bool getWatch();
+  bool getWatch() const;
 };
 
 #endif

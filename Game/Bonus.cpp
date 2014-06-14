@@ -53,7 +53,7 @@ void Bonus::draw(gdl::AShader &shader, gdl::Clock const &clock)
     _model.draw(shader, getTransformation(), GL_QUADS);
 }
 
-bool Bonus::getWatch()
+bool Bonus::getWatch() const
 {
-return (_toWatch);
+  return (_toWatch);
 }

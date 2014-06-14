@@ -42,14 +42,14 @@ public:
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
   void setStrategy(std::string strategie);
   void setID(int id);
-  int getID();
+  int getID() const;
   int checkCollision(char **map, int dir);
-  int getLen(char *map);
+  int getLen(char *map) const;
   void setSizeExplo(int size);
-  int getSizeExplo();
-  int getNbBombe();
+  int getSizeExplo() const;
+  int getNbBombe() const;
   void setNbBombe(int nb);
-  int getMaxNbBombe();
+  int getMaxNbBombe() const;
   void setMaxNbBombe(int nb);
 
   bool poseBomb;

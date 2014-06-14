@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update sam. juin  14 17:50:13 2014 sofian casier
+// Last update Sun Jun 15 00:27:27 2014 Koszyczek Laurent
 */
 
 #include "Arena_back.hpp"
@@ -97,7 +97,7 @@ if (_texture.load(_texture_name.c_str()) == false)
 }
 
 void  Arena::update(gdl::Clock const &clock, gdl::Input &input)
-{    
+{
 }
 
 void    Arena::draw(gdl::AShader &shader, gdl::Clock const &clock)

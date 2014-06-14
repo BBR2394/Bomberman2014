@@ -5,7 +5,7 @@
 // Login   <koszyc_l@epitech.net>
 // 
 // Started on  Mon May 19 17:37:15 2014 Koszyczek Laurent
-// Last update Wed May 28 15:17:48 2014 Koszyczek Laurent
+// Last update Sun Jun 15 00:26:00 2014 Koszyczek Laurent
 */
 
 #ifndef _BACKGROUND_HH_
@@ -36,10 +36,10 @@ public:
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
   void setSize(int x, int y, int z);
   void setType(int typ);
-  int getX();
-  int getY();
-  int getZ();
-  int getType();
+  int getX() const;
+  int getY() const;
+  int getZ() const;
+  int getType() const;
 };
 
 #endif

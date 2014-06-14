@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update jeu. juin  12 23:47:42 2014 sofian casier
+// Last update Sun Jun 15 00:28:02 2014 Koszyczek Laurent
 */
 
 #ifndef _ARENA_BACK_HPP_

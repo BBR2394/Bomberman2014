@@ -168,7 +168,7 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i, int sizeExplo)
   return (true);
 }
 
-int GameEngine::getLen(char *map)
+int GameEngine::getLen(char *map) const
 {
   int i;
 

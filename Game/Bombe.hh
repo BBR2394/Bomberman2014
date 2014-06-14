@@ -5,7 +5,7 @@
 // Login   <koszyc_l@epitech.net>
 // 
 // Started on  Mon May 19 17:19:07 2014 Koszyczek Laurent
-// Last update Fri May 30 10:56:58 2014 Bertrand-Rapello Baptiste
+// Last update Sun Jun 15 00:28:51 2014 Koszyczek Laurent
 */
 
 #ifndef _BOMBE_HH_
@@ -46,9 +46,9 @@ public:
   virtual void update(gdl::Clock const &clock, gdl::Input &input);
   virtual void draw(gdl::AShader &shader, gdl::Clock const &clock);
   void setTime(int time);
-  int getTime();
+  int getTime() const;
   void setPlayerSeter(int);
-  int getPlayerSeter();
+  int getPlayerSeter() const;
 };
 
 #endif

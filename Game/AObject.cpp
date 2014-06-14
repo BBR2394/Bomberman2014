@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Fri Jun 13 14:57:29 2014 Koszyczek Laurent
+// Last update Sun Jun 15 00:24:56 2014 Koszyczek Laurent
 */
 
 #include "AObject.hpp"
@@ -13,10 +13,6 @@
 AObject::AObject() : _position(5, 5, 0), _rotation(0, 0, 0), _scale(1, 1, 1)
 {
 }
-
-/*AObject::AObject(int x, int y): _position(x, y, 0), _rotation(0,0,0), _scale(1, 1, 1)
-{
-}*/
 
 AObject::AObject(glm::vec3 pos, Type type, std::string texture): _rotation(0, 0, -90), _scale(1, 1, 1)
 {
@@ -89,34 +85,33 @@ void AObject::scale(glm::vec3 const& scale)
   _scale *= scale;
 }
 
-glm::mat4 AObject::getTransformation()
+glm::mat4 &AObject::getTransformation() const
 {
-  glm::mat4 transform(1);
+  glm::mat4 *transform = new glm::mat4(1);
 
-  transform = glm::rotate(transform, _rotation.x, glm::vec3(1, 0, 0));
-  transform = glm::rotate(transform, _rotation.y, glm::vec3(0, 1, 0));
-  transform = glm::rotate(transform, _rotation.z, glm::vec3(0, 0, 1));
-  transform = glm::translate(transform, _position);
-  transform = glm::scale(transform, _scale);
-  return (transform);
+  *transform = glm::rotate(*transform, _rotation.x, glm::vec3(1, 0, 0));
+  *transform = glm::rotate(*transform, _rotation.y, glm::vec3(0, 1, 0));
+  *transform = glm::rotate(*transform, _rotation.z, glm::vec3(0, 0, 1));
+  *transform = glm::translate(*transform, _position);
+  *transform = glm::scale(*transform, _scale);
+  return (*transform);
 }
 
-glm::mat4 AObject::getTransformationPlayer()
+glm::mat4 &AObject::getTransformationPlayer() const
 {
-  glm::mat4 transform(1);
+  glm::mat4 *transform = new glm::mat4(1);
 
-  transform = glm::translate(transform, _position);
-  transform = glm::rotate(transform, _rotation.x, glm::vec3(1, 0, 0));
-  transform = glm::rotate(transform, _rotation.y, glm::vec3(0, 1, 0));
-  transform = glm::rotate(transform, _rotation.z, glm::vec3(0, 0, 1));
-  transform = glm::scale(transform, _scale);
-  return (transform);
-
+  *transform = glm::translate(*transform, _position);
+  *transform = glm::rotate(*transform, _rotation.x, glm::vec3(1, 0, 0));
+  *transform = glm::rotate(*transform, _rotation.y, glm::vec3(0, 1, 0));
+  *transform = glm::rotate(*transform, _rotation.z, glm::vec3(0, 0, 1));
+  *transform = glm::scale(*transform, _scale);
+  return (*transform);
 }
 
 AObject::Type      AObject::getType() const
 {
-  return (this->_type);
+  return (_type);
 }
 
 double		AObject::getX() const

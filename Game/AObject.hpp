@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:40:26 2014 sofian casier
-// Last update Fri Jun 13 14:58:17 2014 Koszyczek Laurent
+// Last update Sun Jun 15 00:04:05 2014 Koszyczek Laurent
 */
 
 #ifndef _AOBJECT_HH__
@@ -51,8 +51,8 @@ public:
   void translate(glm::vec3 const &v);
   void rotate(glm::vec3 const& axis, float angle);
   void scale(glm::vec3 const& scale);
-  glm::mat4 getTransformation();
-  glm::mat4 getTransformationPlayer();
+  glm::mat4 &getTransformation() const;
+  glm::mat4 &getTransformationPlayer() const;
   Type  getType() const;
   void    setXcurs(double);
   void    setYcurs(double);

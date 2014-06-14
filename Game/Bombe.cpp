@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Fri May 30 10:55:53 2014 Bertrand-Rapello Baptiste
+// Last update Sun Jun 15 00:29:07 2014 Koszyczek Laurent
 */
 
 #include "Bombe.hh"
@@ -110,7 +110,7 @@ void Bombe::draw(gdl::AShader &shader, gdl::Clock const &clock)
   _geometry.draw(shader, getTransformation(), GL_QUADS);
 }
 
-int Bombe::getTime()
+int Bombe::getTime() const
 {
     return (_time);
 }
@@ -120,7 +120,7 @@ void Bombe::setPlayerSeter(int id)
     _player = id;
 }
 
-int Bombe::getPlayerSeter()
+int Bombe::getPlayerSeter() const
 {
     return (_player);
 }
