@@ -55,7 +55,7 @@ bool	Player::initialize()
   _maxNbBombe = 1;
   poseBomb = false;
   std::cout << "suite a la création du joueur la position de la cible est : " << _target.x << " " << _target.y << " " << _target.z << " " << std::endl;
-  
+
   _model.load("./assets/marvin.fbx");
   _geometry.setColor(glm::vec4(0, 1, 1, 1));
     _geometry.pushVertex(glm::vec3(0.5, -0.5, 0.5));
@@ -209,6 +209,7 @@ void Player::update(gdl::Clock const &clock, gdl::Input &input, char **map)
     }
   if (input.getInput(_key[6], true && this->getNbBombe() < this->getMaxNbBombe())) //key b
     poseBomb = true;
+  std::cout << "idmap !!!!!!!" << _idMap << std::endl;
   map[((int)getY()*-1) + size][(int)getX() + size] = _idMap;
   if (repet > 0)
     repet--;

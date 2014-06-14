@@ -147,9 +147,12 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i, int sizeExplo)
   //	_play2->setNbBombe(_play2->getNbBombe()-1);
   std::cout << "a l'explosion, l'id du joueur est :" << _bombes[i]->getPlayerSeter() << std::endl;
 
-  if (_bombes[i]->getPlayerSeter() == 1)
+  if (_bombes[i]->getPlayerSeter() == 1 && _play1 != NULL)
+  {
+    std::cout << "le joueur peut a nouveau poser une bombe" << std::endl;
     _play1->setNbBombe(_play1->getNbBombe()-1);
-  else if (_bombes[i]->getPlayerSeter() == 2)
+  }
+  else if (_bombes[i]->getPlayerSeter() == 2 && _play2 != NULL)
     _play2->setNbBombe(_play2->getNbBombe()-1);
   else
     {
