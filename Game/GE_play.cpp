@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update dim. juin  15 20:24:19 2014 sofian casier
+** Last update dim. juin  15 21:22:03 2014 sofian casier
 //
 */
 
@@ -63,7 +63,6 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
     check++;
   if ((_play1 == NULL && _play2 && check == 0) || (_play1 && _play2 == NULL && check == 0) || (_play1 == NULL && _play2 == NULL && check != 0))
   {
-    std::cout << " heyah" << std::endl;
     if (_end_of_game == true)
     {
 

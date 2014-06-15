@@ -1,12 +1,12 @@
-//
+/*
 // AObject.cpp for AO in /home/casier_s/cpp_bomberman/Game
 // 
 // Made by sofian casier
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Sat Jun 14 15:10:44 2014 Koszyczek Laurent
-//
+** Last update dim. juin  15 21:28:04 2014 sofian casier
+*/
 
 #include "AObject.hpp"
 #include "Player.hh"
@@ -54,7 +54,7 @@ bool	Player::initialize()
   _sizeExplo = 2;
   _maxNbBombe = 1;
   poseBomb = false;
-  std::cout << "suite a la création du joueur la position de la cible est : " << _target.x << " " << _target.y << " " << _target.z << " " << std::endl;
+ // std::cout << "suite a la création du joueur la position de la cible est : " << _target.x << " " << _target.y << " " << _target.z << " " << std::endl;
 
   _model.load("./assets/marvin.fbx");
   _geometry.setColor(glm::vec4(0, 1, 1, 1));

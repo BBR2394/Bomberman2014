@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Tue May 13 15:26:17 2014 sofian casier
-** Last update jeu. juin  12 19:24:18 2014 sofian casier
+** Last update dim. juin  15 21:23:01 2014 sofian casier
 //
 */
 
@@ -98,8 +98,7 @@ bool      GameEngine::Menu_choice()
   }
   if (_index_cursor == 2)
   {
-    std::cout << "C'est parti pour continuer le jeu!" << std::endl;
-    return (true);
+       return (true);
   }
   if (_index_cursor == 3)
     return false;

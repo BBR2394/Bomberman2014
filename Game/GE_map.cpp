@@ -6,7 +6,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Sun Jun 15 00:33:32 2014 Koszyczek Laurent
+** Last update dim. juin  15 21:33:03 2014 sofian casier
 //
 */
 
@@ -36,7 +36,7 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
   d = lmty * -1;
   //if (y%2 != 0)
   //lmty++;
-  printf("y : %d, x %d\n", x, y);
+//  printf("y : %d, x %d\n", x, y);
   _mapcols = new char*[y + 2];
   for (int i = 0; i <= y ; ++i)
     _mapcols[i] = new char[x + 2];
@@ -157,7 +157,7 @@ bool                    GameEngine::createMap(int x, int y, int nb_player)
   _arena = new Arena(glm::vec3(0, 0, 11), glm::vec3(0, 0, 0), "./includes/images/desert_back.tga");
   if (_arena->initialize() == false)
     return false;
-  printMap();
+ // printMap();
    return (true);
  }
 
@@ -180,7 +180,7 @@ bool                    GameEngine::createMap_2(int x, int y, int nb_player)
   d = lmty * -1;
   //if (y%2 != 0)
   //lmty++;
-  printf("y : %d, x %d\n", x, y);
+ // printf("y : %d, x %d\n", x, y);
   _mapcols = new char*[y + 2];
   for (int i = 0; i <= y ; ++i)
     _mapcols[i] = new char[x + 2];
@@ -298,7 +298,7 @@ bool                    GameEngine::createMap_2(int x, int y, int nb_player)
   _arena = new Arena(glm::vec3(0, 0, 11), glm::vec3(0, 0, 0), "./includes/images/forest_back.tga");
   if (_arena->initialize() == false)
     return false;
-  printMap();
+  //printMap();
    return (true);
  }
 
@@ -321,7 +321,7 @@ bool                    GameEngine::createMap_3(int x, int y, int nb_player)
   d = lmty * -1;
   //if (y%2 != 0)
   //lmty++;
-  printf("y : %d, x %d\n", x, y);
+  //printf("y : %d, x %d\n", x, y);
   _mapcols = new char*[y + 2];
   for (int i = 0; i <= y ; ++i)
     _mapcols[i] = new char[x + 2];
@@ -439,7 +439,7 @@ bool                    GameEngine::createMap_3(int x, int y, int nb_player)
   _arena = new Arena(glm::vec3(0, 0, 11), glm::vec3(0, 0, 0), "./includes/images/water_back.tga");
   if (_arena->initialize() == false)
     return false;
-  printMap();
+  //printMap();
    return (true);
  }
 

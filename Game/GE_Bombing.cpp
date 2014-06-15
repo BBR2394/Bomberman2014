@@ -7,7 +7,7 @@ bool    GameEngine::PlaceBombe(gdl::Clock const &clock, Player *player)
 {
 	Bombe *temp;
 
-	std::cout << "les position de visé : " << player->getX() << " " << player->getY()  << " " << player->getZ() << std::endl;
+	//std::cout << "les position de visé : " << player->getX() << " " << player->getY()  << " " << player->getZ() << std::endl;
   	temp = new Bombe(glm::vec3(player->getX(), player->getY(), player->getZ()), glm::vec3(90, 0, 0), "./includes/images/bombe.tga");
   	if (temp->initialize() == false)
   	    return (false);
@@ -17,7 +17,7 @@ bool    GameEngine::PlaceBombe(gdl::Clock const &clock, Player *player)
    	temp->setTime(80);
    	temp->setPlayerSeter(player->getID());
    	player->setNbBombe(player->getNbBombe()+1);
-   	std::cout << "id du player : " << player->getID() << std::endl;
+//   	std::cout << "id du player : " << player->getID() << std::endl;
    _bombes.push_back(temp);
 }
 
@@ -25,7 +25,7 @@ bool GameEngine::PlaceBombeIA(gdl::Clock const &clock, IA *ia)
 {
 	Bombe *temp;
 
-	std::cout << "les position de visé : " << ia->getX() << " " << ia->getY()  << " " << ia->getZ() << std::endl;
+//	std::cout << "les position de visé : " << ia->getX() << " " << ia->getY()  << " " << ia->getZ() << std::endl;
   	temp = new Bombe(glm::vec3(ia->getX(), ia->getY(), ia->getZ()), glm::vec3(90, 0, 0), "./includes/images/bombe.tga");
   	if (temp->initialize() == false)
   	    return (false);
@@ -35,7 +35,7 @@ bool GameEngine::PlaceBombeIA(gdl::Clock const &clock, IA *ia)
    	temp->setTime(80);
    	temp->setPlayerSeter(ia->getID());
    	ia->setNbBombe(ia->getNbBombe()+1);
-   	std::cout << "id du player : " << ia->getID() << std::endl;
+  // 	std::cout << "id du player : " << ia->getID() << std::endl;
    _bombes.push_back(temp);
 }
 
@@ -146,11 +146,11 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i, int sizeExplo)
     
   //else if (_bombes.getPlayerSeter() == 2)
   //	_play2->setNbBombe(_play2->getNbBombe()-1);
-  std::cout << "a l'explosion, l'id du joueur est :" << _bombes[i]->getPlayerSeter() << std::endl;
+  //std::cout << "a l'explosion, l'id du joueur est :" << _bombes[i]->getPlayerSeter() << std::endl;
 
   if (_bombes[i]->getPlayerSeter() == 1 && _play1 != NULL)
   {
-    std::cout << "le joueur peut a nouveau poser une bombe" << std::endl;
+    //std::cout << "le joueur peut a nouveau poser une bombe" << std::endl;
     _play1->setNbBombe(_play1->getNbBombe()-1);
   }
   else if (_bombes[i]->getPlayerSeter() == 2 && _play2 != NULL)
@@ -181,7 +181,7 @@ int GameEngine::getLen(char *map) const
 
 int GameEngine::destroyObject(AObject *obj, char id, int size)
 {
-  std::cout << "l'id est egale a "<< id << std::endl;
+//  std::cout << "l'id est egale a "<< id << std::endl;
   if (id == '6')
   {
     delete _play1;
@@ -201,7 +201,7 @@ int GameEngine::destroyObject(AObject *obj, char id, int size)
       {
         if (_cubeDestr[i]->getX() == obj->getX() && _cubeDestr[i]->getY() == obj->getY())
         {
-          std::cout << "j'ai efface un objet" << std::endl;
+  //        std::cout << "j'ai efface un objet" << std::endl;
           _cubeDestr.erase(_cubeDestr.begin()+i);
           return (1);
         }
@@ -216,7 +216,7 @@ int GameEngine::destroyObject(AObject *obj, char id, int size)
       {
         if (_robot[i]->getX() == obj->getX() && _robot[i]->getY() == obj->getY())
         {
-          std::cout << "j'ai efface un bot" << std::endl;
+     //     std::cout << "j'ai efface un bot" << std::endl;
           _robot.erase(_robot.begin()+i);
           return (1);
         }
@@ -234,14 +234,14 @@ int GameEngine::checkCollision(AObject *obj)
 
      // if (_mapcols[((int)((obj->getY() - size) * -1) + 1)] == 0)
        //  return 0;
-std::cout << "check collision 1 " << std::endl;
+//std::cout << "check collision 1 " << std::endl;
       if (_mapcols[((int)obj->getY()*-1) + size][(int)obj->getX() + size] != '0')
         {
-          std::cout << "check collision 2 " << std::endl;
+  //        std::cout << "check collision 2 " << std::endl;
           if (destroyObject(obj, _mapcols[((int)obj->getY()*-1) + size][(int)obj->getX() + size], size) == 1)
           {
-            std::cout << "check collision 3 " << std::endl;
-            std::cout << "j'ai modifie une case " << _mapcols[((int)obj->getY()*-1) + size][(int)obj->getX() + size] << std::endl;
+    //        std::cout << "check collision 3 " << std::endl;
+      //      std::cout << "j'ai modifie une case " << _mapcols[((int)obj->getY()*-1) + size][(int)obj->getX() + size] << std::endl;
             _mapcols[((int)obj->getY()*-1) + size][(int)obj->getX() + size] = '0';
             return (0);
           }

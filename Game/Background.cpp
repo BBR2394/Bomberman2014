@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update dim. juin  15 16:08:03 2014 sofian casier
+** Last update dim. juin  15 21:22:21 2014 sofian casier
 */
 
 #include "Background.hh"
@@ -37,8 +37,6 @@ bool	Background::initialize()
   _geometry.pushVertex(glm::vec3((this->_x/2), (this->_y/2), 1.5));
   _geometry.pushVertex(glm::vec3((this->_x/2), ((this->_y/2) * -1), 1.5));
   _geometry.pushVertex(glm::vec3(((this->_x/2) * -1), ((this->_y/2) * -1), 1.5));
-  std::cout << this->_x/2 << " " << this->_y/2 << std::endl;
-  std::cout << this->getX() << " " << this->getY() << std::endl;
   _geometry.pushUv(glm::vec2(0.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 1.0f));
@@ -62,7 +60,6 @@ void Background::draw(gdl::AShader &shader, gdl::Clock const &clock)
 
 void Background::setSize(int x, int y, int z)
 {
-  std::cout << x << " " << y << " " << z << std::endl;
   this->_x = x;
   this->_y = y;
   this->_z = z;
