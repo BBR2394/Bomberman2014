@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update dim. juin  15 19:55:38 2014 sofian casier
+** Last update dim. juin  15 20:07:07 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -47,6 +47,7 @@ GameEngine::GameEngine()
 
 bool      GameEngine::ReturnToMenu()
 {
+  if (_play1 != NULL)
    delete _play1;
    if (_play2 != NULL)
     delete _play2;

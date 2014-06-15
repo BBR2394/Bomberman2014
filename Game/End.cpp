@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update dim. juin  15 19:56:34 2014 sofian casier
+** Last update dim. juin  15 20:29:49 2014 sofian casier
 */
 
 #include "End.hh"
@@ -33,10 +33,10 @@ if (_texture.load(_texture_name.c_str()) == false)
       std::cerr << "Cannot load the rectangle texture" << std::endl;
       return (false);
     }
-    _geometry.pushVertex(glm::vec3(9, -11, 0.5));
-    _geometry.pushVertex(glm::vec3(9, 11, 0.5));
-    _geometry.pushVertex(glm::vec3(-9, 11, 0.5));
-    _geometry.pushVertex(glm::vec3(-9, -11, 0.5));
+    _geometry.pushVertex(glm::vec3(9, -12, 0.5));
+    _geometry.pushVertex(glm::vec3(9, 12, 0.5));
+    _geometry.pushVertex(glm::vec3(-9, 12, 0.5));
+    _geometry.pushVertex(glm::vec3(-9, -12, 0.5));
     _geometry.pushUv(glm::vec2(0.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
