@@ -6,7 +6,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update dim. juin  15 21:33:03 2014 sofian casier
+** Last update dim. juin  15 22:01:53 2014 sofian casier
 //
 */
 
@@ -450,7 +450,7 @@ void                    GameEngine::printMap()
 
 
   j = 0;
-  while (_mapcols[j])
+/*  while (_mapcols[j])
     {
       i = 0;
       while (_mapcols[j][i])
@@ -459,5 +459,5 @@ void                    GameEngine::printMap()
         }
       printf("\n");
       j++;
-    }
+    } */
 }

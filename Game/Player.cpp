@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update dim. juin  15 21:28:04 2014 sofian casier
+** Last update dim. juin  15 21:58:43 2014 sofian casier
 */
 
 #include "AObject.hpp"
@@ -52,7 +52,7 @@ bool	Player::initialize()
   _target.z = getZ();
   _nbBombe = 0;
   _sizeExplo = 2;
-  _maxNbBombe = 1;
+  _maxNbBombe = 3;
   poseBomb = false;
  // std::cout << "suite a la création du joueur la position de la cible est : " << _target.x << " " << _target.y << " " << _target.z << " " << std::endl;
 
