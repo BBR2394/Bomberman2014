@@ -26,7 +26,7 @@ bool GameEngine::PlaceBombeIA(gdl::Clock const &clock, IA *ia)
 	Bombe *temp;
 
 	std::cout << "les position de visé : " << ia->getX() << " " << ia->getY()  << " " << ia->getZ() << std::endl;
-  	temp = new Bombe(glm::vec3(ia->getX(), ia->getY(), ia->getZ()), glm::vec3(0, 0, 0), "./includes/images/bombe.tga");
+  	temp = new Bombe(glm::vec3(ia->getX(), ia->getY(), ia->getZ()), glm::vec3(90, 0, 0), "./includes/images/bombe.tga");
   	if (temp->initialize() == false)
   	    return (false);
 	Mix_Chunk *bomb;
