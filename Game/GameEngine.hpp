@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Sun Jun 15 17:50:31 2014 Koszyczek Laurent
+** Last update dim. juin  15 22:33:15 2014 sofian casier
 */
 
 #ifndef __GAMEENGINE__
@@ -55,7 +55,6 @@ public:
   bool		Create_loading();
   bool		Playing(gdl::Clock const &clock, int nb_player);
   bool		Update_Menu();
-  void		printMap();
   bool		Create_Arena_Back();
   bool		Set_Two_Players();
   bool		Set_One_Player();

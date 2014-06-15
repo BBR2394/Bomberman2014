@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-** Last update dim. juin  15 21:58:43 2014 sofian casier
+** Last update dim. juin  15 22:34:04 2014 sofian casier
 */
 
 #include "AObject.hpp"
@@ -219,9 +219,6 @@ void Player::draw(gdl::AShader &shader, gdl::Clock const &clock)
   (void)clock;
   _texture.bind();
   _geometry.draw(shader, getTransformation(), GL_QUADS);
-   //glm::mat4 test = getTransformation();
-   //test = glm::vec4( 1.0, 1.0, 0.0, 0.2);
-  // printf("test x %d y %d z %d w %d\n", test.x, test.y, test.z, test.w);
   _model.draw(shader, getTransformationPlayer(), GL_QUADS);
 }
 

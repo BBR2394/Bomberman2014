@@ -164,8 +164,7 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i, int sizeExplo)
 	    _robot[i2]->setNbBombe(_robot[i2]->getNbBombe()-1);
         }
     }
-  printMap();
-  _bombes.erase(_bombes.begin()+i);
+    _bombes.erase(_bombes.begin()+i);
   return (true);
 }
 
