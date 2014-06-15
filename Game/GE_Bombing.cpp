@@ -1,13 +1,14 @@
 
-#include <iostream>
-#include "GameEngine.hpp"
+#include	<iostream>
+#include	"Explosion.hh"
+#include	"GameEngine.hpp"
 
 bool    GameEngine::PlaceBombe(gdl::Clock const &clock, Player *player)
 {
 	Bombe *temp;
 
 	std::cout << "les position de visé : " << player->getX() << " " << player->getY()  << " " << player->getZ() << std::endl;
-  	temp = new Bombe(glm::vec3(player->getX(), player->getY(), player->getZ()), glm::vec3(0, 0, 0), "./includes/images/bombe.tga");
+  	temp = new Bombe(glm::vec3(player->getX(), player->getY(), player->getZ()), glm::vec3(90, 0, 0), "./includes/images/bombe.tga");
   	if (temp->initialize() == false)
   	    return (false);
 	Mix_Chunk *bomb;
@@ -35,7 +36,7 @@ bool GameEngine::PlaceBombeIA(gdl::Clock const &clock, IA *ia)
    	temp->setPlayerSeter(ia->getID());
    	ia->setNbBombe(ia->getNbBombe()+1);
    	std::cout << "id du player : " << ia->getID() << std::endl;
-   _bombes.push_back(temp);	
+   _bombes.push_back(temp);
 }
 
 AObject *GameEngine::whichPlayerFromID(int id)
@@ -56,12 +57,12 @@ AObject *GameEngine::whichPlayerFromID(int id)
 
 bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i, int sizeExplo)
 {
-  Bombe *temp;
+  Explosion *temp;
   int c;
   int i2;
 
   i2 = 0;
-  temp = new Bombe(glm::vec3(_bombes[i]->getX(), _bombes[i]->getY(), _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
+  temp = new Explosion(glm::vec3(_bombes[i]->getX(), _bombes[i]->getY(), _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
   if (temp->initialize() == false)
     return (false);
   if (checkCollision(temp) != 2)
@@ -72,7 +73,7 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i, int sizeExplo)
   c = 1;
   while (c <= sizeExplo)
     {
-      temp = new Bombe(glm::vec3(_bombes[i]->getX()+c, _bombes[i]->getY(), _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
+      temp = new Explosion(glm::vec3(_bombes[i]->getX()+c, _bombes[i]->getY(), _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
       if (temp->initialize() == false)
 	     return (false);
       if (checkCollision(temp) != 2)
@@ -90,7 +91,7 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i, int sizeExplo)
   c = 1;
   while (c <= sizeExplo)
     {
-      temp = new Bombe(glm::vec3(_bombes[i]->getX(), _bombes[i]->getY()+c, _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
+      temp = new Explosion(glm::vec3(_bombes[i]->getX(), _bombes[i]->getY()+c, _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
       if (temp->initialize() == false)
 	return (false);
       if (checkCollision(temp) != 2)
@@ -108,7 +109,7 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i, int sizeExplo)
   c = 1;
   while (c <= sizeExplo)
     {
-      temp = new Bombe(glm::vec3(_bombes[i]->getX(), _bombes[i]->getY()-c, _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
+      temp = new Explosion(glm::vec3(_bombes[i]->getX(), _bombes[i]->getY()-c, _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
       if (temp->initialize() == false)
         return (false);
       if (checkCollision(temp) != 2)
@@ -126,7 +127,7 @@ bool	GameEngine::Bombing(gdl::Clock const &clock, size_t i, int sizeExplo)
   c = 1;
   while (c <= sizeExplo)
     {
-      temp = new Bombe(glm::vec3(_bombes[i]->getX()-c, _bombes[i]->getY(), _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
+      temp = new Explosion(glm::vec3(_bombes[i]->getX()-c, _bombes[i]->getY(), _bombes[i]->getZ()), glm::vec3(0, 0, 0), "./includes/images/explosion.tga");
       if (temp->initialize() == false)
 	return (false);
       if (checkCollision(temp) != 2)

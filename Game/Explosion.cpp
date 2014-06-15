@@ -5,34 +5,22 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Sun Jun 15 18:06:07 2014 Koszyczek Laurent
+// Last update Sun Jun 15 17:58:42 2014 Koszyczek Laurent
 */
 
-#include "Bombe.hh"
+#include "Explosion.hh"
 
-/*
-Bombe::Bombe(double x, double y, double z, Type type, std::string texture) : AObject(x, y, z, type, texture)
-{
-
-}
-*/
-Bombe::Bombe(glm::vec3 pos, glm::vec3 r, std::string texture) : AObject(pos, r, texture, 1.0)
+Explosion::Explosion(glm::vec3 pos, glm::vec3 r, std::string texture) : AObject(pos, r, texture)
 {
 
 }
 
-/*
-Bombe::Bombe(double xp, double yp, double zp, double xr, double yr, double zr, std::string texture) : AObject(xp, yp, zp, xr, yr, zr, texture)
-{
-
-}
-*/
-Bombe::~Bombe()
+Explosion::~Explosion()
 {
 
 }
 
-bool	Bombe::initialize()
+bool	Explosion::initialize()
 {
   _speed = 10.0f;
   _model.load("./assets/bombe.fbx");
@@ -89,40 +77,38 @@ bool	Bombe::initialize()
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.build(); 
+    _geometry.build();
     return (true);
 }
 
-void Bombe::setTime(int time)
+void Explosion::setTime(int time)
 {
     _time = time;
 }
 
-void Bombe::update(gdl::Clock const &clock, gdl::Input &input)
+void Explosion::update(gdl::Clock const &clock, gdl::Input &input)
 {
     _time--;
-    //std::cout << _time << std::endl;
 }
 
-void Bombe::draw(gdl::AShader &shader, gdl::Clock const &clock)
+void Explosion::draw(gdl::AShader &shader, gdl::Clock const &clock)
 {
   (void)clock;
-  //_texture.bind();
-  //  _geometry.draw(shader, getTransformation(), GL_QUADS);
-  _model.draw(shader, getTransformationPlayer(), GL_QUADS);
+  _texture.bind();
+  _geometry.draw(shader, getTransformation(), GL_QUADS);
 }
 
-int Bombe::getTime() const
+int Explosion::getTime() const
 {
     return (_time);
 }
 
-void Bombe::setPlayerSeter(int id)
+void Explosion::setPlayerSeter(int id)
 {
     _player = id;
 }
 
-int Bombe::getPlayerSeter() const
+int Explosion::getPlayerSeter() const
 {
     return (_player);
 }

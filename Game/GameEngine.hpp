@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update dim. juin  15 15:50:35 2014 sofian casier
+// Last update Sun Jun 15 17:50:31 2014 Koszyczek Laurent
 */
 
 #ifndef __GAMEENGINE__
@@ -28,7 +28,8 @@
 # include	"IA.hh"
 # include	"CubeDestr.hh"
 # include	"Save.hpp"
-# include "End.hh"
+# include	"End.hh"
+# include	"Explosion.hh"
 # include	"Arena_back.hpp"
 
 class GameEngine : public gdl::Game
@@ -87,12 +88,12 @@ private:
   Player                *_play1;
   Player                *_play2;
   std::vector<Bombe*>	_bombes;
-  std::vector<Bombe*>	_explosion;
+  std::vector<Explosion*>	_explosion;
   std::vector<Bonus*>	_bonux;
   std::vector<IA*>	_robot;
   std::vector<AObject*> _cubeDestr;
   Menu                  *_menu;
-  Menu			            *_pause;
+  Menu	                *_pause;
   End                  *_end;
   Cursor                *_cursor;
   Cursor                *_cursor_map;
@@ -109,7 +110,7 @@ private:
   Save                  *_save;
   int                    _map_chosen;
   int                    _game_type;
-  char			             **_mapcols;
+  char	                **_mapcols;
   int                   _nbtour;
   float                 _angle;
   float                 _rotation;

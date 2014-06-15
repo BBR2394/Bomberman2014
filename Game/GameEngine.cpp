@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update dim. juin  15 15:59:07 2014 sofian casier
+// Last update Sun Jun 15 17:15:32 2014 Koszyczek Laurent
 */
 
 #include <unistd.h>
@@ -376,7 +376,7 @@ bool			GameEngine::update()
       for (size_t i = 0; i < _objects.size(); ++i)
         _objects[i]->draw(_shader, _clock);
       for (size_t i = 0; i < _map.size(); ++i)
-	_map[i]->draw(_shader, _clock);
+      _map[i]->draw(_shader, _clock);
       if (_play1 != NULL)
 	     _play1->draw(_shader, _clock);
       if (_play2 != NULL)

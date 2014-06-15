@@ -5,8 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 15:55:25 2014 sofian casier
-** Last update jeu. juin  05 18:28:15 2014 sofian casier
-//
+// Last update Sun Jun 15 17:45:22 2014 Koszyczek Laurent
 */
 
 #include <iostream>

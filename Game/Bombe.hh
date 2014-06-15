@@ -5,7 +5,7 @@
 // Login   <koszyc_l@epitech.net>
 // 
 // Started on  Mon May 19 17:19:07 2014 Koszyczek Laurent
-// Last update Sun Jun 15 00:28:51 2014 Koszyczek Laurent
+// Last update Sun Jun 15 17:03:01 2014 Koszyczek Laurent
 */
 
 #ifndef _BOMBE_HH_
@@ -28,8 +28,9 @@ class Bombe : public AObject
 {
 
 private:
-  gdl::Texture _texture;
+  gdl::Texture	_texture;
   gdl::Geometry _geometry;
+  gdl::Model	_model;
   float _speed;
   int _time;
   int _player;
