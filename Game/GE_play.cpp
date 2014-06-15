@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update dim. juin  15 18:53:21 2014 sofian casier
+** Last update dim. juin  15 19:10:06 2014 sofian casier
 //
 */
 
@@ -71,16 +71,31 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
 	  transformation = glm::lookAt(glm::vec3(0, 0, 20), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 	  _shader.setUniform("view", transformation);
 	  _end_of_game = true;
+
+    Mix_Music *final;
 	  if (_play1 == NULL && check == 0)
-	    _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/victory_bomber_2.tga");
+    {
+      _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/victory_bomber_2.tga");
+      final = Mix_LoadMUS("includes/music/victory.wav");
+    }
 	  else if (_play2 == NULL && check == 0)
+    {
 	    _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/victory_bomber_1.tga");
+      final = Mix_LoadMUS("includes/music/victory.wav");
+    }
 	  else if (_play1 == NULL && _play2 == NULL)
+    {
 	    _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/game_over.tga");
+      final = Mix_LoadMUS("includes/music/death.wav");
+    }
 	  else if (_play1 && check == 0)
+    {
 	    _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/victory_bomber_1.tga");
+      final = Mix_LoadMUS("includes/music/victory.wav");
+    }
 	  if (_end->initialize() == false)
 	    return (false);
+   Mix_PlayMusic(final, -1);
 	  return (true);
 	}
     }
