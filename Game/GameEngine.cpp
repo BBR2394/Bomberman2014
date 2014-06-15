@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update dim. juin  15 19:30:54 2014 sofian casier
+** Last update dim. juin  15 19:55:38 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -47,8 +47,6 @@ GameEngine::GameEngine()
 
 bool      GameEngine::ReturnToMenu()
 {
-  if (_play1 == NULL || _play2 == NULL)
-  {
    delete _play1;
    if (_play2 != NULL)
     delete _play2;
@@ -76,7 +74,6 @@ bool      GameEngine::ReturnToMenu()
   _cubeDestr.erase(_cubeDestr.begin(), _cubeDestr.end());
   _robot.erase(_robot.begin(), _robot.end());
   _objects.erase(_objects.begin(), _objects.end());
-  }
 
   Mix_Music *musique;
   musique = Mix_LoadMUS("includes/music/title.wav");
@@ -381,7 +378,7 @@ bool			GameEngine::update()
       if (_play1 != NULL)
 	     _play1->draw(_shader, _clock);
       if (_play2 != NULL)
-	_play2->draw(_shader, _clock);
+       _play2->draw(_shader, _clock);
     _floor->draw(_shader, _clock);
       for (size_t i = 0; i < _robot.size(); ++i)
         _robot[i]->draw(_shader, _clock);
@@ -413,7 +410,7 @@ bool			GameEngine::update()
     {
       _end->draw(_shader, _clock);
       _context.flush();
-      sleep(4);
+      sleep(11);
       _end = NULL;
     }
     else
