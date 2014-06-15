@@ -4,7 +4,7 @@
 ## Login   <casier_s@epitech.net>
 ## 
 ## Started on  Tue May  6 15:15:22 2014 sofian casier
-## Last update Sat Jun 14 18:00:59 2014 sofian casier
+## Last update Sun Jun 15 14:55:42 2014 sofian casier
 ##
 
 NAME		=		Bomberman
@@ -34,6 +34,7 @@ SRCS		=		Game/main.cpp		\
 				Game/CubeDestr.cpp	\
 				Game/GE_Bombing.cpp	\
 				Game/Arena_back.cpp	\
+				Game/End.cpp		\
 
 OBJS		=		$(SRCS:.cpp=.o)
 

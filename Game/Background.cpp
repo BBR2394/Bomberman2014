@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Sun Jun 15 00:27:01 2014 Koszyczek Laurent
+** Last update dim. juin  15 16:08:03 2014 sofian casier
 */
 
 #include "Background.hh"
@@ -33,17 +33,12 @@ bool	Background::initialize()
       std::cerr << "Cannot load the cube texture" << std::endl;
       return (false);
     }
-  _geometry.pushVertex(glm::vec3(((this->_x/2) * -1), (this->_y/2), 0.25));
-  _geometry.pushVertex(glm::vec3((this->_x/2), (this->_y/2), 0.25));
-  _geometry.pushVertex(glm::vec3((this->_x/2), ((this->_y/2) * -1), 0.25));
-  _geometry.pushVertex(glm::vec3(((this->_x/2) * -1), ((this->_y/2) * -1), 0.25));
+  _geometry.pushVertex(glm::vec3(((this->_x/2) * -1), (this->_y/2), 1.5));
+  _geometry.pushVertex(glm::vec3((this->_x/2), (this->_y/2), 1.5));
+  _geometry.pushVertex(glm::vec3((this->_x/2), ((this->_y/2) * -1), 1.5));
+  _geometry.pushVertex(glm::vec3(((this->_x/2) * -1), ((this->_y/2) * -1), 1.5));
   std::cout << this->_x/2 << " " << this->_y/2 << std::endl;
   std::cout << this->getX() << " " << this->getY() << std::endl;
-  /* _geometry.pushVertex(glm::vec3(7.5, -7.5, -0.5));
-    _geometry.pushVertex(glm::vec3(7.5, 7.5, -0.5));
-    _geometry.pushVertex(glm::vec3(-7.5, 7.5, -0.5));
-    _geometry.pushVertex(glm::vec3(-7.5, -7.5, -0.5));
-  */
   _geometry.pushUv(glm::vec2(0.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 0.0f));
   _geometry.pushUv(glm::vec2(1.0f, 1.0f));

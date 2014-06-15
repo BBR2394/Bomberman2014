@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Wed May  7 10:22:40 2014 sofian casier
-// Last update Sun Jun 15 00:27:27 2014 Koszyczek Laurent
+** Last update dim. juin  15 16:10:40 2014 sofian casier
 */
 
 #include "Arena_back.hpp"
@@ -33,50 +33,50 @@ if (_texture.load(_texture_name.c_str()) == false)
       std::cerr << "Cannot load the rectangle texture" << std::endl;
       return (false);
     }
-    _geometry.pushVertex(glm::vec3(25, -20, 10.5));
-    _geometry.pushVertex(glm::vec3(25, 20, 10.5));
-    _geometry.pushVertex(glm::vec3(-25, 20, 10.5));
-    _geometry.pushVertex(glm::vec3(-25, -20, 10.5));
+    _geometry.pushVertex(glm::vec3(25, -20, 15.5));
+    _geometry.pushVertex(glm::vec3(25, 20, 15.5));
+    _geometry.pushVertex(glm::vec3(-25, 20, 15.5));
+    _geometry.pushVertex(glm::vec3(-25, -20, 15.5));
     _geometry.pushUv(glm::vec2(0.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.pushVertex(glm::vec3(25, -20, -10.5));
-    _geometry.pushVertex(glm::vec3(25, 20, -10.5));
-    _geometry.pushVertex(glm::vec3(-25, 20, -10.5));
-    _geometry.pushVertex(glm::vec3(-25, -20, -10.5));
+    _geometry.pushVertex(glm::vec3(25, -20, -15.5));
+    _geometry.pushVertex(glm::vec3(25, 20, -15.5));
+    _geometry.pushVertex(glm::vec3(-25, 20, -15.5));
+    _geometry.pushVertex(glm::vec3(-25, -20, -15.5));
     _geometry.pushUv(glm::vec2(0.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.pushVertex(glm::vec3(25, -20, -10.5));
-    _geometry.pushVertex(glm::vec3(25, 20, -10.5));
-    _geometry.pushVertex(glm::vec3(25, 20, 10.5));
-    _geometry.pushVertex(glm::vec3(25, -20, 10.5));
+    _geometry.pushVertex(glm::vec3(25, -20, -15.5));
+    _geometry.pushVertex(glm::vec3(25, 20, -15.5));
+    _geometry.pushVertex(glm::vec3(25, 20, 15.5));
+    _geometry.pushVertex(glm::vec3(25, -20, 15.5));
     _geometry.pushUv(glm::vec2(0.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.pushVertex(glm::vec3(-25, -20, 10.5));
-    _geometry.pushVertex(glm::vec3(-25, 20, 10.5));
-    _geometry.pushVertex(glm::vec3(-25, 20, -10.5));
-    _geometry.pushVertex(glm::vec3(-25, -20, -10.5));
+    _geometry.pushVertex(glm::vec3(-25, -20, 15.5));
+    _geometry.pushVertex(glm::vec3(-25, 20, 15.5));
+    _geometry.pushVertex(glm::vec3(-25, 20, -15.5));
+    _geometry.pushVertex(glm::vec3(-25, -20, -15.5));
     _geometry.pushUv(glm::vec2(0.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.pushVertex(glm::vec3(25, 20, 10.5));
-    _geometry.pushVertex(glm::vec3(25, 20, -10.5));
-    _geometry.pushVertex(glm::vec3(-25, 20, -10.5));
-    _geometry.pushVertex(glm::vec3(-25, 20, 10.5));
+    _geometry.pushVertex(glm::vec3(25, 20, 15.5));
+    _geometry.pushVertex(glm::vec3(25, 20, -15.5));
+    _geometry.pushVertex(glm::vec3(-25, 20, -15.5));
+    _geometry.pushVertex(glm::vec3(-25, 20, 15.5));
     _geometry.pushUv(glm::vec2(0.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));
     _geometry.pushUv(glm::vec2(0.0f, 1.0f));
-    _geometry.pushVertex(glm::vec3(25, -20, -10.5));
-    _geometry.pushVertex(glm::vec3(25, -20, 10.5));
-    _geometry.pushVertex(glm::vec3(-25, -20, 10.5));
-    _geometry.pushVertex(glm::vec3(-25, -20, -10.5));
+    _geometry.pushVertex(glm::vec3(25, -20, -15.5));
+    _geometry.pushVertex(glm::vec3(25, -20, 15.5));
+    _geometry.pushVertex(glm::vec3(-25, -20, 15.5));
+    _geometry.pushVertex(glm::vec3(-25, -20, -15.5));
     _geometry.pushUv(glm::vec2(0.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 0.0f));
     _geometry.pushUv(glm::vec2(1.0f, 1.0f));

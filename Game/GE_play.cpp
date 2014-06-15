@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update sam. juin  14 18:04:39 2014 sofian casier
+** Last update dim. juin  15 16:06:36 2014 sofian casier
 //
 */
 
@@ -24,15 +24,15 @@ void            GameEngine::Fight_mus()
 	fight = Mix_LoadMUS("includes/music/fight_1.wav");
       if (_map_chosen == 2)
 	fight = Mix_LoadMUS("includes/music/fight_2.wav");
-      if (_map_chosen == 3)
-	fight = Mix_LoadMUS("includes/music/fight_3.wav");
-      Mix_PlayMusic(fight, -1);
-      music = Mix_LoadWAV("includes/music/ready.wav");
-      Mix_PlayChannel(1, music, 0);
-      sleep(2);
-      music = Mix_LoadWAV("includes/music/go.wav");
-      Mix_PlayChannel(1, music, 0);
-      _music_fight = true;
+  if (_map_chosen == 3)
+   fight = Mix_LoadMUS("includes/music/fight_3.wav");
+ Mix_PlayMusic(fight, -1);
+ music = Mix_LoadWAV("includes/music/ready.wav");
+ Mix_PlayChannel(1, music, 0);
+ sleep(2);
+ music = Mix_LoadWAV("includes/music/go.wav");
+ Mix_PlayChannel(1, music, 0);
+ _music_fight = true;
     }
 }
 
@@ -42,8 +42,6 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
   IA *temp2;
   int c;
 
-  if (_play1 == NULL)
-    std::cout << "partie termine" << std::endl;
   if (_input.getKey(SDLK_ESCAPE, true) || _input.getInput(SDL_QUIT, true))
     {
       glm::mat4 transformation;
@@ -60,14 +58,52 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
           _pause = NULL;
         }
     }
+  if (_play1 == NULL && _play2 == NULL)
+  {
+    if (_end_of_game == true)
+      return (false);
+    else
+    {
+      _end_of_game = true;
+      if (_play1 == NULL)
+        _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/loading.tga");
+      if (_play2 == NULL)
+        _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/loading.tga");
+      if (_play1 == NULL && _play2 == NULL)
+        _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/loading.tga");
+      if (_end->initialize() == false)
+        return (false);
+      return (true);
+    }
+  }
   Fight_mus();
+  if (_input.getInput(SDLK_F7, true))
+    {
+      _zoom += 2;
+      if (_zoom >= 40)
+        _zoom = 40;
+      std::cout << "z = " << _zoom << std::endl;
+      glm::mat4 transformation;
+      transformation = glm::lookAt(glm::vec3(0, _angle, _zoom), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
+      _shader.setUniform("view", transformation);
+    }
+    if (_input.getInput(SDLK_F8, true))
+    {
+      _zoom -= 2;
+      if (_zoom <= 1)
+        _zoom = 1;
+      std::cout << "z = " << _zoom << std::endl;
+      glm::mat4 transformation;
+      transformation = glm::lookAt(glm::vec3(0, _angle, _zoom), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
+      _shader.setUniform("view", transformation);
+    }
   if (_input.getInput(SDLK_F3, true))
     {
       _angle -= 0.5;
       if (_angle <= -10)
         _angle = -10;
       glm::mat4 transformation;
-      transformation = glm::lookAt(glm::vec3(0, _angle, 20), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
+      transformation = glm::lookAt(glm::vec3(0, _angle, _zoom), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
       _shader.setUniform("view", transformation);
     }
   if (_input.getInput(SDLK_F4, true))
@@ -76,21 +112,21 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
       if (_angle >= 10)
         _angle = 10;
       glm::mat4 transformation;
-      transformation = glm::lookAt(glm::vec3(0, _angle, 20), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
+      transformation = glm::lookAt(glm::vec3(0, _angle, _zoom), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
       _shader.setUniform("view", transformation);
     }
   if (_input.getInput(SDLK_F5, true))
     {
       _rotation += 0.1;
       glm::mat4 transformation;
-      transformation = glm::lookAt(glm::vec3(0, _angle, 20), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
+      transformation = glm::lookAt(glm::vec3(0, _angle, _zoom), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
       _shader.setUniform("view", transformation);
     }
   if (_input.getInput(SDLK_F6, true))
     {
       _rotation -= 0.1;
       glm::mat4 transformation;
-      transformation = glm::lookAt(glm::vec3(0, _angle, 20), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
+      transformation = glm::lookAt(glm::vec3(0, _angle, _zoom), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
       _shader.setUniform("view", transformation);
     }
   if (_input.getInput(SDLK_F10, true))

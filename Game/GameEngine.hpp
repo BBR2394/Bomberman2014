@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Sun Jun 15 00:43:53 2014 Koszyczek Laurent
+** Last update dim. juin  15 15:50:35 2014 sofian casier
 */
 
 #ifndef __GAMEENGINE__
@@ -28,6 +28,7 @@
 # include	"IA.hh"
 # include	"CubeDestr.hh"
 # include	"Save.hpp"
+# include "End.hh"
 # include	"Arena_back.hpp"
 
 class GameEngine : public gdl::Game
@@ -91,25 +92,28 @@ private:
   std::vector<IA*>	_robot;
   std::vector<AObject*> _cubeDestr;
   Menu                  *_menu;
-  Menu			*_pause;
+  Menu			            *_pause;
+  End                  *_end;
   Cursor                *_cursor;
   Cursor                *_cursor_map;
   bool                  _pause_cond;
   bool                  _cond_video;
+  bool                  _end_of_game;
   int                   _index_cursor;
   int                   _index_pause;
   int                   _select_map;
   bool                  _check_select_map;
-  int		        _scene;
+  int		               _scene;
   bool                  _music_fight;
   bool                  _launch;
   Save                  *_save;
   int                    _map_chosen;
   int                    _game_type;
-  char			**_mapcols;
+  char			             **_mapcols;
   int                   _nbtour;
   float                 _angle;
   float                 _rotation;
+  float                 _zoom;
 };
 
 #endif

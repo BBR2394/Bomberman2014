@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update sam. juin  14 18:06:16 2014 sofian casier
+** Last update dim. juin  15 15:59:07 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -24,6 +24,7 @@ GameEngine::GameEngine()
 {
   _angle = 0;
   _rotation = 0;
+  _zoom = 20;
   _menu = NULL;
   _cursor = NULL;
   _cursor_map = NULL;
@@ -40,6 +41,75 @@ GameEngine::GameEngine()
   _launch = false;
   _pause_cond = false;
   _pause = NULL;
+  _end_of_game = false;
+  _end = NULL;
+}
+
+bool      GameEngine::ReturnToMenu()
+{
+  if (_play1 == NULL || _play2 == NULL)
+  {
+    std::cout << "passed in the delete menu" << std::endl;
+   delete _play1;
+   if (_play2 != NULL)
+    delete _play2;
+  for (size_t i = 0; i < _bombes.size(); i++)
+    delete _bombes[i];
+  for (size_t i = 0; i < _robot.size(); i++)
+    delete _robot[i];
+  for (size_t i = 0; i < _bonux.size(); i++)
+    delete _bonux[i];
+  for (size_t i = 0; i < _explosion.size(); i++)
+    delete _explosion[i];
+  for (size_t i = 0; i < _map.size(); i++)
+    delete _map[i];
+  for (size_t i = 0; i < _cubeDestr.size(); i++)
+    delete _cubeDestr[i];
+  
+  delete _arena;
+  delete _floor;
+
+  _play1 = NULL;
+  _play2 = NULL;
+  _map.erase(_map.begin(), _map.end());
+  _bombes.erase(_bombes.begin(), _bombes.end());
+  _bonux.erase(_bonux.begin(), _bonux.end());
+  _explosion.erase(_explosion.begin(), _explosion.end());
+  _cubeDestr.erase(_cubeDestr.begin(), _cubeDestr.end());
+  _robot.erase(_robot.begin(), _robot.end());
+  _objects.erase(_objects.begin(), _objects.end());
+  }
+
+  Mix_Music *musique;
+  musique = Mix_LoadMUS("includes/music/title.wav");
+  if (!musique)
+  {
+    std::cout << "Error on Loading Audio" << std::endl;
+    return (false);
+  }
+  Mix_PlayMusic(musique, -1);
+  Mix_VolumeMusic(MIX_MAX_VOLUME / 2.5);
+  _music_fight = false;
+
+  _scene = 0;
+  _index_cursor = 0;
+  _index_pause = 0;
+  _select_map = 0;
+  _map_chosen = 0;
+  _game_type = 0;
+  _angle = 0;
+  _rotation = 0;
+  _end_of_game = false;
+  _check_select_map = false;
+  _pause_cond = false;
+  _launch = false;
+  _cursor = NULL;
+  _cursor_map = NULL;
+  _pause = NULL;
+  _arena = NULL;
+  if ((this->Create_Menu()) == false)
+    return (false);
+  return (true);
 }
 
 GameEngine::~GameEngine()
@@ -184,71 +254,6 @@ bool      GameEngine::Set_Two_Players()
   return (true);
 }
 
-bool      GameEngine::ReturnToMenu()
-{
-  if (_play1 != NULL)
-  {
-   delete _play1;
-    if (_play2 != NULL)
-      delete _play2;
-    for (size_t i = 0; i < _bombes.size(); i++)
-      delete _bombes[i];
-    for (size_t i = 0; i < _robot.size(); i++)
-      delete _robot[i];
-    for (size_t i = 0; i < _bonux.size(); i++)
-      delete _bonux[i];
-    for (size_t i = 0; i < _explosion.size(); i++)
-      delete _explosion[i];
-    for (size_t i = 0; i < _map.size(); i++)
-      delete _map[i];
-    for (size_t i = 0; i < _cubeDestr.size(); i++)
-      delete _cubeDestr[i];
-    delete _arena;
-    delete _floor;
-
-    _play1 = NULL;
-    _play2 = NULL;
-    _map.erase(_map.begin(), _map.end());
-    _bombes.erase(_bombes.begin(), _bombes.end());
-    _bonux.erase(_bonux.begin(), _bonux.end());
-    _explosion.erase(_explosion.begin(), _explosion.end());
-    _cubeDestr.erase(_cubeDestr.begin(), _cubeDestr.end());
-    _robot.erase(_robot.begin(), _robot.end());
-    _objects.erase(_objects.begin(), _objects.end());
-
-  if (_index_pause == 1)
-  {
-    Mix_Music *musique;
-    musique = Mix_LoadMUS("includes/music/title.wav");
-    if (!musique)
-    {
-      std::cout << "Error on Loading Audio" << std::endl;
-      return (false);
-    }
-    Mix_PlayMusic(musique, -1);
-    Mix_VolumeMusic(MIX_MAX_VOLUME / 2.5);
-    _music_fight = false;
-  }
-
-  _scene = 0;
-  _index_cursor = 0;
-  _index_pause = 0;
-  _select_map = 0;
-  _map_chosen = 0;
-  _check_select_map = false;
-  _game_type = 0;
-  _launch = false;
-  _cursor = NULL;
-  _cursor_map = NULL;
-  _pause = NULL;
-  _arena = NULL;
-
-  if ((this->Create_Menu()) == false)
-    return (false);
-  return (true);
-  }
-  }
-
 bool      GameEngine::Go_To_Pause()
 {
   if (_pause == NULL)
@@ -331,23 +336,28 @@ bool			GameEngine::update()
   else if (_scene == 3 && _launch == true)
     {
       if (_pause_cond == true)
-  {
-    if ((Go_To_Pause()) == false)
       {
-        if (ReturnToMenu() == false)
-    return false;
-        sleep(1);
-      }
+    if ((Go_To_Pause()) == false)
+    {
+      if (ReturnToMenu() == false)
+       return false;
+     sleep(1);
+   }
+ }
+ else
+  if ((Playing(_clock, nb_player)) == false && _pause_cond == false)
+  {
+    if (ReturnToMenu() == false)
+      return false;
+    sleep(3);
   }
-      else
-  Playing(_clock, nb_player);
-    }
+  }
   _context.updateClock(_clock);
   _context.updateInputs(_input);
   return (true);
 }
 
-void			GameEngine::draw()
+  void			GameEngine::draw()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   _shader.bind();
@@ -384,8 +394,8 @@ void			GameEngine::draw()
 	  Mix_PlayChannel(1, bomb_sound, 0);
 	  _explosion[i]->draw(_shader, _clock);
 	}
-      for (size_t i = 0; i < _cubeDestr.size(); ++i)
-	_cubeDestr[i]->draw(_shader, _clock);
+  for (size_t i = 0; i < _cubeDestr.size(); ++i)
+   _cubeDestr[i]->draw(_shader, _clock);
       for (size_t i = 0; i < _bonux.size(); ++i)
       {
         if (_bonux[i]->getWatch() == true)
@@ -397,7 +407,14 @@ void			GameEngine::draw()
          _mapcols[((int)_bonux[i]->getY()*-1) + size][(int)_bonux[i]->getX() + size] = '3';
         }
       }
-      //printMap();
     }
-  _context.flush();
+    if (_end != NULL)
+    {
+      _end->draw(_shader, _clock);
+      _context.flush();
+      sleep(3);
+      _end = NULL;
+    }
+    else
+      _context.flush();
 }
