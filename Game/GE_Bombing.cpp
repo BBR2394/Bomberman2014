@@ -14,7 +14,7 @@ bool    GameEngine::PlaceBombe(gdl::Clock const &clock, Player *player)
 	Mix_Chunk *bomb;
    	bomb = Mix_LoadWAV("includes/music/put_bomb.wav");
    	Mix_PlayChannel(1, bomb, 0);
-   	temp->setTime(100);
+   	temp->setTime(80);
    	temp->setPlayerSeter(player->getID());
    	player->setNbBombe(player->getNbBombe()+1);
    	std::cout << "id du player : " << player->getID() << std::endl;
@@ -32,7 +32,7 @@ bool GameEngine::PlaceBombeIA(gdl::Clock const &clock, IA *ia)
 	Mix_Chunk *bomb;
    	bomb = Mix_LoadWAV("includes/music/put_bomb.wav");
    	Mix_PlayChannel(1, bomb, 0);
-   	temp->setTime(100);
+   	temp->setTime(80);
    	temp->setPlayerSeter(ia->getID());
    	ia->setNbBombe(ia->getNbBombe()+1);
    	std::cout << "id du player : " << ia->getID() << std::endl;
