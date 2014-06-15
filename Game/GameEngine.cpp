@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-** Last update dim. juin  15 19:06:24 2014 sofian casier
+** Last update dim. juin  15 19:30:54 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -49,7 +49,6 @@ bool      GameEngine::ReturnToMenu()
 {
   if (_play1 == NULL || _play2 == NULL)
   {
-    std::cout << "passed in the delete menu" << std::endl;
    delete _play1;
    if (_play2 != NULL)
     delete _play2;
@@ -65,9 +64,8 @@ bool      GameEngine::ReturnToMenu()
     delete _map[i];
   for (size_t i = 0; i < _cubeDestr.size(); i++)
     delete _cubeDestr[i];
-  
-  delete _arena;
-  delete _floor;
+  if (_floor)
+    delete _floor;
 
   _play1 = NULL;
   _play2 = NULL;
@@ -90,7 +88,7 @@ bool      GameEngine::ReturnToMenu()
   Mix_PlayMusic(musique, -1);
   Mix_VolumeMusic(MIX_MAX_VOLUME / 2.5);
   _music_fight = false;
-
+  _end = NULL;
   _scene = 0;
   _index_cursor = 0;
   _index_pause = 0;
