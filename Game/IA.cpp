@@ -131,11 +131,13 @@ void	IA::update(gdl::Clock const &clock, gdl::Input &input, char **map)
 {
   int translate_ia;
   static int alerte = 0;
+  int size;
 
+  size = (getLen(map[0]) / 2);
   translate_ia = 1;
   if (this->_strat == "attack")
     {
-      map[((int)getY()*-1) + 7][(int)getX() + 7] = '0';
+      map[((int)getY()*-1) + size][(int)getX() + size] = '0';
       //this->findVictim(map);
       if(checkCollision(map, SDLK_UP) == 1 && (_counter%100 == 0 || (alerte == 1 && _counter%10 == 0)))
 	translate(glm::vec3(0, translate_ia, 0));
@@ -145,10 +147,13 @@ void	IA::update(gdl::Clock const &clock, gdl::Input &input, char **map)
 	translate(glm::vec3(translate_ia, 0, 0));
       else if (checkCollision(map, SDLK_DOWN) == 1 && _counter%100 == 0)
 	translate(glm::vec3(0, -1 * translate_ia, 0));
-      else if (checkCollision(map, SDLK_UP) == 1 && (alerte == 1 && _counter%10 == 0)) 
-	translate(glm::vec3(0, translate_ia, 0));
+      //else if (checkCollision(map, SDLK_UP) == 1 && (alerte == 1 && _counter%10 == 0)) 
+	//translate(glm::vec3(0, translate_ia, 0));
       else
 	{
+     _dir++;
+     if (_dir > 4)
+      _dir = 1;
 	  //std::cout << _counter << std::endl;
 	}
       if (_nbBombe == 0 && alerte == 1)
@@ -159,7 +164,7 @@ void	IA::update(gdl::Clock const &clock, gdl::Input &input, char **map)
 	  alerte = 1;
 	}
       _counter++;
-      map[((int)getY()*-1) + 7][(int)getX() + 7] = '8';
+      map[((int)getY()*-1) + size][(int)getX() + size] = '8';
       //std::cout << "lia a travaillé " << std::endl;
     }
 }

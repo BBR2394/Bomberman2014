@@ -31,6 +31,7 @@ private:
   std::string _strat;
   long _counter;
   int _id;
+  int _dir;
 
 public:
   IA(int x, int y);
