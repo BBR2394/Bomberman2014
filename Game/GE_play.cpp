@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-** Last update dim. juin  15 16:06:36 2014 sofian casier
+** Last update dim. juin  15 18:53:21 2014 sofian casier
 //
 */
 
@@ -58,31 +58,38 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
           _pause = NULL;
         }
     }
-  if (_play1 == NULL && _play2 == NULL)
-  {
-    if (_end_of_game == true)
-      return (false);
-    else
+  int check = 0;
+  while (check != _robot.size())
+    check++;
+  if (_play1 == NULL || _play2 == NULL && check == 0)
     {
-      _end_of_game = true;
-      if (_play1 == NULL)
-        _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/loading.tga");
-      if (_play2 == NULL)
-        _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/loading.tga");
-      if (_play1 == NULL && _play2 == NULL)
-        _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/loading.tga");
-      if (_end->initialize() == false)
-        return (false);
-      return (true);
+      if (_end_of_game == true)
+	return (false);
+      else
+	{
+	  glm::mat4 transformation;
+	  transformation = glm::lookAt(glm::vec3(0, 0, 20), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+	  _shader.setUniform("view", transformation);
+	  _end_of_game = true;
+	  if (_play1 == NULL && check == 0)
+	    _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/victory_bomber_2.tga");
+	  else if (_play2 == NULL && check == 0)
+	    _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/victory_bomber_1.tga");
+	  else if (_play1 == NULL && _play2 == NULL)
+	    _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/game_over.tga");
+	  else if (_play1 && check == 0)
+	    _end = new End(glm::vec3(0, 0, 4), AObject::MENU, "./includes/images/victory_bomber_1.tga");
+	  if (_end->initialize() == false)
+	    return (false);
+	  return (true);
+	}
     }
-  }
   Fight_mus();
   if (_input.getInput(SDLK_F7, true))
     {
       _zoom += 2;
-      if (_zoom >= 40)
-        _zoom = 40;
-      std::cout << "z = " << _zoom << std::endl;
+      if (_zoom >= 25)
+        _zoom = 25;
       glm::mat4 transformation;
       transformation = glm::lookAt(glm::vec3(0, _angle, _zoom), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
       _shader.setUniform("view", transformation);
@@ -92,7 +99,6 @@ bool		GameEngine::Playing(gdl::Clock const &clock, int nb_player)
       _zoom -= 2;
       if (_zoom <= 1)
         _zoom = 1;
-      std::cout << "z = " << _zoom << std::endl;
       glm::mat4 transformation;
       transformation = glm::lookAt(glm::vec3(0, _angle, _zoom), glm::vec3(0, 0, 0), glm::vec3(_rotation, 1, _rotation));
       _shader.setUniform("view", transformation);

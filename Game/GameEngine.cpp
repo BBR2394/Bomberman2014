@@ -5,7 +5,7 @@
 // Login   <casier_s@epitech.net>
 // 
 // Started on  Mon May  5 17:45:27 2014 sofian casier
-// Last update Sun Jun 15 17:15:32 2014 Koszyczek Laurent
+// Last update Sun Jun 15 18:30:36 2014 sofian casier
 */
 
 #include <unistd.h>
@@ -107,6 +107,10 @@ bool      GameEngine::ReturnToMenu()
   _cursor_map = NULL;
   _pause = NULL;
   _arena = NULL;
+  _arena = NULL;
+  glm::mat4 transformation;
+  transformation = glm::lookAt(glm::vec3(0, 0, 20), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+  _shader.setUniform("view", transformation);
   if ((this->Create_Menu()) == false)
     return (false);
   return (true);
