@@ -6,7 +6,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Tue May 13 15:26:33 2014 Bertrand-Rapello Baptiste
-// Last update Sun Jun 15 22:46:39 2014 Bertrand-Rapello Baptiste
+// Last update Sun Jun 15 22:58:11 2014 Bertrand-Rapello Baptiste
 //
 */
 
@@ -260,7 +260,7 @@ bool                    GameEngine::createMap_2(int x, int y, int nb_player)
   if (temp->initialize() == false)
     return (false);
   _cubeDestr.push_back(temp);
-  _mapcols[1][3] = '2';
+  _mapcols[3][1] = '2';
 
   if (nb_player == 2)
     {
