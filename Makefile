@@ -39,7 +39,7 @@ SRCS		=		Game/main.cpp		\
 
 OBJS		=		$(SRCS:.cpp=.o)
 
-LIB_GDL		=		-Llibs -lgdl_gl -lGL -lGLEW -ldl -lrt -lfbxsdk -lSDL2 -lpthread -g -ldl -L libs/ -lSDL2_mixer -lrt -lvlc
+LIB_GDL		=		-Llibs -lgdl_gl -lGL -lGLEW -ldl -lrt -lfbxsdk -lSDL2 -lpthread -ldl -L libs/ -lSDL2_mixer -lrt -lvlc
 
 all		:		$(NAME)
 
