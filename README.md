@@ -26,6 +26,12 @@
 	il existe une option: -v, qui stop la video d'intro
 	nb: ca ne fonctionne que pour linux ..
 
+  _____________
+ /screenshots  /
+---------------
 
+	![Alt text](./ImagesReadMe/Menu1.png "menu")
+
+	![Alt text](./ImagesReadMe/Screen2P.png "screen two player")
 
  ((i'm going to add details))
