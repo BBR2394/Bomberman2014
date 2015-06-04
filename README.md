@@ -30,8 +30,8 @@
  /screenshots  /
 ---------------
 
-	![Alt text](./ImagesReadMe/Menu1.png "menu")
+![Alt text](./ImagesReadMe/Menu1.png "menu")
 
-	![Alt text](./ImagesReadMe/Screen2P.png "screen two player")
+![Alt text](./ImagesReadMe/Screen2P.png "screen two player")
 
  ((i'm going to add details))
